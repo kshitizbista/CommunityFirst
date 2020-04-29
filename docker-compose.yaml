@@ -1,0 +1,15 @@
+version: "3"
+services:
+  database:
+    image: postgres:11-alpine
+    environment:
+       - POSTGRES_DB=communityfirst
+       - POSTGRES_USER=communityfirst_user
+       - POSTGRES_PASSWORD=pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
