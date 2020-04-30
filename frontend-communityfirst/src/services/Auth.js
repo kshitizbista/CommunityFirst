@@ -5,44 +5,66 @@ const tokenKey = "_token";
 // Disclaimer: This simple auth implementation is for development purposes only.
 
 class Auth {
-    setLoggedIn = () => {};
+    // setLoggedIn = () => {
+    // };
 
     isLoggedIn() {
         return this._getToken() != null;
     }
 
-    async signin(loginData) {
-        return await this._loginOrRegister(AuthApi.signIn, loginData);
+    async signIn(loginData) {
+        return await this._login(AuthApi.signIn, loginData);
     }
 
-    async signup(registrationData) {
-        return await this._loginOrRegister(AuthApi.signUp, registrationData);
+    async signUp(registrationData) {
+        return await this._register(AuthApi.signUp, registrationData);
     }
 
     logout() {
-        this.setLoggedIn(false);
+        // this.setLoggedIn(false);
         this._clearToken();
     }
 
-    bindLoggedInStateSetter(loggedInStateSetter) {
-        this.setLoggedIn = loggedInStateSetter;
-    }
+    // bindLoggedInStateSetter(loggedInStateSetter) {
+    //     this.setLoggedIn = loggedInStateSetter;
+    // }
 
     getAuthorizationHeader() {
-        return "Bearer "+this._getToken();
+        return "Bearer " + this._getToken();
     }
 
-    async _loginOrRegister(action, data) {
+    async _login(action, data) {
         try {
             const response = await action(data);
             this._setToken(response.data.token);
-            this.setLoggedIn(true);
+            // this.setLoggedIn(true);
             return true;
         } catch (e) {
             console.error(e);
-            
-            this.setLoggedIn(false);
+            // this.setLoggedIn(false);
             return false;
+        }
+    }
+
+    async _register(action, data) {
+        try {
+            const response = await action(data);
+            return {
+                successful: true,
+                message: response.data.message
+            };
+        } catch (error) {
+            // this.setLoggedIn(false);
+            const resMessage =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            return {
+                successful: false,
+                message: resMessage
+            };
         }
     }
 

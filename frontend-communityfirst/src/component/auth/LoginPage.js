@@ -1,41 +1,31 @@
-import React, {Component} from "react";
+import React from "react";
 import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
 import Auth from "../../services/Auth";
+import {useHistory} from "react-router-dom"
 
-class LoginPage extends Component {
-    async signin(loginData) {
-        const loginSuccess = await Auth.signin(loginData);
+function LoginPage() {
+
+    const history = useHistory();
+
+    const signIn = async (loginData) => {
+        const loginSuccess = await Auth.signIn(loginData);
         if (!loginSuccess) {
             alert("Invalid credentials. Try again");
+        } else {
+            history.push('/communityfirst/se');
         }
     }
 
-    async signup(registrationData) {
-        const registerSuccess = await Auth.signup(registrationData);
-        if (!registerSuccess) {
-            alert("Oops! Please check credentials and try again");
-        }
-    }
-
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <div className="row">
-                            <div className="col-12 ">
-                                <LoginForm onSubmit={this.signin}/>
-                            </div>
-                            <div className="col-12 mt-4">
-                                <RegisterForm onSubmit={this.signup}/>
-                            </div>
-                        </div>
-                    </div>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-12">
+                    <LoginForm onSubmit={signIn}/>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+
 }
 
 export default LoginPage;

@@ -1,54 +1,67 @@
 import React, {useState} from "react";
 
 function RegisterForm({onSubmit}) {
-    const [name, setName] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+
 
     return (
         <div className="card">
             <div className="card-body">
-                <h4 className="card-title">Sign up</h4>
-                <div>
-                    <div className="form-group">
-                        <label>Name:</label>
-                        <input 
-                            type="text"
-                            className="form-control"
-                            value={name}
-                            onChange={ e => setName(e.target.value) }
-                            placeholder="Enter your name"/>
+                <h4 className="card-title">Become a Member</h4>
+                <form>
+                    <div className="form-row">
+                        <div className="col-md-6">
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className="form-control form-control-lg"
+                                    value={firstname}
+                                    onChange={e => setFirstname(e.target.value)}
+                                    placeholder="Firstname"/>
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className="form-control form-control-lg"
+                                    value={lastname}
+                                    onChange={e => setLastname(e.target.value)}
+                                    placeholder="lastname"/>
+                            </div>
+                        </div>
                     </div>
-
                     <div className="form-group">
-                        <label>Email:</label>
                         <input
                             type="email"
                             value={email}
-                            onChange={ e => setEmail(e.target.value) }
-                            className="form-control"
-                            placeholder="Enter your email"/>
+                            onChange={e => setEmail(e.target.value)}
+                            className="form-control form-control-lg"
+                            placeholder="Email"/>
                     </div>
-
                     <div className="form-group">
-                        <label>Password:</label>
-                        <input 
-                            type="password" 
-                            placeholder="Enter your password" 
-                            className="form-control" 
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            className="form-control form-control-lg"
                             value={password}
-                            onChange={e => setPassword(e.target.value)} />
+                            onChange={e => setPassword(e.target.value)}/>
                     </div>
-
-                    <div className="form-group">
-                        <button 
-                            className="btn btn-primary"
-                            onClick={e => onSubmit({name, email, password})}>
-                            Create account
-                        </button>
-                    </div>
-
-                </div>
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setLoading(true);
+                            onSubmit({firstname, lastname, email, password});
+                        }}>
+                        Join now
+                    </button>
+                </form>
             </div>
         </div>
     );
