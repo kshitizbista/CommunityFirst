@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import se.sda.communityfirst.common.model.MessageResponse;
 import se.sda.communityfirst.security.UserPrinciple;
 import se.sda.communityfirst.security.jwt.JwtUtils;
 import se.sda.communityfirst.user.Role;
@@ -64,16 +65,10 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-//        if (userRepository.existsByUsername(signUpRequest.getFirstname())) {
-//            return ResponseEntity
-//                    .badRequest()
-//                    .body(new MessageResponse("Error: Username is already taken!"));
-//        }
-
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new MessageResponse("Email is already in use!"));
         }
 
         // Create new user's account
