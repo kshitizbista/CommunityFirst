@@ -26,7 +26,7 @@ function RegisterForm({onSubmit}) {
                                     onChange={e => setFirstname(e.target.value)}
                                     placeholder="Firstname"
                                     ref={register({ required: true, minLength: 3, maxLength: 20  })} />
-                                    {errors.firstname && <p>Firstname is required and size must be between 3 and 20 </p>}
+                                    {errors.firstname && <e>Firstname is required and size must be between 3 and 20 </e>}
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -38,7 +38,7 @@ function RegisterForm({onSubmit}) {
                                     onChange={e => setLastname(e.target.value)}
                                     placeholder="lastname"
                                     ref={register({ required: true, minLength: 3, maxLength: 20 })} />
-                                    {errors.lastname && <p>Lastname is required and size must be between 3 and 20 </p>}
+                                    {errors.lastname && <e>Lastname is required and size must be between 3 and 20 </e>}
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ function RegisterForm({onSubmit}) {
                                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
                                 }
                             })}/>
-                            {errors.email && <p>Email is required and Must be a well-formed email address </p>}
+                            {errors.email && <e>Email is required and Must be a well-formed email address </e>}
                     </div>
                     <div className="form-group">
                         <input name="password"
@@ -64,7 +64,7 @@ function RegisterForm({onSubmit}) {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             ref={register({ required: true, minLength: 5, maxLength: 50 })} />
-                            {errors.password && <p>Password is required and size must be between 5 and 50 </p>}
+                            {errors.password && <e>Password is required and size must be between 5 and 50 </e>}
                     </div>
                     <button
                         type="submit"
