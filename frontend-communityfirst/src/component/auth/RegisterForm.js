@@ -5,8 +5,6 @@ function RegisterForm({onSubmit}) {
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-
 
     return (
         <div className="card">
@@ -56,7 +54,6 @@ function RegisterForm({onSubmit}) {
                         className="btn btn-primary"
                         onClick={(e) => {
                             e.preventDefault();
-                            setLoading(true);
                             onSubmit({firstname, lastname, email, password});
                         }}>
                         Join now

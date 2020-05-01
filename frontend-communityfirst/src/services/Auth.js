@@ -5,9 +5,6 @@ const tokenKey = "_token";
 // Disclaimer: This simple auth implementation is for development purposes only.
 
 class Auth {
-    // setLoggedIn = () => {
-    // };
-
     isLoggedIn() {
         return this._getToken() != null;
     }
@@ -21,13 +18,8 @@ class Auth {
     }
 
     logout() {
-        // this.setLoggedIn(false);
         this._clearToken();
     }
-
-    // bindLoggedInStateSetter(loggedInStateSetter) {
-    //     this.setLoggedIn = loggedInStateSetter;
-    // }
 
     getAuthorizationHeader() {
         return "Bearer " + this._getToken();
@@ -37,11 +29,9 @@ class Auth {
         try {
             const response = await action(data);
             this._setToken(response.data.token);
-            // this.setLoggedIn(true);
             return true;
         } catch (e) {
             console.error(e);
-            // this.setLoggedIn(false);
             return false;
         }
     }
@@ -54,7 +44,6 @@ class Auth {
                 message: response.data.message
             };
         } catch (error) {
-            // this.setLoggedIn(false);
             const resMessage =
                 (error.response &&
                     error.response.data &&

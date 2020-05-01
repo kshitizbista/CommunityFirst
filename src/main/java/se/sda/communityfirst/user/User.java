@@ -18,11 +18,11 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(min = 3, max = 20)
     private String firstname;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(min = 3, max = 20)
     private String lastname;
 
     @NotBlank
@@ -31,7 +31,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 120)
+    @Size(min = 5, max = 50)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
