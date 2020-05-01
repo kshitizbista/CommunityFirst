@@ -3,21 +3,21 @@ package se.sda.communityfirst.common.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MessageResponse {
+public class MessageResponse<T> {
     /*
         message can be either success message, error message, or warning!
      */
-    private String message;
+    private T message;
 
-    public MessageResponse(String message) {
+    public MessageResponse(T message) {
         this.message = message;
     }
 
-    public String getMessage() {
+    public T getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(T message) {
         this.message = message;
     }
 }
