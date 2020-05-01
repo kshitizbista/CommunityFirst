@@ -3,6 +3,7 @@ package se.sda.communityfirst.auth;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
+
 	@NotBlank
 	private String email;
 

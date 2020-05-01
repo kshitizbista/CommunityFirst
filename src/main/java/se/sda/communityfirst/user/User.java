@@ -31,7 +31,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(min = 5, max = 50)
+    @Size(min = 5, max = 120)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
