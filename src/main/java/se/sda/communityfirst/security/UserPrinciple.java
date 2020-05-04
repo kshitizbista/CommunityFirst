@@ -1,13 +1,11 @@
 package se.sda.communityfirst.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 import se.sda.communityfirst.user.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -19,11 +17,8 @@ public class UserPrinciple implements UserDetails {
     }
 
     @Override
-    @Transactional
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
     @Override
