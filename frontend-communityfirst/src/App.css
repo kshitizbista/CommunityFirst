@@ -1,11 +1,12 @@
 .home-wrapper {
     height: 100vh;
-    background-color: rgb(68,154,213);
+    background-color: rgb(68, 154, 213);
 }
-e {
-  color: #bf1650;
+
+.form-error {
+    color: #bf1650;
 }
-e::before {
-  display: inline;
-  content: "⚠ ";
+
+.form-error::before {
+    content: "⚠ ";
 }
