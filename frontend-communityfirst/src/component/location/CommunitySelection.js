@@ -1,66 +1,44 @@
-import React from 'react';
+import React, {useState} from "react";
 
-class CommunitySelection extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            communities : [],
-            community : [],
-            selectedCity : '--Choose City--',
-            selectedState : '--Choose State--'
-        };
-        this.changeCity = this.changeCity.bind(this);
-        this.changeCommunity = this.changeCommunity.bind(this);
-    }
+function CommunitySelection({cities, communities, onCityClick, onCommunityClick}) {
 
-    componentDidMount() {
-        this.setState({
-            communities : [
-                { "id": 1, "name": "Stockholm", "community":[ {"id":2,"name": "Vallingby"}, {"id":1,"name": "Täby"}]},
-                { "id": 2, "name": "Ljubljana", "community":[ {"id":2,"name": "Gorenjska"}, {"id":1,"name": "Dolenjska"}]}
-            ]
-        });
-    }
+    const [selectedCity, setSelectedCity] = useState("Select City");
+    const [selectedCommunity] = useState("Select Community");
 
-    changeCity(event) {
-        this.setState({selectedCity: event.target.value});
-        this.setState({community : this.state.communities.find(cty => cty.name === event.target.value).community});
-    }
+    return (
+        <div className="row justify-content-center">
+            <div className="col-auto">
+                <div className="dropdown">
+                    <span className="btn btn-info dropdown-toggle btn-lg" role="button" id="dropdownMenuLink"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {selectedCity}
+                    </span>
 
-    changeCommunity(event) {
-        this.setState({selectedState: event.target.value});
-        const stats = this.state.communities.find(cty => cty.name === this.state.selectedCity).community;
-    }
-
-    render() {
-        return (
-            <div id="container">
-
-                <div>
-                    <label>City: </label>
-                    <select placeholder="City" value={this.state.selectedCity} onChange={this.changeCity}>
-                        <option>--Choose City--</option>
-                        {this.state.communities.map((e, key) => {
-                            return <option key={key}>{e.name}</option>;
-                        })}
-                    </select>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {cities.map((city) => <span key={city.id} className="dropdown-item"
+                                                    onClick={() => {
+                                                        onCityClick(city.id)
+                                                        setSelectedCity(city.name)
+                                                    }}>{city.name}</span>)}
+                    </div>
                 </div>
-
-                <div>
-                    <label>Community: </label>
-                    <select placeholder="Community" value={this.state.selectedState} onChange={this.changeCommunity}>
-                        <option>--Choose Community--</option>
-                        {this.state.community.map((e, key) => {
-                            return <option key={key}>{e.name}</option>;
-                        })}
-                    </select>
-                </div>
-
-                <button>SUBMIT</button>
-
             </div>
-        )
-    }
+            <div className="col-auto">
+                <div className="dropdown">
+                    <span className="btn btn-info dropdown-toggle btn-lg" role="button" id="dropdownMenuLink"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {selectedCommunity}
+                    </span>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {communities.map((community) => <span key={community.id} className="dropdown-item"
+                                                              onClick={() => {
+                                                                  onCommunityClick(selectedCity, community.name)
+                                                              }}>{community.name}</span>)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default CommunitySelection;

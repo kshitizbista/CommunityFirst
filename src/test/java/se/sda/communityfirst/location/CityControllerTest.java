@@ -12,8 +12,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,28 +36,43 @@ class CityControllerTest {
     }
 
     @Test
-    void findAll() throws Exception {
-        Set<City> cities = new HashSet<>();
-        City stockholm = new City();
+    void findAllCities() throws Exception {
+        Set<CityDTO> cities = new HashSet<>();
+        CityDTO stockholm = new CityDTO();
         stockholm.setName("Stockholm");
 
-        Community taby = new Community();
-        taby.setName("Taby");
-
-        Community vallingby = new Community();
-        vallingby.setName("Vallingby");
-
-        stockholm.addCommunity(taby);
-        stockholm.addCommunity(vallingby);
+        CityDTO gothenberg = new CityDTO();
+        gothenberg.setName("Gothenberg");
 
         cities.add(stockholm);
+        cities.add(gothenberg);
 
-        when(cityController.findAll()).thenReturn(cities);
+        when(cityController.findAllCities()).thenReturn(cities);
         mockMvc.perform(get(CityController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[*]", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", equalTo("Stockholm")))
-                .andExpect(jsonPath("$[0].community", hasSize(2)));
-        verify(cityService).findAll();
+                .andExpect(jsonPath("$[*]", hasSize(2)));
+//                .andExpect(jsonPath("$[0].name", equalTo("Stockholm")));
+        verify(cityService).findAllCities();
+    }
+
+    @Test
+    void findAllCommunitiesByCityId() throws Exception {
+        Set<CommunityDTO> communityDTOS = new HashSet<>();
+
+        CommunityDTO vallingby = new CommunityDTO();
+        vallingby.setName("Vallingby");
+
+        CommunityDTO taby = new CommunityDTO();
+        taby.setName("Gothenberg");
+
+        communityDTOS.add(vallingby);
+        communityDTOS.add(taby);
+
+        when(cityController.findCommunitiesByCityId(anyLong())).thenReturn(communityDTOS);
+        mockMvc.perform(get(CityController.BASE_URL + "/communities")
+                .param("id", "1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[*]", hasSize(2)));
+        verify(cityService).findCommunitiesByCityId(anyLong());
     }
 }

@@ -13,9 +13,9 @@ public class Community {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
-    @JsonIgnore
+//    @JsonIgnore
     private City city;
 
     public Long getId() {
