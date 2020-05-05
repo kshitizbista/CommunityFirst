@@ -10,8 +10,8 @@ import java.util.List;
 public class ItemService {
     private ItemRepository itemRepository;
 
-    public ItemService(ItemRepository postRepository) {
-        this.itemRepository = postRepository;
+    public ItemService(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
     }
 
     public List<Item> getAll() {
