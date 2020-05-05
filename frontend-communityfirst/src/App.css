@@ -11,6 +11,8 @@
     content: "⚠ ";
 }
 
-.option {
-    margin: 0.5em;
+.community-selection {
+    cursor: pointer;
 }
+
+
