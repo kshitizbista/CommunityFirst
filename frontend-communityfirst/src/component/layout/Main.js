@@ -7,6 +7,8 @@ import {
     useRouteMatch,
 } from "react-router-dom";
 import Auth from "../../services/Auth";
+import Location from "../location/Location";
+import CommunitySelection from "../location/CommunitySelection";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -19,14 +21,18 @@ function Main() {
             <Switch>
                 <Redirect exact from={path} to={`${url}/services`}/>
                 <Route exact path={`${path}/services`}>
-                    <div>Services</div>
+                    <div>ServiceD</div>
                 </Route>
                 <Route exact path={`${path}/donation`}>
                     <div>Donation</div>
                 </Route>
                 <Route exact path={`${path}/loans`}>
-                    <div>Loans</div>
+                    <div>loans</div>
                 </Route>
+                <Route exact path={`${path}/community`}>
+                   <Location />
+                </Route>
+
             </Switch>
         </>
     );

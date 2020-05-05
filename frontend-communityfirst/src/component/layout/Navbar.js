@@ -25,6 +25,9 @@ function Navbar({onLogout}) {
                     <li className="nav-item">
                         <NavLink to={`${url}/loans`} className="nav-link">Loan</NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink to={`${url}/community`} className="nav-link">Select Community</NavLink>
+                    </li>
                 </ul>
                 <button className="btn btn-outline-info ml-lg-4" onClick={() => {
                     onLogout();
