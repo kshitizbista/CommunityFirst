@@ -13,6 +13,7 @@ import se.sda.communityfirst.user.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -51,4 +52,31 @@ public class ItemServiceTest {
         List<Item> expected = itemService.getAll();
         assertEquals(expected, items);
     }
+    @Test
+    void save() throws Exception {
+        List<Item> items = new ArrayList<>();
+
+        Item dress = new Item();
+        dress.setId(1L);
+        dress.setTitle("Foo");
+        dress.setText("Lorem ipsum");
+        dress.setOffering(true);
+
+        User user = new User();
+        user.setId(1L);
+        dress.setUser(user);
+
+        Community taby = new Community();
+        taby.setId(1L);
+        dress.setCommunity(taby);
+
+        items.add(dress);
+
+        given(itemRepository.save(dress)).willReturn(dress);
+        Item expected = itemService.save(dress);
+        assertThat(expected).isNotNull();
+        assertEquals(expected, dress);
+    }
+
+
 }
