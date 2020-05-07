@@ -57,7 +57,7 @@ public class ItemControllerTest {
         Item dress = new Item();
         dress.setId(1L);
         dress.setTitle("Foo");
-        dress.setText("Lorem ipsum");
+        dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
 
         User user = new User();
@@ -76,7 +76,7 @@ public class ItemControllerTest {
                 .andExpect(jsonPath("$[*]", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is (1)))
                 .andExpect(jsonPath("$[0].title", equalTo("Foo")))
-                .andExpect(jsonPath("$[0].text", equalTo("Lorem ipsum")))
+                .andExpect(jsonPath("$[0].description", equalTo("Lorem ipsum")))
                 .andExpect(jsonPath("$[0].offering", is(true)))
                 .andExpect(jsonPath("$[0].user.id", is (1)))
                 .andExpect(jsonPath("$[0].community.id", is (1)));
@@ -90,7 +90,7 @@ public class ItemControllerTest {
         Item dress = new Item();
         dress.setId(1L);
         dress.setTitle("Foo");
-        dress.setText("Lorem ipsum");
+        dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
 
         User user = new User();
@@ -117,7 +117,7 @@ public class ItemControllerTest {
         Item dress = new Item();
         dress.setId(1L);
         dress.setTitle("Foo");
-        dress.setText("Lorem ipsum");
+        dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
 
         User user = new User();

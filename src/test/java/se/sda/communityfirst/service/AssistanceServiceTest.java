@@ -34,7 +34,7 @@ public class AssistanceServiceTest {
         Assistance shoppingService = new Assistance();
         shoppingService.setId(1L);
         shoppingService.setTitle("Foo");
-        shoppingService.setText("Lorem ipsum");
+        shoppingService.setDescription("Lorem ipsum");
         shoppingService.setOffering(true);
 
         User user = new User();

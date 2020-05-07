@@ -25,9 +25,9 @@ public class Assistance {
     @NotEmpty(message = "Title cannot be empty")
     private String title;
 
-    @Column(name = "text")
+    @Column(name = "description")
     @NotEmpty(message = "Post cannot be empty")
-    private String text;
+    private String description;
 
     @ManyToOne
     private User user;
@@ -38,5 +38,4 @@ public class Assistance {
     @Column(name = "offering")
     @NotNull(message = "Offering or Asking has to be chosen")
     private Boolean offering;
-
 }

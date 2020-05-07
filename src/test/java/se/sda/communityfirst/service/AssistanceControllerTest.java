@@ -42,7 +42,7 @@ public class AssistanceControllerTest {
         Assistance shoppingService = new Assistance();
         shoppingService.setId(1L);
         shoppingService.setTitle("Foo");
-        shoppingService.setText("Lorem ipsum");
+        shoppingService.setDescription("Lorem ipsum");
         shoppingService.setOffering(true);
 
         User user = new User();
@@ -61,7 +61,7 @@ public class AssistanceControllerTest {
                 .andExpect(jsonPath("$[*]", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is (1)))
                 .andExpect(jsonPath("$[0].title", equalTo("Foo")))
-                .andExpect(jsonPath("$[0].text", equalTo("Lorem ipsum")))
+                .andExpect(jsonPath("$[0].description", equalTo("Lorem ipsum")))
                 .andExpect(jsonPath("$[0].offering", is(true)))
                 .andExpect(jsonPath("$[0].user.id", is (1)))
                 .andExpect(jsonPath("$[0].community.id", is (1)));

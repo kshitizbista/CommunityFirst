@@ -35,7 +35,7 @@ public class ItemServiceTest {
         Item dress = new Item();
         dress.setId(1L);
         dress.setTitle("Foo");
-        dress.setText("Lorem ipsum");
+        dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
 
         User user = new User();
@@ -59,7 +59,7 @@ public class ItemServiceTest {
         Item dress = new Item();
         dress.setId(1L);
         dress.setTitle("Foo");
-        dress.setText("Lorem ipsum");
+        dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
 
         User user = new User();
