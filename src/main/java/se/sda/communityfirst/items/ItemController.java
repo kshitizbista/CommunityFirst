@@ -8,6 +8,8 @@ import java.util.List;
 @RequestMapping("items")
 
 public class ItemController {
+
+    public static final String BASE_URL = "/items";
     private ItemService itemService;
 
     public ItemController(ItemService itemService) {

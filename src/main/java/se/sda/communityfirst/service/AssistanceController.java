@@ -7,6 +7,8 @@ import java.util.List;
 @RestController
 @RequestMapping("services")
 public class AssistanceController {
+
+    public static final String BASE_URL = "/services";
     private AssistanceService assistanceService;
 
     public AssistanceController(AssistanceService assistanceService) {
