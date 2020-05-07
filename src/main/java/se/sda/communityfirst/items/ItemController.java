@@ -1,4 +1,5 @@
 package se.sda.communityfirst.items;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,12 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping()
-    public List<Item> getAll() {
-        return itemService.getAll();
+
+    @GetMapping
+    public List<Item> getAll(@RequestParam(value="pageNo", defaultValue="0") Integer pageNo,
+                                          @RequestParam(value="sortKey", defaultValue="title") String sortKey)
+    {
+        return itemService.getAll(pageNo, sortKey);
     }
 
     @GetMapping("/{id}")

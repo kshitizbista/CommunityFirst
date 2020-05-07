@@ -1,10 +1,17 @@
 package se.sda.communityfirst.items;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.sda.communityfirst.exception.ResourceNotFoundException;
+import se.sda.communityfirst.location.CommunityDTO;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ItemService {
@@ -14,8 +21,13 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> getAll() {
-        return itemRepository.findAll();
+    public List<Item> getAll(Integer pageNo, String sortKey) {
+        int noOfRecords = 10;
+
+        Pageable page = PageRequest.of(pageNo, noOfRecords, Sort.by(sortKey));
+        Page<Item> pagedResult = itemRepository.findAll(page);
+        // changing to List
+        return pagedResult.getContent();
     }
 
     public Item getByID(Long id) {
@@ -37,5 +49,5 @@ public class ItemService {
     public void deleteById(Long id) {
         itemRepository.deleteById(id);
     }
-
 }
+
