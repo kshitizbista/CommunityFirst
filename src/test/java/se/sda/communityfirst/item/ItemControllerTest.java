@@ -135,7 +135,5 @@ public class ItemControllerTest {
         Item item = itemController.save(dress);
         verify(itemService).save(dress);
         assertEquals(1l, item.getId());
-
     }
-
 }

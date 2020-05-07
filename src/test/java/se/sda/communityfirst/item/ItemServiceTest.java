@@ -77,6 +77,4 @@ public class ItemServiceTest {
         assertThat(expected).isNotNull();
         assertEquals(expected, dress);
     }
-
-
 }
