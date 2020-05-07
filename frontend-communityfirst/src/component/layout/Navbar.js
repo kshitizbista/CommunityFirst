@@ -20,7 +20,7 @@ function Navbar({onLogout}) {
                         <NavLink to={`${url}/services`} className="nav-link">Services</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to={`${url}/items`} className="nav-link">Items</NavLink>
+                        <NavLink to="/items" className="nav-link">Items</NavLink>
                     </li>
                 </ul>
                 <button className="btn btn-outline-dark ml-lg-4" onClick={() => {

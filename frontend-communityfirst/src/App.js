@@ -7,6 +7,7 @@ import RegisterPage from "./component/auth/RegisterPage";
 import Auth from "./services/Auth";
 import Main from "./component/layout/Main";
 import Location from "./component/location/Location";
+import ItemPage from "./component/item/ItemPage";
 
 function App() {
 
@@ -26,7 +27,11 @@ function App() {
                 <Route path="/signup" render={(props) => <RegisterPage {...props}/>}/>
                 <Route path="/communityfirst/se"
                        render={() => Auth.isLoggedIn() ? (<Main/>) : (<Redirect to="/"/>)
-                       }/>
+                       } />
+                <Route path="/items"
+                    render={() => Auth.isLoggedIn() ? (<ItemPage />) : (<Redirect to="/" />)
+                    } />
+            
             </Switch>
         </Router>
     )
