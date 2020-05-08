@@ -11,8 +11,11 @@ function RegisterForm({onSubmit}) {
 
     return (
         <div className="card">
+            <div class="card-header">
+                Glad to hear that you want to be a part of our community.
+            </div>
             <div className="card-body">
-                <h4 className="card-title">Become a Member</h4>
+                <h4 className="card-title">Sign Up Here!</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-row">
                         <div className="col-md-6">
@@ -34,7 +37,7 @@ function RegisterForm({onSubmit}) {
                                        className="form-control form-control-lg"
                                        value={lastname}
                                        onChange={e => setLastname(e.target.value)}
-                                       placeholder="lastname"
+                                       placeholder="Lastname"
                                        ref={register({required: true, minLength: 3, maxLength: 20})}/>
                                 {errors.lastname && <span className="form-error">Lastname is required and size must be between 3 and 20 </span>}
                             </div>
@@ -46,7 +49,7 @@ function RegisterForm({onSubmit}) {
                                value={email}
                                onChange={e => setEmail(e.target.value)}
                                className="form-control form-control-lg"
-                               placeholder="Email"
+                               placeholder="Enter Your Email"
                                ref={register({
                                    required: true,
                                    pattern: {
@@ -59,7 +62,7 @@ function RegisterForm({onSubmit}) {
                     <div className="form-group">
                         <input name="password"
                                type="password"
-                               placeholder="Enter your password"
+                               placeholder="Chose a password"
                                className="form-control form-control-lg"
                                value={password}
                                onChange={e => setPassword(e.target.value)}

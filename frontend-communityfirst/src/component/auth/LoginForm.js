@@ -9,7 +9,10 @@ function LoginForm({onSubmit}) {
 
     return (
         <div className="card">
-            <div className="card-body">
+            <div class="card-header">
+                Welcome Back!
+            </div>
+            <div className="card-body" >
                 <h4 className="card-title">Login</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>

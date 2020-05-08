@@ -17,17 +17,33 @@ function Home() {
                     <div className="card-body">
                         <h3 className="card-title">Community First</h3>
                         <p className="card-text">
-                            Community First is an initiative to help communities come together in difficult times. We at
-                            community First believe that real, sustainable change requires ingenuity and engagement of
-                            community
-                            members. Our forum helps communities to better equip themselves to deal with unforeseen
-                            circumstances such as war, nature disasters and epidemics etc. We provide a platform for
-                            people to
-                            share, donate and offer services amongst their communities
+                        Community First is a platform for people to voluntarily share, donate and offer services to others in their communities. We at Community First believe that real, sustainable change requires ingenuity and engagement of its members. Our vision is to help communities better equip themselves to deal with unforeseen circumstances such as war, natural disasters and pandemics etc. 
                         </p>
                     </div>
                 </div>
             </div>
+            <div className="container mt-5">
+                <div class="card-columns">
+                    <div class="card bg-warning">
+                        <img class="card-img-top"src={require('./community.png')}></img>
+                            <div class="card-body">
+                                <h5 class="card-title">Quote of the Day!</h5>
+                                <p class="card-text">Small acts, when multiplied, can transform the world.</p>
+                            </div>
+                    </div>
+                    <div class="card bg-warning p-3">
+                            <div class="card-body">
+                                <h5 class="card-title">For Latest Updates on COVID19!</h5>
+                                <a href={"https://c19.se/"}>Click Here!</a>
+                            </div>
+                    </div>
+                    <div class="card bg-warning p-3">
+                        <img class="card-img-top"src={require('./ALL.png')}></img>
+                            <div class="card-body">
+                            </div>
+                    </div>
+                </div>
+             </div>
         </div>
     )
 }
