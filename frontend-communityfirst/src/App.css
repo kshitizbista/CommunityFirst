@@ -10,3 +10,9 @@
 .form-error::before {
     content: "⚠ ";
 }
+
+.community-selection {
+    cursor: pointer;
+}
+
+

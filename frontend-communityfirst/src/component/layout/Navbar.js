@@ -15,17 +15,17 @@ function Navbar({onLogout}) {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarContent">
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <NavLink to={`${url}/services`} className="nav-link">Services</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to={`${url}/donation`} className="nav-link">Donate</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to={`${url}/loans`} className="nav-link">Loan</NavLink>
+                        <NavLink to={`${url}/items`} className="nav-link">Items</NavLink>
                     </li>
                 </ul>
+                <button className="btn btn-outline-dark ml-lg-4" onClick={() => {
+                    history.push('/communityfirst/selection');
+                }}>Choose Community</button>
                 <button className="btn btn-outline-info ml-lg-4" onClick={() => {
                     onLogout();
                     history.push('/');

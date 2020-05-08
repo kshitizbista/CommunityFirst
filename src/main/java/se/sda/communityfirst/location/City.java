@@ -20,7 +20,6 @@ public class City {
     private Set<Community> community = new HashSet<>();
 
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<User> user;
 
     public Long getId() {
