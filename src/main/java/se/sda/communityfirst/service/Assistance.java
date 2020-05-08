@@ -3,8 +3,6 @@ package se.sda.communityfirst.service;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import se.sda.communityfirst.location.Community;
-import se.sda.communityfirst.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -30,11 +28,13 @@ public class Assistance {
     @NotEmpty(message = "Post cannot be empty")
     private String description;
 
-    @ManyToOne
-    private User user;
+    @Column(name = "user_id")
+    @NotNull(message = "User ID cannot be null")
+    private Long userId;
 
-    @ManyToOne
-    private Community community;
+    @Column(name = "community_id")
+    @NotNull(message = "Community ID cannot be null")
+    private Long communityId;
 
     @Column(name = "offering")
     @NotNull(message = "Offering or Asking has to be chosen")

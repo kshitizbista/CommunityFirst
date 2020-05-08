@@ -7,8 +7,6 @@ import org.mockito.MockitoAnnotations;
 import se.sda.communityfirst.items.Item;
 import se.sda.communityfirst.items.ItemRepository;
 import se.sda.communityfirst.items.ItemService;
-import se.sda.communityfirst.location.Community;
-import se.sda.communityfirst.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +35,8 @@ public class ItemServiceTest {
         dress.setTitle("Foo");
         dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
-
-        User user = new User();
-        user.setId(1L);
-        dress.setUser(user);
-
-        Community taby = new Community();
-        taby.setId(1L);
-        dress.setCommunity(taby);
+        dress.setUserId(1L);
+        dress.setCommunityId(1L);
 
         items.add(dress);
 
@@ -61,14 +53,8 @@ public class ItemServiceTest {
         dress.setTitle("Foo");
         dress.setDescription("Lorem ipsum");
         dress.setOffering(true);
-
-        User user = new User();
-        user.setId(1L);
-        dress.setUser(user);
-
-        Community taby = new Community();
-        taby.setId(1L);
-        dress.setCommunity(taby);
+        dress.setUserId(1L);
+        dress.setCommunityId(1L);
 
         items.add(dress);
 

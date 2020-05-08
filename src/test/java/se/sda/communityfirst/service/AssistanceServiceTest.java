@@ -4,11 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import se.sda.communityfirst.items.Item;
-import se.sda.communityfirst.items.ItemRepository;
-import se.sda.communityfirst.items.ItemService;
-import se.sda.communityfirst.location.Community;
-import se.sda.communityfirst.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +23,7 @@ public class AssistanceServiceTest {
         this.assistanceService = new AssistanceService(assistanceRepository);
     }
     @Test
-    void getAll() throws Exception {
+    void getAll() {
         List<Assistance> services = new ArrayList<>();
 
         Assistance shoppingService = new Assistance();
@@ -36,14 +31,8 @@ public class AssistanceServiceTest {
         shoppingService.setTitle("Foo");
         shoppingService.setDescription("Lorem ipsum");
         shoppingService.setOffering(true);
-
-        User user = new User();
-        user.setId(1L);
-        shoppingService.setUser(user);
-
-        Community taby = new Community();
-        taby.setId(1L);
-        shoppingService.setCommunity(taby);
+        shoppingService.setUserId(1L);
+        shoppingService.setCommunityId(1L);
 
         services.add(shoppingService);
 

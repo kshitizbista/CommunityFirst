@@ -8,8 +8,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import se.sda.communityfirst.location.Community;
-import se.sda.communityfirst.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,14 +42,8 @@ public class AssistanceControllerTest {
         shoppingService.setTitle("Foo");
         shoppingService.setDescription("Lorem ipsum");
         shoppingService.setOffering(true);
-
-        User user = new User();
-        user.setId(1L);
-        shoppingService.setUser(user);
-
-        Community taby = new Community();
-        taby.setId(1L);
-        shoppingService.setCommunity(taby);
+        shoppingService.setUserId(1L);
+        shoppingService.setCommunityId(1L);
 
         services.add(shoppingService);
 
@@ -67,7 +59,4 @@ public class AssistanceControllerTest {
                 .andExpect(jsonPath("$[0].community.id", is (1)));
         verify(assistanceService).getAll();
     }
-
-
-
 }
