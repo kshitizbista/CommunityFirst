@@ -2,6 +2,7 @@ package se.sda.communityfirst.location;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
@@ -18,8 +19,13 @@ public class CityController {
     }
 
     @GetMapping({"/", ""})
-    public Set<City> findAll() {
-        return cityService.findAll();
+    public Set<CityDTO> findAllCities() {
+        return cityService.findAllCities();
+    }
+
+    @GetMapping("/communities")
+    public Set<CommunityDTO> findCommunitiesByCityId(@RequestParam Long id) {
+        return cityService.findCommunitiesByCityId(id);
     }
 
 }

@@ -16,45 +16,66 @@ public class CityServiceTest {
     @Mock
     CityRepository cityRepository;
 
+    @Mock
+    CommunityRepository communityRepository;
+
     private CityService cityService;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.cityService = new CityService(cityRepository);
+        this.cityService = new CityService(cityRepository, communityRepository);
     }
 
     @Test
-    public void findAllTest() {
+    public void findAllCitiesTest() {
         Set<City> cities = new HashSet<>();
+        Set<CityDTO> citiesDTO = new HashSet<>();
 
         City stockholm = new City();
         stockholm.setName("Stockholm");
 
-        Community taby = new Community();
-        taby.setName("Taby");
-
-        Community vallingby = new Community();
-        vallingby.setName("Vallingby");
-
-        stockholm.addCommunity(taby);
-        stockholm.addCommunity(vallingby);
-
         City gothenberg = new City();
+        gothenberg.setName("gothenberg");
+
+        CityDTO stockholmDTO = new CityDTO();
+        stockholm.setName("Stockholm");
+
+        CityDTO gothenbergDTO = new CityDTO();
         gothenberg.setName("gothenberg");
 
         cities.add(stockholm);
         cities.add(gothenberg);
 
+        citiesDTO.add(stockholmDTO);
+        citiesDTO.add(gothenbergDTO);
+
         when(cityRepository.findAll()).thenReturn(cities);
-        Set<City> savedCity = cityService.findAll();
+        Set<CityDTO> returnedCity = cityService.findAllCities();
         verify(cityRepository, times(1)).findAll();
-        assertEquals(2, savedCity.size());
-        savedCity.stream().forEach(city -> {
-            if(city.getName().equals("Stockholm")) {
-                assertEquals(2, city.getCommunity().size());
-            }
-        });
+        assertEquals(2, returnedCity.size());
+    }
+
+    @Test
+    public void findCommunitiesByCityIdTest() {
+        Set<Community> communities = new HashSet<>();
+        Set<CommunityDTO> communityDTOS = new HashSet<>();
+
+        Community vallingby = new Community();
+        vallingby.setId(1L);
+        vallingby.setName("Vallingby");
+
+        CommunityDTO vallingbyDTO = new CommunityDTO();
+        vallingbyDTO.setId(1L);
+        vallingbyDTO.setName("Vallingby");
+
+        communities.add(vallingby);
+        communityDTOS.add(vallingbyDTO);
+
+        when(communityRepository.findCommunitiesByCityId(anyLong())).thenReturn(communities);
+        Set<CommunityDTO> returnedCommunities = cityService.findCommunitiesByCityId(1L);
+        verify(communityRepository, times(1)).findCommunitiesByCityId(anyLong());
+        assertEquals(1, returnedCommunities.size());
     }
 
 }

@@ -12,7 +12,7 @@ function LoginPage() {
         if (!loginSuccess) {
             alert("Invalid credentials. Try again");
         } else {
-            history.push('/communityfirst/se');
+            history.push('/communityfirst/selection');
         }
     }
 
