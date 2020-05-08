@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="2020-05-08" author="Ainura">
+
+        <!-- Tables -->
+        <createTable tableName="cities">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="communities">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="users">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstname" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="assistance">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="offering" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="community_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="items">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="offering" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="community_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Sequences for ids -->
+        <createSequence sequenceName="cities_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="communities_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="users_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="assistance_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="items_id_seq" incrementBy="1"/>
+
+        <!-- Foreign keys -->
+
+        <addForeignKeyConstraint baseColumnNames="city_id"
+                                 baseTableName="users"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_users_city"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cities"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_id"
+                                 baseTableName="communities"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_communities_city"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cities"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="assistance"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_assistance_user"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <addForeignKeyConstraint baseColumnNames="community_id"
+                                 baseTableName="communities"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_assistance_community"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="communities"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+    </changeSet>
+</databaseChangeLog>

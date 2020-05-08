@@ -14,7 +14,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Community {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "communities_id_seq", sequenceName = "communities_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "communities_id_seq")
     private Long id;
 
     private String name;
