@@ -6,9 +6,16 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="2020-05-08" author="Ainura">
 
+        <!-- Sequences for ids -->
+        <createSequence sequenceName="cities_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="communities_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="users_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="assistance_id_seq" incrementBy="1"/>
+        <createSequence sequenceName="items_id_seq" incrementBy="1"/>
+
         <!-- Tables -->
         <createTable tableName="cities">
-            <column name="id" type="int">
+            <column name="id" type="int" defaultValueSequenceNext="cities_id_seq">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -17,7 +24,7 @@
         </createTable>
 
         <createTable tableName="communities">
-            <column name="id" type="int">
+            <column name="id" type="int" defaultValueSequenceNext="communities_id_seq">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -29,7 +36,7 @@
         </createTable>
 
         <createTable tableName="users">
-            <column name="id" type="int">
+            <column name="id" type="int" defaultValueSequenceNext="users_id_seq">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="firstname" type="varchar(20)">
@@ -50,7 +57,7 @@
         </createTable>
 
         <createTable tableName="assistance">
-            <column name="id" type="int">
+            <column name="id" type="int" defaultValueSequenceNext="assistance_id_seq">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="title" type="varchar(50)">
@@ -71,7 +78,7 @@
         </createTable>
 
         <createTable tableName="items">
-            <column name="id" type="int">
+            <column name="id" type="int" defaultValueSequenceNext="items_id_seq">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="title" type="varchar(50)">
@@ -90,13 +97,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-
-        <!-- Sequences for ids -->
-        <createSequence sequenceName="cities_id_seq" incrementBy="1"/>
-        <createSequence sequenceName="communities_id_seq" incrementBy="1"/>
-        <createSequence sequenceName="users_id_seq" incrementBy="1"/>
-        <createSequence sequenceName="assistance_id_seq" incrementBy="1"/>
-        <createSequence sequenceName="items_id_seq" incrementBy="1"/>
 
         <!-- Foreign keys -->
 
@@ -140,9 +140,35 @@
                                  validate="true"/>
 
         <addForeignKeyConstraint baseColumnNames="community_id"
-                                 baseTableName="communities"
+                                 baseTableName="assistance"
                                  baseTableSchemaName="public"
                                  constraintName="fk_assistance_community"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="communities"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="items"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_items_user"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <addForeignKeyConstraint baseColumnNames="community_id"
+                                 baseTableName="items"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_items_community"
                                  deferrable="true"
                                  initiallyDeferred="true"
                                  onDelete="CASCADE"
