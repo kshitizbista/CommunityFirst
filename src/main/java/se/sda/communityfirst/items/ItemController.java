@@ -1,4 +1,5 @@
 package se.sda.communityfirst.items;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -6,9 +7,11 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("items")
+@RequestMapping("/items")
 
 public class ItemController {
+
+    @Autowired
     private ItemService itemService;
 
     public ItemController(ItemService itemService) {
@@ -16,7 +19,7 @@ public class ItemController {
     }
 
 
-    @GetMapping
+    @GetMapping("")
     public List<Item> getAll(@RequestParam(value="pageNo", defaultValue="0") Integer pageNo,
                                           @RequestParam(value="sortKey", defaultValue="title") String sortKey)
     {
@@ -28,7 +31,7 @@ public class ItemController {
         return itemService.getByID(id);
     }
 
-    @PostMapping()
+    @PostMapping("")
     public Item save(@RequestBody Item item) {
         return itemService.save(item);
     }
