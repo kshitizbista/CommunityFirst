@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
-
+import { Link } from "react-router-dom";
 
 function RegisterForm({onSubmit}) {
     const [firstname, setFirstname] = useState("");
@@ -74,7 +74,12 @@ function RegisterForm({onSubmit}) {
                             onSubmit({firstname, lastname, email, password});
                         }}>
                         Join now
-                    </button>
+                    </button>{'   '}
+                    <Link to="/communityfirst">
+                        <button className="btn btn-primary">
+                            Home
+                        </button>
+                    </Link>
                 </form>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
+import { Link } from "react-router-dom";
 
 function LoginForm({onSubmit}) {
     const [email, setEmail] = useState("");
@@ -17,8 +18,8 @@ function LoginForm({onSubmit}) {
                             <input name="email"
                                    type="email"
                                    className="form-control"
-                                   placeholder="Enter your email"
-                                   value={email}
+                                   placeholder="Please enter your email"
+                                   value={email}s
                                    onChange={e => setEmail(e.target.value)}
                                    ref={register({
                                        required: true,
@@ -33,7 +34,7 @@ function LoginForm({onSubmit}) {
                             <label>Password:</label>
                             <input name="password"
                                    type="password"
-                                   placeholder="Enter your password"
+                                   placeholder="Please enter your password"
                                    className="form-control"
                                    value={password}
                                    onChange={e => setPassword(e.target.value)}
@@ -47,7 +48,12 @@ function LoginForm({onSubmit}) {
                                 className="btn btn-primary"
                                 onSubmit={() => onSubmit({email, password})}>
                                 Login
-                            </button>
+                            </button>{'   '}
+                            <Link to="/communityfirst">
+                                <button className="btn btn-primary">
+                                    Home
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </form>
