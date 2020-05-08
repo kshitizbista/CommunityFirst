@@ -21,10 +21,14 @@ function Main() {
             <Switch>
                 <Redirect exact from={path} to={`${url}/services`}/>
                 <Route exact path={`${path}/services`}>
-                    <div>Service</div>
+                    <div>
+                       Services
+                    </div>
                 </Route>
                 <Route exact path={`${path}/items`}>
-                    <div>Items</div>
+                    <div>
+                        Items
+                    </div>
                 </Route>
             </Switch>
         </>

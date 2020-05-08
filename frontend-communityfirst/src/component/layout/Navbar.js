@@ -23,7 +23,8 @@ function Navbar({onLogout}) {
                         <NavLink to={`${url}/items`} className="nav-link">Items</NavLink>
                     </li>
                 </ul>
-                <button className="btn btn-outline-dark ml-lg-4" onClick={() => {
+                <button type="button" className="btn btn-success">Create Post</button>
+                <button className="btn btn-outline-dark ml-lg-4"  onClick={() => {
                     history.push('/communityfirst/selection');
                 }}>Choose Community</button>
                 <button className="btn btn-outline-info ml-lg-4" onClick={() => {
