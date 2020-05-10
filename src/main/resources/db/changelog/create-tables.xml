@@ -52,7 +52,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="city_id" type="int">
-                <constraints nullable="false"/>
             </column>
         </createTable>
 
