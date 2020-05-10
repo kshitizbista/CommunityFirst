@@ -5,7 +5,7 @@ import PostCreation, {assistanceType} from "./PostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
 import PostApi from "../../api/PostApi";
-import {Toast} from "react-bootstrap";
+import {Toast, Spinner} from "react-bootstrap";
 import Community from "../../services/Community";
 
 function Post() {
@@ -18,6 +18,7 @@ function Post() {
     const [services, setServices] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
+    const [loading, setLoading] = useState(true);
     const toggleRequested = (checked) => setRequestedChecked(checked);
     const toggleOffered = (checked) => setOfferedChecked(checked);
 
@@ -60,9 +61,11 @@ function Post() {
 
     const getPost = async (data) => {
         try {
+            setLoading(true);
             const requestBody = {assistanceTypes: data}
             const response = await PostApi.getPostByCommunityIdAndServiceType(parseInt(Community.getCommunityId()), requestBody);
             setServices(response.data);
+            setLoading(false);
         } catch (e) {
 
         }
@@ -75,7 +78,12 @@ function Post() {
             <PostCreation onSubmit={createPost}/>
             <div className="row justify-content-center">
                 <div className="col-10">
-                    {services.map(service =>
+
+                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>}
+
+                    {!loading && services.map(service =>
                         <Card key={service.id}
                               title={service.title}
                               description={service.description}

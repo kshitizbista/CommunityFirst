@@ -27,7 +27,7 @@
 }
 
 .toast-danger {
-    background: rgb(248,215,219) !important;
+    background: rgb(248, 215, 219) !important;
 }
 
 .img-placeholder {
@@ -41,8 +41,13 @@
     margin-right: 10px;
     text-align: center;
 }
+
 .img-placeholder p {
     margin-top: 15px;
+}
+
+.post-creation-btn {
+    width: 150px;
 }
 
 

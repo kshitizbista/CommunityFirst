@@ -14,13 +14,13 @@ function PostCreation({onSubmit}) {
     const buttons = (
         <div className="col-auto">
             <ButtonGroup>
-                <Button type="button" variant="outline-info" style={{width: "150px"}} onClick={() => {
+                <Button type="button" variant="outline-info post-creation-btn" onClick={() => {
                     setAssistance(assistanceType.REQUEST_HELP);
                     handleShow();
                 }}>
                     Request Help
                 </Button>
-                <Button type="button" variant="outline-info" style={{width: "150px"}}
+                <Button type="button" variant="outline-info post-creation-btn"
                         onClick={() => {
                             setAssistance(assistanceType.OFFER_HELP);
                             handleShow();
