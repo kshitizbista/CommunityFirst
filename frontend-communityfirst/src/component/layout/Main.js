@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import Navbar from "./Navbar";
-import {Redirect, Route, Switch, useRouteMatch, useLocation, useHistory} from "react-router-dom";
+import {Link, Redirect, Route, Switch, useRouteMatch, useLocation, useHistory} from "react-router-dom";
 import Auth from "../../services/Auth";
+import ItemsPage from "../../component/items/ItemsPage";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -23,8 +24,10 @@ function Main() {
                 <Route exact path={`${path}/services`}>
                     <div>Service</div>
                 </Route>
+
+                <Route exact from={path} to={"/communityfirst/items"}/>
                 <Route exact path={`${path}/items`}>
-                    <div>Items</div>
+                <ItemsPage/>
                 </Route>
             </Switch>
         </>

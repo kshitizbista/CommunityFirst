@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom
 import './App.css';
 import Home from "./component/home/Home";
 import LoginPage from "./component/auth/LoginPage";
+import ItemsPage from "./component/items/ItemsPage";
 import RegisterPage from "./component/auth/RegisterPage";
 import Auth from "./services/Auth";
 import Main from "./component/layout/Main";
@@ -23,6 +24,9 @@ function App() {
                 <Route path="/communityfirst/selection" render={() =>
                     Auth.isLoggedIn() ? (<Location/>) : (<Redirect to="/"/>)
                 }/>
+                <Route path="/items" render={() =>
+                    Auth.isLoggedIn() ? (<ItemsPage/>) : (<Redirect to="/"/>)
+                 }/>
                 <Route path="/signup" render={(props) => <RegisterPage {...props}/>}/>
                 <Route path="/communityfirst/se"
                        render={() => Auth.isLoggedIn() ? (<Main/>) : (<Redirect to="/"/>)
