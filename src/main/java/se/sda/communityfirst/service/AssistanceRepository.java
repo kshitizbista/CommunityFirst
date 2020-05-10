@@ -6,5 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 public interface AssistanceRepository extends JpaRepository<Assistance, Long> {
-    List<Assistance> findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(Long id, Collection<AssistanceType> assistanceTypes);
+    List<Assistance> findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(Long communityId, Collection<AssistanceType> assistanceTypes);
+    List<Assistance> findAllByUserIdAndAssistanceTypeInOrderByPostedDateDesc(Long userId, Collection<AssistanceType> assistanceTypes);
 }

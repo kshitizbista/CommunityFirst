@@ -2,16 +2,16 @@ import Api from "./Api";
 
 class PostApi {
 
-    getPostByServiceType(communityId, serviceType) {
-        return Api.post('/services/' + communityId, serviceType);
-    }
-
-    getCommunityByCityId(id) {
-        return Api.get("/cities/communities?id=" + id);
+    getPostByCommunityIdAndServiceType(communityId, serviceType) {
+        return Api.post('/services?communityId=' + communityId, serviceType);
     }
 
     saveServicePost(serviceData) {
-        return Api.post("/services", serviceData)
+        return Api.post("/services/create", serviceData)
+    }
+
+    getPostByUserIdAndServiceType(userId, serviceType) {
+        return Api.post('/services?userId=' + userId, serviceType);
     }
 }
 

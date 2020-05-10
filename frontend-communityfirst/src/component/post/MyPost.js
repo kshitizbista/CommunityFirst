@@ -1,28 +1,21 @@
 import React, {useEffect, useState} from "react";
-import Card from "../card/Card";
 import SubMenu from "./SubMenu";
-import PostCreation, {assistanceType} from "./PostCreation";
-import format from "date-fns/format";
-import Auth from "../../services/Auth";
+import {assistanceType} from "./PostCreation";
 import PostApi from "../../api/PostApi";
-import {Toast} from "react-bootstrap";
-import Community from "../../services/Community";
+import Auth from "../../services/Auth";
+import Card from "../card/Card";
 
-function Post() {
+function MyPost() {
 
-    const [postResponseAction, setPostResponseAction] = useState({
-        success: false,
-        msg: ""
-    });
-    const [show, setShow] = useState(false);
     const [services, setServices] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const toggleRequested = (checked) => setRequestedChecked(checked);
     const toggleOffered = (checked) => setOfferedChecked(checked);
 
+
     useEffect(() => {
-        getPost(getFilter())
+        getMyPost(getFilter())
     }, [requestedChecked, offeredChecked])
 
     const getFilter = () => {
@@ -44,24 +37,10 @@ function Post() {
         }
     }
 
-    const createPost = async (data) => {
-        data.userId = parseInt(Auth.getUserId());
-        data.communityId = parseInt(Community.getCommunityId());
-        data.postedDate = format(new Date(), "yyyy-MM-dd");
-        try {
-            await PostApi.saveServicePost(data);
-            setPostResponseAction({success: true, msg: "Post created successfully."});
-            setShow(true);
-            getPost(getFilter());
-        } catch (e) {
-            setPostResponseAction({success: false, msg: "Error while saving the post."});
-        }
-    }
-
-    const getPost = async (data) => {
+    const getMyPost = async (data) => {
         try {
             const requestBody = {assistanceTypes: data}
-            const response = await PostApi.getPostByCommunityIdAndServiceType(parseInt(Community.getCommunityId()), requestBody);
+            const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             setServices(response.data);
         } catch (e) {
 
@@ -72,7 +51,6 @@ function Post() {
         <>
             <SubMenu onRequestedCheckBoxClick={toggleRequested}
                      onOfferedCheckBoxClick={toggleOffered}/>
-            <PostCreation onSubmit={createPost}/>
             <div className="row justify-content-center">
                 <div className="col-10">
                     {services.map(service =>
@@ -89,13 +67,8 @@ function Post() {
                     )}
                 </div>
             </div>
-            <Toast show={show} onClose={() => setShow(false)} autohide
-                   className={"toast-notification " + (postResponseAction.success ? "toast-success" : "toast-danger")}
-                   delay={3000}>
-                <Toast.Body>{postResponseAction.msg}</Toast.Body>
-            </Toast>
         </>
     );
 }
 
-export default Post;
+export default MyPost;

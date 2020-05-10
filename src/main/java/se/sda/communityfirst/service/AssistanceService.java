@@ -32,7 +32,7 @@ public class AssistanceService {
     }
 
     public AssistanceDTO getByID(Long id) {
-        Assistance assistance = assistanceRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Assistance assistance = assistanceRepository.findById(id).get();
         return assistanceToDTO.convert(assistance);
     }
 
@@ -72,8 +72,15 @@ public class AssistanceService {
     }
 
     @Transactional
-    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(Long id, List<AssistanceType> assistanceTypes) {
-        return assistanceRepository.findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(id, assistanceTypes).stream().map(assistance ->
+    public List<AssistanceDTO> findAllByUserIdOrderByPostedDateDesc(Long userId, List<AssistanceType> assistanceTypes) {
+        return assistanceRepository.findAllByUserIdAndAssistanceTypeInOrderByPostedDateDesc(userId, assistanceTypes).stream().map(assistance ->
                 assistanceToDTO.convert(assistance)).collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(Long communityId, List<AssistanceType> assistanceTypes) {
+        return assistanceRepository.findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(communityId, assistanceTypes).stream().map(assistance ->
+                assistanceToDTO.convert(assistance)).collect(Collectors.toList());
+    }
+
 }

@@ -22,7 +22,7 @@ public class AssistanceController {
         return assistanceService.getByID(id);
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public AssistanceDTO save(@RequestBody @Valid AssistanceDTO assistanceDTO) {
         return assistanceService.save(assistanceDTO);
     }
@@ -37,9 +37,13 @@ public class AssistanceController {
         assistanceService.deleteById(id);
     }
 
-    @PostMapping("/{id}")
-    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@PathVariable Long id, @RequestBody Map<String, List<AssistanceType>> map) {
+    @PostMapping(params = "communityId")
+    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<AssistanceType>> map) {
+        return assistanceService.findAllByCommunityIdAndAssistanceTypeIn(communityId, map.get("assistanceTypes"));
+    }
 
-        return assistanceService.findAllByCommunityIdAndAssistanceTypeIn(id, map.get("assistanceTypes"));
+    @PostMapping(params = "userId")
+    public List<AssistanceDTO> findAllByUserIdOrderByPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<AssistanceType>> map) {
+        return assistanceService.findAllByUserIdOrderByPostedDateDesc(userId, map.get("assistanceTypes"));
     }
 }

@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import {Redirect, Route, Switch, useHistory, useLocation, useRouteMatch} from "react-router-dom";
 import Auth from "../../services/Auth";
 import Post from "../post/Post";
+import MyPost from "../post/MyPost";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -23,10 +24,10 @@ function Main() {
                 <Switch>
                     <Redirect exact from={path} to={`${url}/services`}/>
                     <Route exact path={`${path}/services`}>
-                       <Post/>
+                        <Post/>
                     </Route>
                     <Route exact path={`${path}/my-posts`}>
-                        <div>Items</div>
+                        <MyPost/>
                     </Route>
                 </Switch>
             </div>
