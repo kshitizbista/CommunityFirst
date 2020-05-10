@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import CommunitySelection from "./CommunitySelection";
 import LocationApi from "../../api/LocationApi";
 import {useHistory} from "react-router-dom"
+import Community from "../../services/Community";
 
 function Location() {
 
@@ -22,11 +23,12 @@ function Location() {
         setCommunities({communities: response.data});
     }
 
-    const onCommunityClick = (selectedCity, selectedCommunity) => {
+    const onCommunityClick = (selectedCommunityId, selectedCommunityName) => {
         history.push("/communityfirst/se", {
-            selectedCity,
-            selectedCommunity
+            selectedCommunityId,
+            selectedCommunityName
         });
+        Community.setCommunityId(selectedCommunityId);
     }
 
     return (

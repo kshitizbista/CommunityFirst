@@ -1,12 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import {useForm} from "react-hook-form";
 
 
 function RegisterForm({onSubmit}) {
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const {handleSubmit, register, errors} = useForm();
 
     return (
@@ -20,8 +16,6 @@ function RegisterForm({onSubmit}) {
                                 <input name="firstname"
                                        type="text"
                                        className="form-control form-control-lg"
-                                       value={firstname}
-                                       onChange={e => setFirstname(e.target.value)}
                                        placeholder="Firstname"
                                        ref={register({required: true, minLength: 3, maxLength: 20})}/>
                                 {errors.firstname && <span className="form-error">Firstname is required and size must be between 3 and 20 </span>}
@@ -32,8 +26,6 @@ function RegisterForm({onSubmit}) {
                                 <input name="lastname"
                                        type="text"
                                        className="form-control form-control-lg"
-                                       value={lastname}
-                                       onChange={e => setLastname(e.target.value)}
                                        placeholder="lastname"
                                        ref={register({required: true, minLength: 3, maxLength: 20})}/>
                                 {errors.lastname && <span className="form-error">Lastname is required and size must be between 3 and 20 </span>}
@@ -43,8 +35,6 @@ function RegisterForm({onSubmit}) {
                     <div className="form-group">
                         <input name="email"
                                type="email"
-                               value={email}
-                               onChange={e => setEmail(e.target.value)}
                                className="form-control form-control-lg"
                                placeholder="Email"
                                ref={register({
@@ -61,18 +51,11 @@ function RegisterForm({onSubmit}) {
                                type="password"
                                placeholder="Enter your password"
                                className="form-control form-control-lg"
-                               value={password}
-                               onChange={e => setPassword(e.target.value)}
                                ref={register({required: true, minLength: 5, maxLength: 50})}/>
                         {errors.password &&
                         <span className="form-error">Password is required and size must be between 5 and 50 </span>}
                     </div>
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onSubmit={(e) => {
-                            onSubmit({firstname, lastname, email, password});
-                        }}>
+                    <button type="submit" className="btn btn-primary">
                         Join now
                     </button>
                 </form>

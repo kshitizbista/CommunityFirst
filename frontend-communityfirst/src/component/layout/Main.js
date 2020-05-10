@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import Navbar from "./Navbar";
-import {Redirect, Route, Switch, useRouteMatch, useLocation, useHistory} from "react-router-dom";
+import {Redirect, Route, Switch, useHistory, useLocation, useRouteMatch} from "react-router-dom";
 import Auth from "../../services/Auth";
+import Post from "../post/Post";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -18,15 +19,17 @@ function Main() {
     return (
         <>
             <Navbar onLogout={() => Auth.logout()}/>
-            <Switch>
-                <Redirect exact from={path} to={`${url}/services`}/>
-                <Route exact path={`${path}/services`}>
-                    <div>Service</div>
-                </Route>
-                <Route exact path={`${path}/items`}>
-                    <div>Items</div>
-                </Route>
-            </Switch>
+            <div className="container-fluid p-0" style={{background: "whitesmoke", minHeight: 'calc(100vh - 56px)'}}>
+                <Switch>
+                    <Redirect exact from={path} to={`${url}/services`}/>
+                    <Route exact path={`${path}/services`}>
+                       <Post/>
+                    </Route>
+                    <Route exact path={`${path}/my-posts`}>
+                        <div>Items</div>
+                    </Route>
+                </Switch>
+            </div>
         </>
     );
 }

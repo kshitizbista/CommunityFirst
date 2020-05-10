@@ -27,7 +27,7 @@ public class Item {
 
     @Column(name = "description")
     @NotEmpty(message = "Post cannot be empty")
-    private String text;
+    private String description;
 
     @ManyToOne
     private User user;

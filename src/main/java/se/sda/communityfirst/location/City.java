@@ -1,6 +1,5 @@
 package se.sda.communityfirst.location;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import se.sda.communityfirst.user.User;
 
 import javax.persistence.*;

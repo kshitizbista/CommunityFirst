@@ -1,15 +1,16 @@
 package se.sda.communityfirst.location;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import se.sda.communityfirst.service.Assistance;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "communities")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Community {
@@ -21,7 +22,19 @@ public class Community {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
-//    @JsonIgnore
     private City city;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "community")
+    private Set<Assistance> assistance = new HashSet<>();
+
+    public void addAssistance(Assistance assistance) {
+        this.assistance.add(assistance);
+        assistance.setCommunity(this);
+    }
+
+    public void removeAssistance(Assistance assistance) {
+        this.assistance.remove(assistance);
+        assistance.setCommunity(null);
+    }
 
 }

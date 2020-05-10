@@ -3,18 +3,29 @@ package se.sda.communityfirst.auth;
 import java.util.List;
 
 public class JwtResponse {
+
+    private Long userId;
     private String token;
     private String firstname;
     private String lastname;
     private String email;
     private List<String> roles;
 
-    public JwtResponse(String accessToken, String firstname, String lastname, String email, List<String> roles) {
+    public JwtResponse(Long userId, String accessToken, String firstname, String lastname, String email, List<String> roles) {
+        this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.token = accessToken;
         this.email = email;
         this.roles = roles;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getToken() {

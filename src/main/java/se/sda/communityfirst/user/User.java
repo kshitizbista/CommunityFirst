@@ -1,7 +1,8 @@
 package se.sda.communityfirst.user;
 
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import se.sda.communityfirst.location.City;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ import javax.validation.constraints.Size;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "email")
         })
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

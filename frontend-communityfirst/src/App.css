@@ -15,4 +15,34 @@
     cursor: pointer;
 }
 
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    min-width: 250px;
+}
+
+.toast-success {
+    background: rgb(212, 237, 218) !important;
+}
+
+.toast-danger {
+    background: rgb(248,215,219) !important;
+}
+
+.img-placeholder {
+    height: 45px;
+    width: 45px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    color: white;
+    font-size: 12px;
+    margin-right: 10px;
+    text-align: center;
+}
+.img-placeholder p {
+    margin-top: 15px;
+}
+
 
