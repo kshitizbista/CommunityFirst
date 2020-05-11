@@ -23,16 +23,17 @@ function CommunitySelection({cities, communities, onCityClick, onCommunityClick}
                     </div>
                 </div>
             </div>
-            { communities.length > 0 && <div className="col-auto">
+            {communities.length > 0 && <div className="col-auto">
                 <div className="dropdown">
                     <span className="btn btn-info dropdown-toggle btn-lg" role="button" id="communityDropdownMenuLink"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {selectedCommunity}
                     </span>
                     <div className="dropdown-menu" aria-labelledby="communityDropdownMenuLink">
-                        {communities.map((community) => <span key={community.id} className="dropdown-item community-selection"
+                        {communities.map((community) => <span key={community.id}
+                                                              className="dropdown-item community-selection"
                                                               onClick={() => {
-                                                                  onCommunityClick(selectedCity, community.name)
+                                                                  onCommunityClick(community.id, community.name)
                                                               }}>{community.name}</span>)}
                     </div>
                 </div>

@@ -2,6 +2,10 @@ package se.sda.communityfirst.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AssistanceRepository extends JpaRepository<Assistance, Long> {
+import java.util.Collection;
+import java.util.List;
 
+public interface AssistanceRepository extends JpaRepository<Assistance, Long> {
+    List<Assistance> findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(Long communityId, Collection<AssistanceType> assistanceTypes);
+    List<Assistance> findAllByUserIdAndAssistanceTypeInOrderByPostedDateDesc(Long userId, Collection<AssistanceType> assistanceTypes);
 }

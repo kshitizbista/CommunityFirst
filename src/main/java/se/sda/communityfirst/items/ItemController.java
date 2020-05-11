@@ -5,7 +5,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("items")
+@RequestMapping(ItemController.BASE_URL)
 
 public class ItemController {
 
