@@ -56,7 +56,7 @@ public class AssistanceService {
     }
 
     public AssistanceDTO update(AssistanceDTO assistanceDTO) {
-        return assistanceRepository.findById(assistanceDTO.getCommunityId()).map(assistance -> {
+        return assistanceRepository.findById(assistanceDTO.getId()).map(assistance -> {
             if (assistanceDTO.getTitle() != null) {
                 assistance.setTitle(assistanceDTO.getTitle());
             }

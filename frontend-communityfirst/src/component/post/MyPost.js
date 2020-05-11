@@ -5,6 +5,7 @@ import PostApi from "../../api/PostApi";
 import Auth from "../../services/Auth";
 import Card from "../card/Card";
 import {Spinner} from "react-bootstrap";
+import {AxiosInstance as axios} from "axios";
 
 function MyPost() {
 
@@ -47,8 +48,11 @@ function MyPost() {
             setServices(response.data);
             setLoading(false);
         } catch (e) {
-
         }
+    }
+
+    this.deletePost = async function (postId) {
+        await axios.delete(PostApi.deletePost(postId));
     }
 
     return (
@@ -71,6 +75,7 @@ function MyPost() {
                               email={service.email}
                               firstname={service.firstname}
                               lastname={service.lastname}
+                              delete = {() => this.deletePost(service.id)}
                         />
                     )}
                 </div>

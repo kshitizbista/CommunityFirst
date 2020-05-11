@@ -13,6 +13,10 @@ class PostApi {
     getPostByUserIdAndServiceType(userId, serviceType) {
         return Api.post('/services?userId=' + userId, serviceType);
     }
+
+    deletePost(postId) {
+        return Api.delete('/services/'+ postId);
+    }
 }
 
 export default new PostApi();

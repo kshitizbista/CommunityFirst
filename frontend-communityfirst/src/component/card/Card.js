@@ -5,7 +5,7 @@ import format from "date-fns/format";
 function Card(props) {
     return (
         <>
-            <div className="card mb-2">
+            <div onClick = {props.delete} className="card mb-2">
                 <div className="card-body p-2">
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
