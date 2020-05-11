@@ -1,29 +1,11 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import { Link } from "react-router-dom";
-import './PageLayout.css';
 
 function LoginForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
-    var cardLayout = {
-        color: "black",
-        fontSize: '15px',
-        backgroundColor: "white",
-        padding: "20px",
-        width:"50%",
-        fontFamily: "verdana",
-        border: '5px solid grey',
-        textAlign: 'center',
-        marginLeft: 'auto',
-        marginRight:'auto',
-    };
 
     return (
-        <div className="loginLayout">
-        <div className="card" style={cardLayout}>
-            <div class="card-header">
-                Welcome Back!
-            </div>
+        <div className="card">
             <div className="card-body">
                 <h4 className="card-title">Login</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,17 +39,11 @@ function LoginForm({onSubmit}) {
                         <div className="form-group">
                             <button className="btn btn-primary" type="submit">
                                 Login
-                            </button>{'   '}
-                            <Link to="/communityfirst">
-                                <button className="btn btn-primary">
-                                    Home
-                                </button>
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
         </div>
     );
 }
