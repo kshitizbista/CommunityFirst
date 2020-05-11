@@ -1,6 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-
+import { Link } from "react-router-dom";
 
 function RegisterForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
@@ -57,7 +57,12 @@ function RegisterForm({onSubmit}) {
                     </div>
                     <button type="submit" className="btn btn-primary">
                         Join now
-                    </button>
+                    </button>{'   '}
+                    <Link to="/communityfirst">
+                        <button className="btn btn-primary">
+                            Home
+                        </button>
+                    </Link>
                 </form>
             </div>
         </div>

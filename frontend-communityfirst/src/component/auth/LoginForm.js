@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import { Link } from "react-router-dom";
 
 function LoginForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
@@ -39,7 +40,12 @@ function LoginForm({onSubmit}) {
                         <div className="form-group">
                             <button className="btn btn-primary" type="submit">
                                 Login
-                            </button>
+                            </button>{'   '}
+                            <Link to="/communityfirst">
+                                <button className="btn btn-primary">
+                                    Home
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </form>
