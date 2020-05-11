@@ -38,12 +38,4 @@ public class Item {
     @Column(name = "offering")
     @NotNull(message = "Offering or Asking has to be chosen")
     private Boolean offering;
-
-//@JsonIgnore
-    //@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    //private List<Comment> comments = new ArrayList<>();
-
-    public Item(String title) {
-        this.title = title;
-    }
 }
