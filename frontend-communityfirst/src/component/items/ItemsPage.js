@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 import ItemsApi from "./../../api/ItemsApi";
 import ItemForm from "./ItemForm";
 import ItemCard from "./ItemCard";
@@ -62,7 +62,6 @@ class ItemsPage extends React.Component {
             .then(({data}) => this.setState({items: data}))
             .catch(err => console.error(err));
     }
-
     render() {
         const items = this.state.items;
 

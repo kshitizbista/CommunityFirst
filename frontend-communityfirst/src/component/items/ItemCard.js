@@ -3,11 +3,11 @@ import ItemResponseList from "../itemResponse/ItemResponseList";
 
 function ItemCard({item, onDeleteClick, onUpdateClick}) {
 
-    const [body, setBody] = React.useState(item.body);
+    const [itemdescription, setItemdescription] = React.useState(item.itemdescription);
     const [isUpdateClicked, setUpdateClicked] = React.useState(false);
 
     const updateClick = () => {
-        onUpdateClick(body);
+        onUpdateClick(itemdescription);
         if (isUpdateClicked) {
             setUpdateClicked(false);
         } else {
@@ -17,19 +17,16 @@ function ItemCard({item, onDeleteClick, onUpdateClick}) {
 
     return (
         <div className="card mt-3">
-            <div className="card-body">
-                <h2> Your Posts </h2>
+            <div>
                     {isUpdateClicked ?
-                        <textarea className="form-control" id={item.id} value={body}
-                                  onChange={e => setBody(e.target.value)}/> :
-                        body
+                        <textarea className="form-control" id={item.id} value={item.itemdescription}
+                                  onChange={e => setItemdescription(e.target.value)}/> : itemdescription
                     }
                     <button className="deleteBtnItem" onClick={onDeleteClick}>Delete</button>
                     <button className="updateBtnItem"
                             onClick={updateClick}>{isUpdateClicked ? 'Submit' : 'Update'}</button>
                 <br/>
                 <br/>
-
             </div>
         </div>
     );

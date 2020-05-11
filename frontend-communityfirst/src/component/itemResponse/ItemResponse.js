@@ -22,8 +22,10 @@ const [body, setBody] = React.useState(itemResponse.body);
                     onChange={e => setBody(e.target.value)}/> :
                     body
                  }
-                    <button className="deleteBtnPost" onClick={onDeleteClick}>Delete</button>
-                    <button className="updateBtnPost" onClick={updateClick}>{isUpdateClicked ? 'Submit' : 'Update'}</button>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button className="deleteBtnPost" onClick={onDeleteClick}>Delete</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <button className="updateBtnPost"
+                    onClick={updateClick}>{isUpdateClicked ? 'Submit' : 'Update'}</button>
 
                 </p>
 
