@@ -51,9 +51,9 @@ function MyPost() {
         }
     }
 
-    this.deletePost = async function (postId) {
-        await axios.delete(PostApi.deletePost(postId));
-    }
+    // this.deletePost = async function (postId) {
+    //     await axios.delete(PostApi.deletePost(postId));
+    // }
 
     return (
         <>
@@ -75,7 +75,7 @@ function MyPost() {
                               email={service.email}
                               firstname={service.firstname}
                               lastname={service.lastname}
-                              delete = {() => this.deletePost(service.id)}
+                              // delete = {() => this.deletePost(service.id)}
                         />
                     )}
                 </div>
