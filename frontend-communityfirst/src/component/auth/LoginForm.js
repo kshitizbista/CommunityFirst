@@ -1,9 +1,10 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function LoginForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
+    const history = useHistory();
     
     return (
         <div className="loginLayout login-layout">
@@ -45,6 +46,7 @@ function LoginForm({onSubmit}) {
                             <button className="btn btn-primary" type="submit">
                                 Login
                             </button>
+                            <button className="btn btn-primary ml-1" onClick={() => history.push("/")}>Home</button>
                         </div>
                     </div>
                 </form>
