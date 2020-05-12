@@ -50,4 +50,31 @@
     width: 150px;
 }
 
+.login-layout {
+    background-image: url("./assets/images/loginbg.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+    background: linear-gradient(to right, #3498db);
+}
+.register-layout {
+    background-image: url("./assets/images/registerbg.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+    background: linear-gradient(to right, #3498db);
+    position: relative;
 
+}
+.card-layout {
+    color: black;
+    font-size: 15px;
+    background-color: white;
+    padding: 20px;
+    width:50%;
+    font-family: verdana;
+    border: solid grey;
+    text-align: center;
+    margin-left: auto;
+    margin-right:auto;
+};
