@@ -87,4 +87,9 @@ export const assistanceType = {
     OFFER_HELP: 'OFFER_HELP'
 }
 
+export const itemType = {
+    REQUEST_HELP: 'REQUEST_HELP',
+    OFFER_HELP: 'OFFER_HELP'
+}
+
 export default PostCreation;

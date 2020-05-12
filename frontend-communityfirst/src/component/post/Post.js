@@ -7,6 +7,7 @@ import Auth from "../../services/Auth";
 import PostApi from "../../api/PostApi";
 import {Toast, Spinner} from "react-bootstrap";
 import Community from "../../services/Community";
+import Community from "../../items/Community";
 
 function Post() {
 

@@ -10,6 +10,7 @@ import {AxiosInstance as axios} from "axios";
 function MyPost() {
 
     const [services, setServices] = useState([]);
+    const [items, setItems] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -39,6 +40,24 @@ function MyPost() {
             return [];
         }
     }
+    const getFilterItem = () => {
+        if (requestedChecked && offeredChecked) {
+            return [
+                itemType.REQUEST_HELP,
+                itemType.OFFER_HELP
+            ];
+        } else if (!requestedChecked && offeredChecked) {
+            return [
+                itemType.OFFER_HELP
+            ];
+        } else if (requestedChecked && !offeredChecked) {
+            return [
+                itemType.REQUEST_HELP
+            ];
+        } else {
+            return [];
+        }
+    }
 
     const getMyPost = async (data) => {
         try {
@@ -46,6 +65,17 @@ function MyPost() {
             const requestBody = {assistanceTypes: data}
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             setServices(response.data);
+            setLoading(false);
+        } catch (e) {
+        }
+    }
+
+    const getMyPostItem = async (data) => {
+        try {
+            setLoading(true);
+            const requestBody = { itemTypes: data }
+            const response = await PostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBody);
+            setItems(response.data);
             setLoading(false);
         } catch (e) {
         }
@@ -76,6 +106,20 @@ function MyPost() {
                               firstname={service.firstname}
                               lastname={service.lastname}
                               // delete = {() => this.deletePost(service.id)}
+                        />
+                    )}
+
+                    {items.map(item =>
+                        <Card key={item.id}
+                            title={item.title}
+                            description={item.description}
+                            serviceType={item.assistanceType}
+                            postedDate={item.postedDate}
+                            userId={item.userId}
+                            email={item.email}
+                            firstname={item.firstname}
+                            lastname={item.lastname}
+                        // delete = {() => this.deletePost(service.id)}
                         />
                     )}
                 </div>

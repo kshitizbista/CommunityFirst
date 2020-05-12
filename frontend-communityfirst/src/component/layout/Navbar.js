@@ -19,7 +19,7 @@ function Navbar({onLogout}) {
                         <NavLink to={`${url}/services`} className="nav-link">Services</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to={`${url}/profile`} className="nav-link">Profile</NavLink>
+                        <NavLink to={`${url}/items`} className="nav-link">Items</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink to={`${url}/my-posts`} className="nav-link">My Posts</NavLink>
