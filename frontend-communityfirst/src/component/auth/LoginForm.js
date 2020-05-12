@@ -1,31 +1,18 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import { Link } from "react-router-dom";
-import './PageLayout.css';
 
 function LoginForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
-    var cardLayout = {
-        color: "black",
-        fontSize: '15px',
-        backgroundColor: "white",
-        padding: "20px",
-        width:"50%",
-        fontFamily: "verdana",
-        border: '5px solid grey',
-        textAlign: 'center',
-        marginLeft: 'auto',
-        marginRight:'auto',
-    };
-
+    
     return (
-        <div className="loginLayout">
-        <div className="card" style={cardLayout}>
+        <div className="loginLayout login-layout">
+        <div className="card card-layout">
             <div class="card-header">
                 Welcome Back!
             </div>
             <div className="card-body">
-                <h4 className="card-title">Login</h4>
+                <h4 className="card-title">Member Login</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <div className="form-group">
@@ -40,7 +27,7 @@ function LoginForm({onSubmit}) {
                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
                                        }
                                    })}/>
-                            {errors.email && <span className="form-error">Email is required and Must be a well-formed email address </span>}
+                            {errors.email && <span className="form-error">Email is a required field and must be well-formatted </span>}
                         </div>
 
                         <div className="form-group">
@@ -51,7 +38,7 @@ function LoginForm({onSubmit}) {
                                    className="form-control"
                                    ref={register({required: true})}/>
                             {errors.password &&
-                            <span className="form-error">Password is required </span>}
+                            <span className="form-error">Password is a required field </span>}
                         </div>
 
                         <div className="form-group">

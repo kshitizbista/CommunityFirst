@@ -1,26 +1,13 @@
 import React from "react";
 import {useForm} from "react-hook-form";
 import { Link } from "react-router-dom";
-import './PageLayout.css';
 
 function RegisterForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
-    var cardLayout = {
-        color: "black",
-        fontSize: '15px',
-        backgroundColor: "white",
-        padding: "20px",
-        width:"50%",
-        fontFamily: "verdana",
-        border: '5px solid grey',
-        textAlign: 'center',
-        marginLeft: 'auto',
-        marginRight:'auto',
-    };
 
     return (
-        <div className="registerLayout">
-        <div className="card" style={cardLayout}>
+        <div className="registerLayout register-layout">
+        <div className="card card-layout">
             <div class="card-header">
                 Glad to hear that you want to be a part of our community.
             </div>
