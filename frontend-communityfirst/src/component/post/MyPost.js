@@ -55,11 +55,16 @@ function MyPost() {
   //  const deleteUser = id => setServices(services.filter(services => services.id !== id));
 
     const deletePostHandler = async (postId) => {
-        await PostApi.deletePost(postId)
+       try {
+           await PostApi.deletePost(postId);
+           getMyPost(getFilter());
+       }  catch (e) {
 
-        const copyServices = [...services]
+       }
+
+  /*      const copyServices = [...services]
             copyServices.splice(postId, 1)
-        services = copyServices;
+        services = copyServices;*/
     }
 
 /*    const updatePostHandler = async (postId, updatedBody) => {
@@ -107,6 +112,7 @@ function MyPost() {
                               lastname={service.lastname}
                               index = {service.index}
                               onDelete = {deletePostHandler}
+                              showDelete={true}
                               //onUpdate = {updatePostHandler}
                         />
                     )}

@@ -6,7 +6,7 @@ import Auth from "../../services/Auth";
 function Card(props) {
 
     let btn = null;
-    if (props.userId == Auth.getUserId()){
+    if (props.showDelete){
         btn = (<button onClick={() => props.onDelete(props.id)} style={{"float":"right"}} type="button" className="btn btn-danger">Delete</button>)
     }
     return (
