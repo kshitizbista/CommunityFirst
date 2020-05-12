@@ -30,7 +30,7 @@ function Home() {
             <div className="container mt-5">
                 <div class="card-columns">
                     <div class="card bg-warning">
-                        <img class="card-img-top"src={require('./community.png')}></img>
+                        <img class="card-img-top"src={require('../../assets/images/community.png')}></img>
                             <div class="card-body">
                                 <h5 class="card-title">Quote of the Day!</h5>
                                 <p class="card-text">Small acts, when multiplied, can transform the world.</p>
@@ -43,9 +43,9 @@ function Home() {
                             </div>
                     </div>
                     <div class="card bg-warning p-3">
-                        <img class="card-img-top"src={require('./ALL.png')}></img>
+                        <img class="card-img-top"src={require('../../assets/images/ALL.png')}></img>
                             <div class="card-body">
-                                <p class="card-text">Community Meet, Täby Park on 05/20/2020.</p>
+                            <p class="card-text">Täby Park community meet on 05/20/2020. Please join us!</p>
                             </div>
                     </div>
                 </div>
