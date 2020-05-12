@@ -1,11 +1,17 @@
 import React from "react";
 import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
+import Auth from "../../services/Auth";
 
 function Card(props) {
+
+    let btn = null;
+    if (props.userId == Auth.getUserId()){
+        btn = (<button onClick={() => props.onDelete(props.id)} style={{"float":"right"}} type="button" className="btn btn-danger">Delete</button>)
+    }
     return (
         <>
-            <div onClick = {props.delete} className="card mb-2">
+            <div className="card mb-2">
                 <div className="card-body p-2">
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
@@ -43,6 +49,7 @@ function Card(props) {
                             <p className="m-0" style={{"fontSize": "14px"}}>{props.description}</p>
                         </div>
                     </div>
+                    {btn}
                 </div>
             </div>
         </>

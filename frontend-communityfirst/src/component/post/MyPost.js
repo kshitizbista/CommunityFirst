@@ -9,7 +9,7 @@ import {AxiosInstance as axios} from "axios";
 
 function MyPost() {
 
-    const [services, setServices] = useState([]);
+    let [services, setServices] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -20,6 +20,7 @@ function MyPost() {
     useEffect(() => {
         getMyPost(getFilter())
     }, [requestedChecked, offeredChecked])
+
 
     const getFilter = () => {
         if (requestedChecked && offeredChecked) {
@@ -51,9 +52,37 @@ function MyPost() {
         }
     }
 
-    // this.deletePost = async function (postId) {
-    //     await axios.delete(PostApi.deletePost(postId));
-    // }
+  //  const deleteUser = id => setServices(services.filter(services => services.id !== id));
+
+    const deletePostHandler = async (postId) => {
+        await PostApi.deletePost(postId)
+
+        const copyServices = [...services]
+            copyServices.splice(postId, 1)
+        services = copyServices;
+    }
+
+/*    const updatePostHandler = async (postId, updatedBody) => {
+        // setServices(services.filter(services => services.id !== id));
+        console.log("hello")
+
+        try {
+            let updatedPost = {};
+            updatedPost.id = postId;
+            updatedPost.body = updatedBody;
+
+            const response = await PostApi.updatePost(updatedPost);
+            const post = response.data;
+
+            const newPosts = setServices(services.filter(p => p.id !== postId).concat(post));
+
+            setServices = newPosts;
+        } catch (e) {
+            console.error(e);
+        }
+
+    }*/
+
 
     return (
         <>
@@ -65,8 +94,9 @@ function MyPost() {
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {services.map(service =>
+                    {services.map((service, index) =>
                         <Card key={service.id}
+                              id = {service.id}
                               title={service.title}
                               description={service.description}
                               serviceType={service.assistanceType}
@@ -75,7 +105,9 @@ function MyPost() {
                               email={service.email}
                               firstname={service.firstname}
                               lastname={service.lastname}
-                              // delete = {() => this.deletePost(service.id)}
+                              index = {service.index}
+                              onDelete = {deletePostHandler}
+                              //onUpdate = {updatePostHandler}
                         />
                     )}
                 </div>
