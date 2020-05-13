@@ -8,10 +8,12 @@ import Auth from "../../services/Auth";
 import Card from "../card/Card";
 import {Spinner} from "react-bootstrap";
 import {AxiosInstance as axios} from "axios";
+import ItemCard from "../card/ItemCard";
 
 function MyPost() {
 
     const [services, setServices] = useState([]);
+    const [items, setItems] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -49,12 +51,12 @@ function MyPost() {
     const getMyPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = { assistanceTypes: data } 
+            const requestBody = { assistanceTypes: data }
             const requestBodyItem = { itemTypes: data }
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem);
             setServices(response.data);
-            setServices(responseItem.data);
+            setItems(responseItem.data);
             setLoading(false);
         } catch (e) {
         }
@@ -87,8 +89,8 @@ function MyPost() {
                               // delete = {() => this.deletePost(service.id)}
                         />
                     )}
-                    {services.map(item=>
-                        <Card key={item.id}
+                    {items.map(item=>
+                        <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
                             serviceType={item.assistanceType}

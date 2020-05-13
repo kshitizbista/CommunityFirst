@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Card from "../card/Card";
 import SubMenu from "./SubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
@@ -7,6 +6,7 @@ import Auth from "../../services/Auth";
 import ItemPostApi from "../../api/ItemPostApi";
 import { Toast, Spinner } from "react-bootstrap";
 import Community from "../../services/Community";
+import ItemCard from "../card/ItemCard";
 
 function ItemPost() {
 
@@ -29,7 +29,7 @@ function ItemPost() {
     const getFilter = () => {
         if (requestedChecked && offeredChecked) {
             return [
-                
+
                 itemType.REQUEST_HELP,
                 itemType.OFFER_HELP
             ];
@@ -85,7 +85,7 @@ function ItemPost() {
                     </Spinner>}
 
                     {!loading && services.map(item =>
-                        <Card key={item.id}
+                        <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
                             serviceType={item.assistanceType}
