@@ -1,39 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
+import {Modal, Button, Form, ButtonGroup} from "react-bootstrap";
+
 function Card(props) {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     let btn = null;
     if (props.showDelete){
-        btn = (<button type="button" className="close" data-toggle="modal" data-target="#exampleModal" aria-label="Close">
+        btn = (<Button type="button" className="close" variant="primary" onClick={handleShow} aria-label="Close">
             <span aria-hidden="true">&times;</span>
-        </button>)
+        </Button>)
     }
 
     const modal = (
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Delete</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        Are you sure you want to delete this item?
-                    </div>
-                    <div className="modal-footer">
-                        <button onClick={() => props.onDelete(props.id)} type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
+            <Modal.Footer>
+                <Button className="btn btn-danger" variant="primary" onClick={() => {props.onDelete(props.id) ; handleClose(); }} >Delete</Button>
+                <Button variant="secondary" onClick={handleClose} >Close</Button>
+            </Modal.Footer>
+        </Modal>
     )
-
-
 
     return (
         <>

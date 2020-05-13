@@ -52,8 +52,6 @@ function MyPost() {
         }
     }
 
-  //  const deleteUser = id => setServices(services.filter(services => services.id !== id));
-
     const deletePostHandler = async (postId) => {
        try {
            await PostApi.deletePost(postId);
@@ -61,17 +59,13 @@ function MyPost() {
        }  catch (e) {
 
        }
-
-  /*      const copyServices = [...services]
-            copyServices.splice(postId, 1)
-        services = copyServices;*/
     }
 
-/*    const updatePostHandler = async (postId, updatedBody) => {
+     const updatePostHandler = async (postId, updatedBody) => {
         // setServices(services.filter(services => services.id !== id));
         console.log("hello")
 
-        try {
+      /*  try {
             let updatedPost = {};
             updatedPost.id = postId;
             updatedPost.body = updatedBody;
@@ -84,9 +78,9 @@ function MyPost() {
             setServices = newPosts;
         } catch (e) {
             console.error(e);
-        }
+        }*/
 
-    }*/
+    }
 
 
     return (
