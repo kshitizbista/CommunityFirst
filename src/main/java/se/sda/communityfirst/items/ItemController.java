@@ -1,7 +1,13 @@
 package se.sda.communityfirst.items;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.*;
+import se.sda.communityfirst.service.AssistanceDTO;
+import se.sda.communityfirst.service.AssistanceService;
+import se.sda.communityfirst.service.AssistanceType;
+
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -16,29 +22,34 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping()
-    public List<Item> getAll() {
-        return itemService.getAll();
-    }
-
     @GetMapping("/{id}")
-    public Item getByID(@PathVariable Long id) {
+    public ItemDTO getByID(@PathVariable Long id) {
         return itemService.getByID(id);
     }
 
-    @PostMapping()
-    public Item save(@RequestBody Item item) {
-        return itemService.save(item);
+    @PostMapping("/create")
+    public ItemDTO save(@RequestBody @Valid ItemDTO itemDTO) {
+        return itemService.save(itemDTO);
     }
 
     @PutMapping
-    public Item update(@RequestBody Item item) {
-        return itemService.update(item);
+    public ItemDTO update(@RequestBody ItemDTO itemDTO) {
+        return itemService.update(itemDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         itemService.deleteById(id);
+    }
+
+    @PostMapping(params = "communityId")
+    public List<ItemDTO> findAllByCommunityIdAndItemTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<ItemType>> map) {
+        return itemService.findAllByCommunityIdAndItemTypeIn(communityId, map.get("itemTypes"));
+    }
+
+    @PostMapping(params = "userId")
+    public List<ItemDTO> findAllByUserIdOrderByPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<ItemType>> map) {
+        return itemService.findAllByUserIdOrderByPostedDateDesc(userId, map.get("itemTypes"));
     }
 
 }

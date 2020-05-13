@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
-import Card from "../card/Card";
+import React, { useEffect, useState } from "react";
 import SubMenu from "./SubMenu";
-import PostCreation, { assistanceType } from "./PostCreation";
+import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
-import PostApi from "../../api/PostApi";
-import {Toast, Spinner} from "react-bootstrap";
+import ItemPostApi from "../../api/ItemPostApi";
+import { Toast, Spinner } from "react-bootstrap";
 import Community from "../../services/Community";
+import ItemCard from "../card/ItemCard";
 
-function Post() {
+function ItemPost() {
 
-    const [postResponseAction, setPostResponseAction] = useState({
+    const [postResponseAction, setItemPostResponseAction] = useState({
         success: false,
         msg: ""
     });
@@ -29,41 +29,42 @@ function Post() {
     const getFilter = () => {
         if (requestedChecked && offeredChecked) {
             return [
-                assistanceType.REQUEST_HELP,
-                assistanceType.OFFER_HELP
+
+                itemType.REQUEST_HELP,
+                itemType.OFFER_HELP
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-                assistanceType.OFFER_HELP
+            itemType.OFFER_HELP
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
-                assistanceType.REQUEST_HELP
+                itemType.REQUEST_HELP
             ];
         } else {
             return [];
         }
     }
 
-    const createPost = async (data) => {
+    const createItemPost = async (data) => {
         data.userId = parseInt(Auth.getUserId());
         data.communityId = parseInt(Community.getCommunityId());
         data.postedDate = format(new Date(), "yyyy-MM-dd");
         try {
-            await PostApi.saveServicePost(data);
-            setPostResponseAction({success: true, msg: "Post created successfully."});
+            await ItemPostApi.saveItemPost(data);
+            setItemPostResponseAction({ success: true, msg: "Post created successfully." });
             setShow(true);
             getPost(getFilter());
         } catch (e) {
-            setPostResponseAction({success: false, msg: "Error while saving the post."});
+            setItemPostResponseAction({ success: false, msg: "Error while saving the post." });
         }
     }
 
     const getPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = {assistanceTypes: data}
-            const response = await PostApi.getPostByCommunityIdAndServiceType(parseInt(Community.getCommunityId()), requestBody);
+            const requestBody = { itemTypes: data }
+            const response = await ItemPostApi.getPostByCommunityIdAndItemType(parseInt(Community.getCommunityId()), requestBody);
             setServices(response.data);
             setLoading(false);
         } catch (e) {
@@ -74,37 +75,36 @@ function Post() {
     return (
         <>
             <SubMenu onRequestedCheckBoxClick={toggleRequested}
-                     onOfferedCheckBoxClick={toggleOffered}/>
-            <PostCreation onSubmit={createPost}/>
+                onOfferedCheckBoxClick={toggleOffered} />
+            <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">
                 <div className="col-10">
 
-                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
+                    {loading && <Spinner animation="border" role="status" style={{ width: "7rem", height: "7rem" }} className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {!loading && services.map(service =>
-                        <Card key={service.id}
-                              title={service.title}
-                              description={service.description}
-                              serviceType={service.assistanceType}
-                              postedDate={service.postedDate}
-                              userId={service.userId}
-                              email={service.email}
-                              firstname={service.firstname}
-                              lastname={service.lastname}
-                              showDelete={false}
+                    {!loading && services.map(item =>
+                        <ItemCard key={item.id}
+                            title={item.title}
+                            description={item.description}
+                            serviceType={item.assistanceType}
+                            postedDate={item.postedDate}
+                            userId={item.userId}
+                            email={item.email}
+                            firstname={item.firstname}
+                            lastname={item.lastname}
                         />
                     )}
                 </div>
             </div>
             <Toast show={show} onClose={() => setShow(false)} autohide
-                   className={"toast-notification " + (postResponseAction.success ? "toast-success" : "toast-danger")}
-                   delay={3000}>
+                className={"toast-notification " + (postResponseAction.success ? "toast-success" : "toast-danger")}
+                delay={3000}>
                 <Toast.Body>{postResponseAction.msg}</Toast.Body>
             </Toast>
         </>
     );
 }
 
-export default Post;
+export default ItemPost;
