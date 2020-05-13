@@ -33,7 +33,7 @@ public class ItemControllerTest {
 
     MockMvc mockMvc;
 
-    @BeforeEach
+   /* @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
@@ -124,5 +124,5 @@ public class ItemControllerTest {
         Item item = itemController.save(dress);
         verify(itemService).save(dress);
         assertEquals(1l, item.getId());
-    }
+    }*/
 }
