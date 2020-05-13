@@ -1,12 +1,18 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-
+import { useHistory } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function RegisterForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
+    const history = useHistory();
 
     return (
-        <div className="card">
+        <div className="register-layout">
+        <div className="card card-layout">
+            <div class="card-header">
+                Glad to hear that you want to be a part of our community.
+            </div>
             <div className="card-body">
                 <h4 className="card-title">Become a Member</h4>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,8 +64,10 @@ function RegisterForm({onSubmit}) {
                     <button type="submit" className="btn btn-primary">
                         Join now
                     </button>
+                    <button className="btn btn-primary ml-1" onClick={() => history.push("/")}>Home</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 }
