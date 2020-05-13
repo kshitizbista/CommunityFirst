@@ -10,10 +10,18 @@ function Card(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    let btn = null;
-    if (props.showDelete){
-        btn = (<Button type="button" className="close" variant="primary" onClick={handleShow} aria-label="Close">
+    let deleteBtn = null;
+    if (props.showDelete) {
+        deleteBtn = (<Button type="button" className="close" variant="primary" onClick={handleShow} aria-label="Close">
             <span aria-hidden="true">&times;</span>
+        </Button>)
+    }
+
+    let editBtn = null;
+    if (props.showEdit) {
+        editBtn = (<Button type="button" className="close" variant="primary"
+                           onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
+            <span aria-hidden="true">Edit</span>
         </Button>)
     }
 
@@ -24,8 +32,11 @@ function Card(props) {
             </Modal.Header>
             <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
             <Modal.Footer>
-                <Button className="btn btn-danger" variant="primary" onClick={() => {props.onDelete(props.id) ; handleClose(); }} >Delete</Button>
-                <Button variant="secondary" onClick={handleClose} >Close</Button>
+                <Button className="btn btn-danger" variant="primary" onClick={() => {
+                    props.onDelete(props.id);
+                    handleClose();
+                }}>Delete</Button>
+                <Button variant="secondary" onClick={handleClose}>Close</Button>
             </Modal.Footer>
         </Modal>
     )
@@ -69,8 +80,9 @@ function Card(props) {
                                 style={{"fontSize": "14px"}}>{props.title}</h5>
                             <p className="m-0" style={{"fontSize": "14px"}}>{props.description}</p>
                         </div>
-                        <div className = "col-sm">
-                            {btn}
+                        <div className="col-sm">
+                            {deleteBtn}
+                            {editBtn}
                         </div>
                     </div>
                     {modal}
