@@ -18,14 +18,14 @@ function ItemPostCreation({ onSubmit }) {
                     setItem(itemType.REQUEST_HELP);
                     handleShow();
                 }}>
-                    Request Help
+                    Request Item
                 </Button>
                 <Button type="button" variant="outline-info post-creation-btn"
                     onClick={() => {
                         setItem(itemType.OFFER_HELP);
                         handleShow();
                     }}>
-                    Offer Help
+                    Offer Item
                 </Button>
             </ButtonGroup>
         </div>
@@ -35,7 +35,7 @@ function ItemPostCreation({ onSubmit }) {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="w-100">
-                    <h5 className="text-center">{item === itemType.OFFER_HELP ? 'Offering Help' : 'Requesting Help'}</h5>
+                    <h5 className="text-center">{item === itemType.OFFER_HELP ? 'Offering Item' : 'Requesting Item'}</h5>
                 </Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit((data) => {

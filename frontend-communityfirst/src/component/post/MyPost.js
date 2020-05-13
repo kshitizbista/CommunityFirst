@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import SubMenu from "./SubMenu";
+import SubMenu from "./MyPostSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";

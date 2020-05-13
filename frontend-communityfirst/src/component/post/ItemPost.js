@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SubMenu from "./SubMenu";
+import SubMenu from "./ItemsSubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
