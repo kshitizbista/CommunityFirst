@@ -44,7 +44,7 @@ function ItemPostCreation({ onSubmit }) {
                 handleClose();
             })}>
                 <Modal.Body>
-                    <Form.Control type="hidden" name="assistanceType" value={item} ref={register}></Form.Control>
+                    <Form.Control type="hidden" name="itemType" value={item} ref={register}></Form.Control>
                     <Form.Group>
                         <Form.Control type="text" name="title" placeholder="Title"
                             ref={register({ required: true, minLength: 5, maxLength: 70 })} />

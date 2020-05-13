@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Card from "../card/Card";
 import SubMenu from "./SubMenu";
 import PostCreation, { assistanceType } from "./PostCreation";
-import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
 import PostApi from "../../api/PostApi";

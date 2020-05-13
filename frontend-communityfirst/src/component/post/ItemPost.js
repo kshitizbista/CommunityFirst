@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import Card from "../card/Card";
 import SubMenu from "./SubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
-import PostCreation, { assistanceType } from "./PostCreation";
 import format from "date-fns/format";
-import Auth from "../../items/Auth";
+import Auth from "../../services/Auth";
 import ItemPostApi from "../../api/ItemPostApi";
 import { Toast, Spinner } from "react-bootstrap";
-import Community from "../../items/Community";
+import Community from "../../services/Community";
 
 function ItemPost() {
 
-    const [postResponseAction, setPostResponseAction] = useState({
+    const [postResponseAction, setItemPostResponseAction] = useState({
         success: false,
         msg: ""
     });
     const [show, setShow] = useState(false);
-    const [services, items, setServices] = useState([]);
+    const [services, setServices] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -30,35 +29,34 @@ function ItemPost() {
     const getFilter = () => {
         if (requestedChecked && offeredChecked) {
             return [
-                assistanceType.REQUEST_HELP,
-                assistanceType.OFFER_HELP,
+                
                 itemType.REQUEST_HELP,
                 itemType.OFFER_HELP
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-                assistanceType.OFFER_HELP
+            itemType.OFFER_HELP
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
-                assistanceType.REQUEST_HELP
+                itemType.REQUEST_HELP
             ];
         } else {
             return [];
         }
     }
 
-    const createPost = async (data) => {
+    const createItemPost = async (data) => {
         data.userId = parseInt(Auth.getUserId());
         data.communityId = parseInt(Community.getCommunityId());
         data.postedDate = format(new Date(), "yyyy-MM-dd");
         try {
-            await ItemPostApi.saveServicePost(data);
-            setPostResponseAction({ success: true, msg: "Post created successfully." });
+            await ItemPostApi.saveItemPost(data);
+            setItemPostResponseAction({ success: true, msg: "Post created successfully." });
             setShow(true);
             getPost(getFilter());
         } catch (e) {
-            setPostResponseAction({ success: false, msg: "Error while saving the post." });
+            setItemPostResponseAction({ success: false, msg: "Error while saving the post." });
         }
     }
 
@@ -78,7 +76,7 @@ function ItemPost() {
         <>
             <SubMenu onRequestedCheckBoxClick={toggleRequested}
                 onOfferedCheckBoxClick={toggleOffered} />
-            <ItemPostCreation onSubmit={createPost} />
+            <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">
                 <div className="col-10">
 
