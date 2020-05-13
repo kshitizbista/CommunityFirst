@@ -1,11 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
+import {Modal, Button, Form, ButtonGroup} from "react-bootstrap";
 
 function Card(props) {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    let deleteBtn = null;
+    if (props.showDelete) {
+        deleteBtn = (<Button type="button" className="close" variant="primary" onClick={handleShow} aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </Button>)
+    }
+
+    let editBtn = null;
+    if (props.showEdit) {
+        editBtn = (<Button type="button" className="close" variant="primary"
+                           onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
+            <span aria-hidden="true">Edit</span>
+        </Button>)
+    }
+
+    const modal = (
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
+            <Modal.Footer>
+                <Button className="btn btn-danger" variant="primary" onClick={() => {
+                    props.onDelete(props.id);
+                    handleClose();
+                }}>Delete</Button>
+                <Button variant="secondary" onClick={handleClose}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    )
+
     return (
         <>
-            <div onClick = {props.delete} className="card mb-2">
+            <div className="card mb-2">
                 <div className="card-body p-2">
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
@@ -42,7 +80,12 @@ function Card(props) {
                                 style={{"fontSize": "14px"}}>{props.title}</h5>
                             <p className="m-0" style={{"fontSize": "14px"}}>{props.description}</p>
                         </div>
+                        <div className="col-sm">
+                            {deleteBtn}
+                            {editBtn}
+                        </div>
                     </div>
+                    {modal}
                 </div>
             </div>
         </>

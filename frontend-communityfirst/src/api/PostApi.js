@@ -18,6 +18,9 @@ class PostApi {
         return Api.delete('/services/'+ postId);
     }
 
+    updatePost(post) {
+        return Api.put('/services', post);
+    }
 }
 
 export default new PostApi();
