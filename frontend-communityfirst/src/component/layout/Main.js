@@ -24,7 +24,10 @@ function Main() {
                 <Switch>
                     <Redirect exact from={path} to={`${url}/services`}/>
                     <Route exact path={`${path}/services`}>
+                        <Redirect exact from={path} to={`${url}/items`} />
+                        <Route exact path={`${path}/items`}>
                         <Post/>
+                        </Route>
                     </Route>
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>

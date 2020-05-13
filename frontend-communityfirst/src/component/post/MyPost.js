@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import SubMenu from "./SubMenu";
-import {assistanceType} from "./PostCreation";
+import { assistanceType } from "./PostCreation";
+import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
+import ItemPostApi from "../../api/ItemPostApi";
 import Auth from "../../services/Auth";
 import Card from "../card/Card";
 import {Spinner} from "react-bootstrap";
@@ -9,8 +11,7 @@ import {AxiosInstance as axios} from "axios";
 
 function MyPost() {
 
-    const [services, setServices] = useState([]);
-    const [items, setItems] = useState([]);
+    const [services, items, setServices] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -26,32 +27,18 @@ function MyPost() {
         if (requestedChecked && offeredChecked) {
             return [
                 assistanceType.REQUEST_HELP,
-                assistanceType.OFFER_HELP
-            ];
-        } else if (!requestedChecked && offeredChecked) {
-            return [
-                assistanceType.OFFER_HELP
-            ];
-        } else if (requestedChecked && !offeredChecked) {
-            return [
-                assistanceType.REQUEST_HELP
-            ];
-        } else {
-            return [];
-        }
-    }
-    const getFilterItem = () => {
-        if (requestedChecked && offeredChecked) {
-            return [
+                assistanceType.OFFER_HELP,
                 itemType.REQUEST_HELP,
                 itemType.OFFER_HELP
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
+                assistanceType.OFFER_HELP,
                 itemType.OFFER_HELP
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
+                assistanceType.REQUEST_HELP,
                 itemType.REQUEST_HELP
             ];
         } else {
@@ -62,20 +49,11 @@ function MyPost() {
     const getMyPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = {assistanceTypes: data}
+            const requestBody = { assistanceTypes: data }
+            const requestBodyItem = { itemTypes: data }
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
+            const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBody);
             setServices(response.data);
-            setLoading(false);
-        } catch (e) {
-        }
-    }
-
-    const getMyPostItem = async (data) => {
-        try {
-            setLoading(true);
-            const requestBody = { itemTypes: data }
-            const response = await PostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBody);
-            setItems(response.data);
             setLoading(false);
         } catch (e) {
         }
@@ -108,17 +86,16 @@ function MyPost() {
                               // delete = {() => this.deletePost(service.id)}
                         />
                     )}
-
-                    {items.map(item =>
-                        <Card key={item.id}
-                            title={item.title}
-                            description={item.description}
-                            serviceType={item.assistanceType}
-                            postedDate={item.postedDate}
-                            userId={item.userId}
-                            email={item.email}
-                            firstname={item.firstname}
-                            lastname={item.lastname}
+                    {services.map(service =>
+                        <Card key={service.id}
+                            title={service.title}
+                            description={service.description}
+                            serviceType={service.assistanceType}
+                            postedDate={service.postedDate}
+                            userId={service.userId}
+                            email={service.email}
+                            firstname={service.firstname}
+                            lastname={service.lastname}
                         // delete = {() => this.deletePost(service.id)}
                         />
                     )}

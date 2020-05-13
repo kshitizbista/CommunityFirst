@@ -1,11 +1,11 @@
-import React, {useState} from "react";
-import {Modal, Button, Form, ButtonGroup} from "react-bootstrap";
-import {useForm} from "react-hook-form";
+import React, { useState } from "react";
+import { Modal, Button, Form, ButtonGroup } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
-function PostCreation({onSubmit}) {
+function ItemPostCreation({ onSubmit }) {
 
-    const {register, handleSubmit, errors, reset} = useForm();
-    const [assistance, setAssistance] = useState("");
+    const { register, handleSubmit, errors, reset } = useForm();
+    const [item, setItem] = useState("");
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,16 +15,16 @@ function PostCreation({onSubmit}) {
         <div className="col-auto">
             <ButtonGroup>
                 <Button type="button" variant="outline-info post-creation-btn" onClick={() => {
-                    setAssistance(assistanceType.REQUEST_HELP);
+                    setItem(itemType.REQUEST_HELP);
                     handleShow();
                 }}>
                     Request Help
                 </Button>
                 <Button type="button" variant="outline-info post-creation-btn"
-                        onClick={() => {
-                            setAssistance(assistanceType.OFFER_HELP);
-                            handleShow();
-                        }}>
+                    onClick={() => {
+                        setItem(itemType.OFFER_HELP);
+                        handleShow();
+                    }}>
                     Offer Help
                 </Button>
             </ButtonGroup>
@@ -35,7 +35,7 @@ function PostCreation({onSubmit}) {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="w-100">
-                    <h5 className="text-center">{assistance === assistanceType.OFFER_HELP ? 'Offering Help' : 'Requesting Help'}</h5>
+                    <h5 className="text-center">{item === itemType.OFFER_HELP ? 'Offering Help' : 'Requesting Help'}</h5>
                 </Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit((data) => {
@@ -44,21 +44,21 @@ function PostCreation({onSubmit}) {
                 handleClose();
             })}>
                 <Modal.Body>
-                    <Form.Control type="hidden" name="assistanceType" value={assistance} ref={register}></Form.Control>
+                    <Form.Control type="hidden" name="assistanceType" value={item} ref={register}></Form.Control>
                     <Form.Group>
                         <Form.Control type="text" name="title" placeholder="Title"
-                                      ref={register({required: true, minLength: 5, maxLength: 70})}/>
+                            ref={register({ required: true, minLength: 5, maxLength: 70 })} />
                         {errors.title && errors.title.type === "required" &&
-                        <span className="form-error">Title is required</span>}
+                            <span className="form-error">Title is required</span>}
                         {errors.title && (errors.title.type === "minLength" || errors.title.type === "maxLength") &&
-                        <span className="form-error">Character must be between 5 and 50 </span>}
+                            <span className="form-error">Character must be between 5 and 50 </span>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Control as="textarea" name="description" placeholder="Write something..."
-                                      style={{resize: "none"}} rows="6"
-                                      ref={register({required: true})}/>
+                            style={{ resize: "none" }} rows="6"
+                            ref={register({ required: true })} />
                         {errors.description && errors.description.type === "required" &&
-                        <span className="form-error">Description is required</span>}
+                            <span className="form-error">Description is required</span>}
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
@@ -82,9 +82,9 @@ function PostCreation({onSubmit}) {
     )
 }
 
-export const assistanceType = {
+export const itemType = {
     REQUEST_HELP: 'REQUEST_HELP',
     OFFER_HELP: 'OFFER_HELP'
 }
 
-export default PostCreation;
+export default ItemPostCreation;
