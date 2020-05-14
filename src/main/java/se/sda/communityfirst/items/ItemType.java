@@ -1,6 +1,6 @@
 package se.sda.communityfirst.items;
 
 public enum ItemType {
-    REQUEST_HELP,
-    OFFER_HELP
+    REQUEST_ITEM,
+    OFFER_ITEM
 }
