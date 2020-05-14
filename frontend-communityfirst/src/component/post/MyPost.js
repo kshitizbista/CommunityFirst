@@ -1,26 +1,26 @@
 import React, {useEffect, useState} from "react";
-import SubMenu from "./MyPostSubMenu";
+import MyPostSubMenu from "./MyPostSubMenu";
+import ItemSubMenu from "./ItemsSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
 import ItemPostApi from "../../api/ItemPostApi";
 import Auth from "../../services/Auth";
 import Card from "../card/Card";
-
 import {Button, Form, Modal, Spinner} from "react-bootstrap";
 import {useForm} from "react-hook-form";
+import {AxiosInstance as axios} from "axios";
 import ItemCard from "../card/ItemCard";
-
 
 function MyPost() {
 
     const [services, setServices] = useState([]);
     const [items, setItems] = useState([]);
-    const [serviceChecked, setServiceChecked] = useState(true);
-    const [itemChecked, setItemChecked] = useState(true);
+    const [requestedChecked, setRequestedChecked] = useState(true);
+    const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
-    const toggleService = (checked) => setServiceChecked(checked);
-    const toggleItem = (checked) => setItemChecked(checked);
+    const toggleRequested = (checked) => setRequestedChecked(checked);
+    const toggleOffered = (checked) => setOfferedChecked(checked);
 
     //EditModel state
     const {register: registerEditForm, handleSubmit: handleEditFormSubmit, errors: errorsEditFrom} = useForm();
@@ -32,26 +32,26 @@ function MyPost() {
 
     useEffect(() => {
         getMyPost(getFilter())
-    }, [serviceChecked, itemChecked])
-
+    }, [requestedChecked, offeredChecked])
 
     const getFilter = () => {
-        if (serviceChecked && itemChecked) {
+        if (requestedChecked && offeredChecked) {
             return [
                 assistanceType.REQUEST_HELP,
                 assistanceType.OFFER_HELP,
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.REQUEST_ITEM,
+                itemType.OFFER_ITEM
             ];
-        } else if (!serviceChecked && itemChecked) {
+        } else if (!requestedChecked && offeredChecked) {
             return [
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.OFFER_ITEM,
+                itemType.REQUEST_ITEM
             ];
-        } else if (serviceChecked && !itemChecked) {
+        } else if (requestedChecked && !offeredChecked) {
             return [
+                assistanceType.OFFER_HELP,
                 assistanceType.REQUEST_HELP,
-                assistanceType.OFFER_HELP
+
             ];
         } else {
             return [];
@@ -61,8 +61,10 @@ function MyPost() {
     const getMyPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = { assistanceTypes: data }
-            const requestBodyItem = { itemTypes: data }
+            const itemFilters = data.filter(x => x.indexOf("ITEM") >= 0)
+            const helpFilters = data.filter(x => x.indexOf("HELP") >= 0)
+            const requestBody = { assistanceTypes: helpFilters }
+            const requestBodyItem = { itemTypes: itemFilters }
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem);
             setServices(response.data);
@@ -148,18 +150,18 @@ function MyPost() {
 
     return (
         <>
-            <SubMenu onServiceCheckBoxClick={toggleService}
-                     onItemCheckBoxClick={toggleItem}/>
+            <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
+                onItemCheckBoxClick={toggleOffered} />
+
+
             <div className="row justify-content-center">
                 <div className="col-10">
-                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
-                                         className="d-block mx-auto test">
+                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    { serviceChecked == true && services.map((service, index) =>
+                    {services.map(service =>
                         <Card key={service.id}
-                              id={service.id}
                               title={service.title}
                               description={service.description}
                               serviceType={service.assistanceType}
@@ -175,23 +177,23 @@ function MyPost() {
                               showEdit={true}
                         />
                     )}
-                    { itemChecked == true && items.map(item=>
-                        <ItemCard key={item.id}
-                            title={item.title}
-                            description={item.description}
-                            serviceType={item.assistanceType}
-                            postedDate={item.postedDate}
-                            userId={item.userId}
-                            email={item.email}
-                            firstname={item.firstname}
-                            lastname={item.lastname}
 
-                        // delete = {() => this.deletePost(service.id)}
-                        />
-                    )}
+                    {items.map(item =>
+                            <ItemCard key={item.id}
+                                title={item.title}
+                                description={item.description}
+                                itemType={item.itemType}
+                                postedDate={item.postedDate}
+                                userId={item.userId}
+                                email={item.email}
+                                firstname={item.firstname}
+                                lastname={item.lastname}
+                            // delete = {() => this.deletePost(service.id)}
+                            />
+                        )
+                    }
                 </div>
             </div>
-            {editModel}
         </>
     );
 }

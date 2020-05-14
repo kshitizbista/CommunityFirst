@@ -93,7 +93,6 @@ function Post() {
                               email={service.email}
                               firstname={service.firstname}
                               lastname={service.lastname}
-                              showDelete={false}
                         />
                     )}
                 </div>
