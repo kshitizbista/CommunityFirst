@@ -52,11 +52,11 @@ function ItemPost() {
         data.postedDate = format(new Date(), "yyyy-MM-dd");
         try {
             await ItemPostApi.saveItemPost(data);
-            setItemPostResponseAction({ success: true, msg: "Post created successfully." });
+            setItemPostResponseAction({ success: true, msg: "Item created successfully." });
             setShow(true);
             getPost(getFilter());
         } catch (e) {
-            setItemPostResponseAction({ success: false, msg: "Error while saving the post." });
+            setItemPostResponseAction({ success: false, msg: "Error while saving the Item." });
         }
     }
 
