@@ -16,11 +16,11 @@ function MyPost() {
 
     const [services, setServices] = useState([]);
     const [items, setItems] = useState([]);
-    const [requestedChecked, setRequestedChecked] = useState(true);
-    const [offeredChecked, setOfferedChecked] = useState(true);
+    const [serviceChecked, setServiceChecked] = useState(true);
+    const [itemChecked, setItemChecked] = useState(true);
     const [loading, setLoading] = useState(true);
-    const toggleRequested = (checked) => setRequestedChecked(checked);
-    const toggleOffered = (checked) => setOfferedChecked(checked);
+    const toggleService = (checked) => setServiceChecked(checked);
+    const toggleItem = (checked) => setItemChecked(checked);
 
     //EditModel state
     const {register: registerEditForm, handleSubmit: handleEditFormSubmit, errors: errorsEditFrom} = useForm();
@@ -32,26 +32,26 @@ function MyPost() {
 
     useEffect(() => {
         getMyPost(getFilter())
-    }, [requestedChecked, offeredChecked])
+    }, [serviceChecked, itemChecked])
 
 
     const getFilter = () => {
-        if (requestedChecked && offeredChecked) {
+        if (serviceChecked && itemChecked) {
             return [
                 assistanceType.REQUEST_HELP,
                 assistanceType.OFFER_HELP,
                 itemType.REQUEST_HELP,
                 itemType.OFFER_HELP
             ];
-        } else if (!requestedChecked && offeredChecked) {
+        } else if (!serviceChecked && itemChecked) {
             return [
-                assistanceType.OFFER_HELP,
+                itemType.REQUEST_HELP,
                 itemType.OFFER_HELP
             ];
-        } else if (requestedChecked && !offeredChecked) {
+        } else if (serviceChecked && !itemChecked) {
             return [
                 assistanceType.REQUEST_HELP,
-                itemType.REQUEST_HELP
+                assistanceType.OFFER_HELP
             ];
         } else {
             return [];
@@ -148,8 +148,8 @@ function MyPost() {
 
     return (
         <>
-            <SubMenu onRequestedCheckBoxClick={toggleRequested}
-                     onOfferedCheckBoxClick={toggleOffered}/>
+            <SubMenu onServiceCheckBoxClick={toggleService}
+                     onItemCheckBoxClick={toggleItem}/>
             <div className="row justify-content-center">
                 <div className="col-10">
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
@@ -157,7 +157,7 @@ function MyPost() {
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {services.map((service, index) =>
+                    { serviceChecked == true && services.map((service, index) =>
                         <Card key={service.id}
                               id={service.id}
                               title={service.title}
@@ -175,7 +175,7 @@ function MyPost() {
                               showEdit={true}
                         />
                     )}
-                    {items.map(item=>
+                    { itemChecked == true && items.map(item=>
                         <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
@@ -185,6 +185,7 @@ function MyPost() {
                             email={item.email}
                             firstname={item.firstname}
                             lastname={item.lastname}
+
                         // delete = {() => this.deletePost(service.id)}
                         />
                     )}
