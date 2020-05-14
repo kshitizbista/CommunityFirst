@@ -15,17 +15,17 @@ function ItemPostCreation({ onSubmit }) {
         <div className="col-auto">
             <ButtonGroup>
                 <Button type="button" variant="outline-info post-creation-btn" onClick={() => {
-                    setItem(itemType.REQUEST_HELP);
+                    setItem(itemType.REQUEST_ITEM);
                     handleShow();
                 }}>
-                    Request Help
+                    Request Item
                 </Button>
                 <Button type="button" variant="outline-info post-creation-btn"
                     onClick={() => {
-                        setItem(itemType.OFFER_HELP);
+                        setItem(itemType.OFFER_ITEM);
                         handleShow();
                     }}>
-                    Offer Help
+                    Offer Item
                 </Button>
             </ButtonGroup>
         </div>
@@ -35,7 +35,7 @@ function ItemPostCreation({ onSubmit }) {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="w-100">
-                    <h5 className="text-center">{item === itemType.OFFER_HELP ? 'Offering Help' : 'Requesting Help'}</h5>
+                    <h5 className="text-center">{item === itemType.OFFER_ITEM ? 'Offering Item' : 'Requesting Item'}</h5>
                 </Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit((data) => {
@@ -83,8 +83,8 @@ function ItemPostCreation({ onSubmit }) {
 }
 
 export const itemType = {
-    REQUEST_HELP: 'REQUEST_HELP',
-    OFFER_HELP: 'OFFER_HELP'
+    REQUEST_ITEM: 'REQUEST_ITEM',
+    OFFER_ITEM: 'OFFER_ITEM'
 }
 
 export default ItemPostCreation;

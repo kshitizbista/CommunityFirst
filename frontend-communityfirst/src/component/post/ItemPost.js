@@ -30,16 +30,16 @@ function ItemPost() {
         if (requestedChecked && offeredChecked) {
             return [
 
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.REQUEST_ITEM,
+                itemType.OFFER_ITEM
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-            itemType.OFFER_HELP
+                itemType.OFFER_ITEM
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
-                itemType.REQUEST_HELP
+                itemType.REQUEST_ITEM
             ];
         } else {
             return [];

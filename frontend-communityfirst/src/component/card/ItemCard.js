@@ -28,7 +28,7 @@ function ItemCard(props) {
                                     </p>
                                     <p className="text-primary font-weight-light mb-0"
                                         style={{ "fontSize": "12px" }}>
-                                        {props.itemType === itemType.REQUEST_HELP ? 'Requesting Help' : 'Offering Help'}</p>
+                                        {props.itemType === itemType.REQUEST_ITEM ? 'Requesting Item' : 'Offering Item'}</p>
                                     <p className="text-secondary font-weight-light mb-0"
                                         style={{ "fontSize": "12px" }}>
                                         {format(new Date(props.postedDate), "MMMM dd, yyyy")}

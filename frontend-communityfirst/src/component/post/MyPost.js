@@ -30,18 +30,18 @@ function MyPost() {
             return [
                 assistanceType.REQUEST_HELP,
                 assistanceType.OFFER_HELP,
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.REQUEST_ITEM,
+                itemType.OFFER_ITEM
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
                 assistanceType.OFFER_HELP,
-                itemType.OFFER_HELP
+                itemType.OFFER_ITEM
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
                 assistanceType.REQUEST_HELP,
-                itemType.REQUEST_HELP
+                itemType.REQUEST_ITEM
             ];
         } else {
             return [];
