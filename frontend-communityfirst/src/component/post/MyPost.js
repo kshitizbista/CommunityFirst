@@ -38,8 +38,6 @@ function MyPost() {
             return [
                 itemType.OFFER_ITEM,
                 itemType.REQUEST_ITEM
-                
-                
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
