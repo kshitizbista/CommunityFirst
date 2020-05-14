@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import MyPostSubMenu from "./MyPostSubMenu";
-import ItemSubMenu from "./ItemsSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
@@ -152,16 +151,16 @@ function MyPost() {
         <>
             <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
                 onItemCheckBoxClick={toggleOffered} />
-
-
             <div className="row justify-content-center">
                 <div className="col-10">
-                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
+                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
+                                         className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {services.map(service =>
+                    {services.map((service, index) =>
                         <Card key={service.id}
+                              id={service.id}
                               title={service.title}
                               description={service.description}
                               serviceType={service.assistanceType}
@@ -194,6 +193,7 @@ function MyPost() {
                     }
                 </div>
             </div>
+            {editModel}
         </>
     );
 }
