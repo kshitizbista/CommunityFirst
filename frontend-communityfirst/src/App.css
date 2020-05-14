@@ -53,26 +53,38 @@
 .login-layout {
     background-image: url("./assets/images/loginbg.jpg");
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     min-height: 100vh;
 }
+
 .register-layout {
     background-image: url("./assets/images/registerbg.jpg");
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     min-height: 100vh;
     position: relative;
 
 }
+
 .card-layout {
     color: black;
     font-size: 15px;
     background-color: white;
     padding: 20px;
-    width:50%;
+    width: 50%;
     font-family: verdana;
     border: solid grey;
     text-align: center;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
+}
+
+.card-cursor:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+
+.see-more {
+    font-size: 12px;
 }

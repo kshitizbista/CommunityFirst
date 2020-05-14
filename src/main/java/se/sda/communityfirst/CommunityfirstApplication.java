@@ -13,6 +13,10 @@ public class CommunityfirstApplication {
         SpringApplication.run(CommunityfirstApplication.class, args);
     }
 
+
+
+
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

@@ -73,7 +73,7 @@ public class AssistanceService {
 
     @Transactional
     public List<AssistanceDTO> findAllByUserIdOrderByPostedDateDesc(Long userId, List<AssistanceType> assistanceTypes) {
-        return assistanceRepository.findAllByUserIdAndAssistanceTypeInOrderByIdAscPostedDateDesc(userId, assistanceTypes).stream().map(assistance ->
+        return assistanceRepository.findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(userId, assistanceTypes).stream().map(assistance ->
                 assistanceToDTO.convert(assistance)).collect(Collectors.toList());
     }
 

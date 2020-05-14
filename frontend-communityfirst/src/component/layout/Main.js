@@ -5,6 +5,7 @@ import Auth from "../../services/Auth";
 import Post from "../post/Post";
 import ItemPost from "../post/ItemPost";
 import MyPost from "../post/MyPost";
+import ServiceDetail from "../post/ServiceDetail";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -26,12 +27,13 @@ function Main() {
                     <Redirect exact from={path} to={`${url}/services`}/>
                     <Route exact path={`${path}/services`}>
                         <Post/>
-                        </Route>
-                   
+                    </Route>
+
                     <Route exact path={`${path}/items`}>
-                        <ItemPost />
-                        </Route>
-                        
+                        <ItemPost/>
+                    </Route>
+                    <Route exact path={`${path}/service-details/:id`} children={<ServiceDetail/>}/>
+
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>
                     </Route>
