@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+
+header,
+aside,
+main,
+footer
+{
+    text-align: center;
+    padding: 0 16px;
+}
+homepage {
+    margin : 0;
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: 90px auto 100px;
+    grid-template-areas: "hd hd"
+                         "sidebar main"
+                          "footer footer";
+}
+
+header {
+    background: #F8F0E5;
+    grid-area: hd;
+    margin-bottom: 0;
+}
+
+.logo-image {
+    width: 70px;
+}
+
+aside {
+    background: #F8F0E5;
+    grid-area: sidebar;
+}
+
+.description {
+    letter-spacing: 2px;
+    padding: 20px 40px;
+}
+
+h1 {
+   padding-top: 50px;
+}
+
+
+main {
+    background: #F8F0E5;
+    grid-area: main;
+}
+
+
+.side-image{
+    width: 100%;
+    height: 80%;
+    min-width: 300px;
+    min-height: 300px;
+    box-shadow: 0 0 20px 20px white inset;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        visibility: hidden;
+        background: #F8F0E5;
+    }
+}
+
+.footer-image{
+    width: 200px;
+}
+
+
+footer {
+    grid-area: footer;
+    background: #F8F0E5;
+    background-size: 250px;
+    background-position: bottom;
+    background-image: url("./grass.png")
+}
+
+ul {
+    list-style-type: none;
+}
+
+.navigation-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 0;
+}
+
+.navigation-item {
+    margin: 0 10px;
+}
+
+.navigation-item-main-left{
+    margin-right: auto;
+}
+
+.navigation-item-main-right {
+    margin: 0 10px;
+}
+
+.navigation-list-sidebar {
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-item-sidebar{
+    margin: 0 10px;
+}
+
+.navigation-item-footer{
+    margin: 0 10px;
+    color: #F8F0E5;
+    font-size: large;
+    font-weight: bold;
+}
+
+.navigation-list-footer {
+    padding-top: 50px;
+    display: flex;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+.navigation-item-footer-btn:hover{
+    text-decoration: none;
+    color: #c4ac27;
+}
+
+.navigation-item-footer-btn{
+    color: white;
+}
+

@@ -24,7 +24,7 @@ function RegisterForm({onSubmit}) {
                                        className="form-control form-control-lg"
                                        placeholder="Firstname"
                                        ref={register({required: true, minLength: 3, maxLength: 20})}/>
-                                {errors.firstname && <span className="form-error">Firstname is required and size must be between 3 and 20 </span>}
+                                {errors.firstname && <span className="form-error">First name is required and size must be between 3 and 20 </span>}
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -34,7 +34,7 @@ function RegisterForm({onSubmit}) {
                                        className="form-control form-control-lg"
                                        placeholder="lastname"
                                        ref={register({required: true, minLength: 3, maxLength: 20})}/>
-                                {errors.lastname && <span className="form-error">Lastname is required and size must be between 3 and 20 </span>}
+                                {errors.lastname && <span className="form-error">Last name is required and size must be between 3 and 20 </span>}
                             </div>
                         </div>
                     </div>
