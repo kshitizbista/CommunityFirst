@@ -93,7 +93,7 @@ function MyPost() {
                         <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
-                            serviceType={item.assistanceType}
+                            itemType={item.itemType}
                             postedDate={item.postedDate}
                             userId={item.userId}
                             email={item.email}

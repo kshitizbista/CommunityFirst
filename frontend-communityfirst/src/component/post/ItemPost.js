@@ -15,7 +15,7 @@ function ItemPost() {
         msg: ""
     });
     const [show, setShow] = useState(false);
-    const [services, setServices] = useState([]);
+    const [items, setItems] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ function ItemPost() {
             setLoading(true);
             const requestBody = { itemTypes: data }
             const response = await ItemPostApi.getPostByCommunityIdAndItemType(parseInt(Community.getCommunityId()), requestBody);
-            setServices(response.data);
+            setItems(response.data);
             setLoading(false);
         } catch (e) {
 
@@ -84,11 +84,11 @@ function ItemPost() {
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {!loading && services.map(item =>
+                    {!loading && items.map(item =>
                         <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
-                            serviceType={item.assistanceType}
+                            itemType={item.itemType}
                             postedDate={item.postedDate}
                             userId={item.userId}
                             email={item.email}
