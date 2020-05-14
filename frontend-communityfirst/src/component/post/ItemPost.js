@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SubMenu from "./SubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
@@ -74,7 +74,7 @@ function ItemPost() {
 
     return (
         <>
-            <SubMenu onRequestedCheckBoxClick={toggleRequested}
+            <ItemSubMenu onRequestedCheckBoxClick={toggleRequested}
                 onOfferedCheckBoxClick={toggleOffered} />
             <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">

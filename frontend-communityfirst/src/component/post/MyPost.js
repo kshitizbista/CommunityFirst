@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import SubMenu from "./SubMenu";
+import MyPostSubMenu from "./MyPostSubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
@@ -35,13 +36,16 @@ function MyPost() {
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-                assistanceType.OFFER_HELP,
-                itemType.OFFER_ITEM
+                itemType.OFFER_ITEM,
+                itemType.REQUEST_ITEM
+                
+                
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
+                assistanceType.OFFER_HELP,
                 assistanceType.REQUEST_HELP,
-                itemType.REQUEST_ITEM
+
             ];
         } else {
             return [];
@@ -51,8 +55,10 @@ function MyPost() {
     const getMyPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = { assistanceTypes: data }
-            const requestBodyItem = { itemTypes: data }
+            const itemFilters = data.filter(x => x.indexOf("ITEM") >= 0)
+            const helpFilters = data.filter(x => x.indexOf("HELP") >= 0)
+            const requestBody = { assistanceTypes: helpFilters }
+            const requestBodyItem = { itemTypes: itemFilters }
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem);
             setServices(response.data);
@@ -68,8 +74,10 @@ function MyPost() {
 
     return (
         <>
-            <SubMenu onRequestedCheckBoxClick={toggleRequested}
-                     onOfferedCheckBoxClick={toggleOffered}/>
+            <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
+                onItemCheckBoxClick={toggleOffered} />
+          
+            
             <div className="row justify-content-center">
                 <div className="col-10">
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
@@ -89,19 +97,21 @@ function MyPost() {
                               // delete = {() => this.deletePost(service.id)}
                         />
                     )}
-                    {items.map(item=>
-                        <ItemCard key={item.id}
-                            title={item.title}
-                            description={item.description}
-                            itemType={item.itemType}
-                            postedDate={item.postedDate}
-                            userId={item.userId}
-                            email={item.email}
-                            firstname={item.firstname}
-                            lastname={item.lastname}
-                        // delete = {() => this.deletePost(service.id)}
-                        />
-                    )}
+
+                    {items.map(item =>
+                            <ItemCard key={item.id}
+                                title={item.title}
+                                description={item.description}
+                                itemType={item.itemType}
+                                postedDate={item.postedDate}
+                                userId={item.userId}
+                                email={item.email}
+                                firstname={item.firstname}
+                                lastname={item.lastname}
+                            // delete = {() => this.deletePost(service.id)}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </>
