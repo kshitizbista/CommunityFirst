@@ -22,12 +22,8 @@ function RegisterPage() {
     return (
 
         <>
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 mt-4">
-                        <RegisterForm onSubmit={signUp}/>
-                    </div>
-                </div>
+            <div>
+               <RegisterForm onSubmit={signUp}/>
             </div>
             <Toast show={show} onClose={() => setShow(false)} autohide
                    className={"toast-notification " + (successful ? "toast-success" : "toast-danger")}

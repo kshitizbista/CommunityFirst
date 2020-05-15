@@ -60,6 +60,13 @@ main {
     box-shadow: 0 0 20px 20px white inset;
 }
 
+.side-image-login{
+    width: 95%;
+    height: 80%;
+    min-width: 300px;
+    min-height: 300px;
+}
+
 @media screen and (max-width: 600px) {
     main {
         visibility: hidden;
@@ -92,6 +99,7 @@ ul {
     margin-bottom: 0;
 }
 
+
 .navigation-item {
     margin: 0 10px;
 }
@@ -103,6 +111,7 @@ ul {
 .navigation-item-main-right {
     margin: 0 10px;
 }
+
 
 .navigation-list-sidebar {
     display: flex;
@@ -136,3 +145,28 @@ ul {
     color: white;
 }
 
+.ProfileCard-Row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.ProfileCard-item{
+    margin: 10px 10px;
+    background: white;
+    opacity: 0.85;
+}
+
+
+.ProfileCard-item:hover{
+    margin: 10px 10px;
+    background: white;
+    opacity: 1.0;
+    cursor: pointer;
+}
+
+div.card-title {
+    margin-bottom: 0;
+}

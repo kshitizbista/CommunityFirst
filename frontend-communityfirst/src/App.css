@@ -6,6 +6,11 @@
     content: "⚠ ";
 }
 
+#root{
+    height:100%;
+    width: 100%;
+}
+
 .community-selection {
     cursor: pointer;
 }
@@ -45,12 +50,6 @@
     width: 150px;
 }
 
-.login-layout {
-    background-image: url("./assets/images/loginbg.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    min-height: 100vh;
-}
 .register-layout {
     background-image: url("./assets/images/registerbg.jpg");
     background-repeat: no-repeat;
