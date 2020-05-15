@@ -11,7 +11,7 @@ footer
     text-align: center;
     padding: 0 16px;
 }
-homepage {
+.homepage {
     margin : 0;
     display: grid;
     grid-template-columns: 50% auto;
@@ -77,7 +77,7 @@ footer {
     background: #F8F0E5;
     background-size: 250px;
     background-position: bottom;
-    background-image: url("./grass.png")
+    background-image: url("../../assets/images/grass.png")
 }
 
 ul {
