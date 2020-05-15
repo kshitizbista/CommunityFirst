@@ -1,5 +1,4 @@
 import React from "react";
-import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
 import {Button} from "react-bootstrap";
 import {itemType} from "../post/ItemPostCreation";
@@ -15,9 +14,9 @@ function ItemCard(props) {
 
     let editBtn = null;
     if (props.showEdit) {
-        editBtn = (<Button type="button" className="close" variant="primary"
+        editBtn = (<Button type="button" className="close mr-1" variant="primary"
                            onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
-            <span style={{"fontSize": "20px"}} aria-hidden="true">Edit</span>
+            <span style={{"fontSize": "16px"}} aria-hidden="true">Edit</span>
         </Button>)
     }
 

@@ -4,10 +4,10 @@ import './Home.css';
 
 function Home() {
     return (
-        <homepage>
+        <div className="homepage">
            <header>
                <ul className="navigation-list">
-                   <li className="navigation-item-main-left" > <img className="logo-image" src={require('./logo.png')}></img></li>
+                   <li className="navigation-item-main-left" > <img className="logo-image" src={require('../../assets/images/logo.png')}></img></li>
                    <li className="navigation-item-main-right" > <Link to="/signup" className="btn btn-warning btn-lg">Join Now!</Link></li>
                    <li className="navigation-item-main-right" ><Link to="/login" className="btn btn-secondary btn-lg">Login</Link></li>
                </ul>
@@ -28,7 +28,7 @@ function Home() {
                 </ul>
             </aside>
             <main>
-                <picture className="side-image-blur"><img className="side-image"src={require('/Users/ire/communityfirst/frontend-communityfirst/src/assets/images/ALL2.jpg')}></img></picture>
+                <picture className="side-image-blur"><img className="side-image"src={require('../../assets/images/ALL2.jpg')}></img></picture>
             </main>
             <footer>
                 <ul className="navigation-list-footer">
@@ -36,8 +36,7 @@ function Home() {
                     <li className="navigation-item-footer" ><Link className="navigation-item-footer-btn" to="/communityfirst" >Contact</Link></li>
                 </ul>
             </footer>
-        </homepage>
-
+        </div>
     )
 }
 
