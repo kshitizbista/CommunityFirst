@@ -5,7 +5,7 @@ function ItemsSubMenu({onRequestedCheckBoxClick, onOfferedCheckBoxClick}) {
         <div className="bg-white mb-3 p-2">
             <div className="row no-gutters justify-content-center">
                 <div className="col-auto mr-2">
-                    <span className="font-weight-bold">Service Type:</span>
+                    <span className="font-weight-bold">Items Type:</span>
                 </div>
                 <div className="col-auto">
                     <div className="form-check form-check-inline">
