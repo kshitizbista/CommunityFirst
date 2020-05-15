@@ -1,15 +1,7 @@
 import React from "react";
 import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import {Button} from "react-bootstrap";
-=======
 import {Button, Modal} from "react-bootstrap";
->>>>>>> 3610c2e... Added see more functionality to the posts page
-=======
-import {Button, Modal} from "react-bootstrap";
->>>>>>> 3610c2e5133feab2f362be514ef1649b7f457824
 
 function Card(props) {
 
@@ -59,18 +51,8 @@ function Card(props) {
 
     return (
         <>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <div onClick = {props.delete}  className="card mb-2">
-                <div className="card-body p-2">
-=======
             <div className="card mb-2 card-cursor">
                 <div className="card-body p-2" onClick={props.onCardClick}>
->>>>>>> 3610c2e... Added see more functionality to the posts page
-=======
-            <div className="card mb-2 card-cursor">
-                <div className="card-body p-2" onClick={props.onCardClick}>
->>>>>>> 3610c2e5133feab2f362be514ef1649b7f457824
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
                             <div className="row flex-nowrap no-gutters">
