@@ -35,20 +35,6 @@ function Card(props) {
         }
     }
 
-    const seeMore = (<span>See More</span>)
-
-    const checkDesc = () => {
-        return props.maxDesc != null && props.description.length >= props.maxDesc
-    }
-
-    const getDesc = () => {
-        if (checkDesc()) {
-            return (props.description).substring(0, props.maxDesc );
-        } else {
-            return props.description;
-        }
-    }
-
     return (
         <>
             <div className="card mb-2 card-cursor">
