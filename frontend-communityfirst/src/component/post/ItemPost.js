@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SubMenu from "./SubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
@@ -15,7 +15,7 @@ function ItemPost() {
         msg: ""
     });
     const [show, setShow] = useState(false);
-    const [services, setServices] = useState([]);
+    const [items, setItems] = useState([]);
     const [requestedChecked, setRequestedChecked] = useState(true);
     const [offeredChecked, setOfferedChecked] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -30,16 +30,16 @@ function ItemPost() {
         if (requestedChecked && offeredChecked) {
             return [
 
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.REQUEST_ITEM,
+                itemType.OFFER_ITEM
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-            itemType.OFFER_HELP
+                itemType.OFFER_ITEM
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
-                itemType.REQUEST_HELP
+                itemType.REQUEST_ITEM
             ];
         } else {
             return [];
@@ -65,7 +65,7 @@ function ItemPost() {
             setLoading(true);
             const requestBody = { itemTypes: data }
             const response = await ItemPostApi.getPostByCommunityIdAndItemType(parseInt(Community.getCommunityId()), requestBody);
-            setServices(response.data);
+            setItems(response.data);
             setLoading(false);
         } catch (e) {
 
@@ -74,7 +74,7 @@ function ItemPost() {
 
     return (
         <>
-            <SubMenu onRequestedCheckBoxClick={toggleRequested}
+            <ItemSubMenu onRequestedCheckBoxClick={toggleRequested}
                 onOfferedCheckBoxClick={toggleOffered} />
             <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">
@@ -84,11 +84,11 @@ function ItemPost() {
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
-                    {!loading && services.map(item =>
+                    {!loading && items.map(item =>
                         <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
-                            serviceType={item.assistanceType}
+                            itemType={item.itemType}
                             postedDate={item.postedDate}
                             userId={item.userId}
                             email={item.email}

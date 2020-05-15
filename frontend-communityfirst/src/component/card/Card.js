@@ -7,23 +7,23 @@ function Card(props) {
 
     let deleteBtn = null;
     if (props.showDelete) {
-        deleteBtn = (<Button type="button" className="close" variant="primary" onClick={() => props.onDelete(props.id)} aria-label="Close">
+        deleteBtn = (<Button type="button " variant="primary" onClick={() => props.onDelete(props.id)} aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </Button>)
     }
 
     let editBtn = null;
     if (props.showEdit) {
-        editBtn = (<Button type="button" className="close" variant="primary"
-                           onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
-            <span aria-hidden="true">Edit</span>
+        editBtn = (<Button
+                           onClick={() => props.onEdit(props.id, props.title, props.description)}>
+            <span>Edit</span>
         </Button>)
     }
 
 
     return (
         <>
-            <div className="card mb-2">
+            <div onClick = {props.delete}  className="card mb-2">
                 <div className="card-body p-2">
                     <div className="row mt-2">
                         <div className="col-auto pr-0">

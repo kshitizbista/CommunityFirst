@@ -2,6 +2,7 @@ import React from "react";
 import {assistanceType} from "../post/PostCreation";
 import format from "date-fns/format";
 import {Button} from "react-bootstrap";
+import {itemType} from "../post/ItemPostCreation";
 
 function ItemCard(props) {
 
@@ -44,9 +45,8 @@ function ItemCard(props) {
                                        style={{"fontSize": "13px"}}>
                                         {props.firstname} {props.lastname}
                                     </p>
-                                    <p className="text-primary font-weight-light mb-0"
-                                       style={{"fontSize": "12px"}}>
-                                        {props.serviceType === assistanceType.REQUEST_HELP ? 'Requesting Help' : 'Offering Help'}</p>
+                                    <p className="text-primary font-weight-light mb-0" style={{ "fontSize": "12px" }}>
+                                        {props.itemType === itemType.REQUEST_ITEM ? 'Requesting Item' : 'Offering Item'}</p>
                                     <p className="text-secondary font-weight-light mb-0"
                                        style={{"fontSize": "12px"}}>
                                         {format(new Date(props.postedDate), "MMMM dd, yyyy")}

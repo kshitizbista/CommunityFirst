@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import SubMenu from "./SubMenu";
+import MyPostSubMenu from "./MyPostSubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
@@ -47,18 +48,19 @@ function MyPost() {
             return [
                 assistanceType.REQUEST_HELP,
                 assistanceType.OFFER_HELP,
-                itemType.REQUEST_HELP,
-                itemType.OFFER_HELP
+                itemType.REQUEST_ITEM,
+                itemType.OFFER_ITEM
             ];
         } else if (!requestedChecked && offeredChecked) {
             return [
-                assistanceType.OFFER_HELP,
-                itemType.OFFER_HELP
+                itemType.OFFER_ITEM,
+                itemType.REQUEST_ITEM
             ];
         } else if (requestedChecked && !offeredChecked) {
             return [
+                assistanceType.OFFER_HELP,
                 assistanceType.REQUEST_HELP,
-                itemType.REQUEST_HELP
+
             ];
         } else {
             return [];
@@ -68,8 +70,10 @@ function MyPost() {
     const getMyPost = async (data) => {
         try {
             setLoading(true);
-            const requestBody = { assistanceTypes: data }
-            const requestBodyItem = { itemTypes: data }
+            const itemFilters = data.filter(x => x.indexOf("ITEM") >= 0)
+            const helpFilters = data.filter(x => x.indexOf("HELP") >= 0)
+            const requestBody = { assistanceTypes: helpFilters }
+            const requestBodyItem = { itemTypes: itemFilters }
             const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
             const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem);
             setServices(response.data);
@@ -267,8 +271,10 @@ function MyPost() {
 
     return (
         <>
-            <SubMenu onRequestedCheckBoxClick={toggleRequested}
-                     onOfferedCheckBoxClick={toggleOffered}/>
+            <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
+                onItemCheckBoxClick={toggleOffered} />
+
+
             <div className="row justify-content-center">
                 <div className="col-10">
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
@@ -294,6 +300,7 @@ function MyPost() {
                               showEdit={true}
                         />
                     )}
+
                     {items.map(item=>
                         <ItemCard
                             key={item.id}
@@ -311,7 +318,9 @@ function MyPost() {
                             showDelete={true}
                             showEdit={true}
                         />
-                    )}
+                        )
+                    }
+
                 </div>
             </div>
             {editModelServices}
