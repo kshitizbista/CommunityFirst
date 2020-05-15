@@ -3,7 +3,9 @@ package se.sda.communityfirst.location;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class CityService {
@@ -25,13 +27,10 @@ public class CityService {
         return cities;
     }
 
-    public Set<CommunityDTO> findCommunitiesByCityId(Long id) {
-        Set<CommunityDTO> communities = new HashSet<>();
-        communityRepository.findCommunitiesByCityIdOrderByNameAsc(id).forEach(community -> {
-            CommunityDTO communityDTO = new CommunityDTO(community.getId(), community.getName());
-            communities.add(communityDTO);
-        });
-        return communities;
+    public List<CommunityDTO> findCommunitiesByCityId(Long id) {
+        return communityRepository.findCommunitiesByCityIdOrderByNameAsc(id).stream().map(community ->
+                new CommunityDTO(community.getId(), community.getName())
+        ).collect(Collectors.toList());
     }
 
 

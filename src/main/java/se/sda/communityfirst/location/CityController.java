@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -24,7 +25,7 @@ public class CityController {
     }
 
     @GetMapping("/communities")
-    public Set<CommunityDTO> findCommunitiesByCityId(@RequestParam Long id) {
+    public List<CommunityDTO> findCommunitiesByCityId(@RequestParam Long id) {
         return cityService.findCommunitiesByCityId(id);
     }
 

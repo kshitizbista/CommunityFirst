@@ -9,7 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -57,7 +59,7 @@ class CityControllerTest {
 
     @Test
     void findAllCommunitiesByCityId() throws Exception {
-        Set<CommunityDTO> communityDTOS = new HashSet<>();
+        List<CommunityDTO> communityDTOS = new ArrayList<>();
 
         CommunityDTO vallingby = new CommunityDTO();
         vallingby.setName("Vallingby");

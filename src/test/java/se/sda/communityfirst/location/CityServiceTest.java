@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,8 +60,8 @@ public class CityServiceTest {
 
     @Test
     public void findCommunitiesByCityIdTest() {
-        Set<Community> communities = new HashSet<>();
-        Set<CommunityDTO> communityDTOS = new HashSet<>();
+        List<Community> communities = new ArrayList<>();
+        List<CommunityDTO> communityDTOS = new ArrayList<>();
 
         Community vallingby = new Community();
         vallingby.setId(1L);
@@ -73,7 +75,7 @@ public class CityServiceTest {
         communityDTOS.add(vallingbyDTO);
 
         when(communityRepository.findCommunitiesByCityIdOrderByNameAsc(anyLong())).thenReturn(communities);
-        Set<CommunityDTO> returnedCommunities = cityService.findCommunitiesByCityId(1L);
+        List<CommunityDTO> returnedCommunities = cityService.findCommunitiesByCityId(1L);
         verify(communityRepository, times(1)).findCommunitiesByCityIdOrderByNameAsc(anyLong());
         assertEquals(1, returnedCommunities.size());
     }
