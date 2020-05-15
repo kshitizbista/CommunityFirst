@@ -17,7 +17,7 @@ function ItemCard(props) {
     if (props.showEdit) {
         editBtn = (<Button type="button" className="close" variant="primary"
                            onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
-            <span aria-hidden="true">Edit</span>
+            <span style={{"fontSize": "20px"}} aria-hidden="true">Edit</span>
         </Button>)
     }
 

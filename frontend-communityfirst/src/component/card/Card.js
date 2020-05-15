@@ -7,16 +7,16 @@ function Card(props) {
 
     let deleteBtn = null;
     if (props.showDelete) {
-        deleteBtn = (<Button type="button " variant="primary" onClick={() => props.onDelete(props.id)} aria-label="Close">
+        deleteBtn = (<Button type="button" className="close" variant="primary" onClick={() => props.onDelete(props.id)} aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </Button>)
     }
 
     let editBtn = null;
     if (props.showEdit) {
-        editBtn = (<Button
-                           onClick={() => props.onEdit(props.id, props.title, props.description)}>
-            <span>Edit</span>
+        editBtn = (<Button type="button" className="close" variant="primary"
+                           onClick={() => props.onEdit(props.id, props.title, props.description)} aria-label="Close">
+            <span style={{"fontSize": "20px"}} aria-hidden="true">Edit</span>
         </Button>)
     }
 
