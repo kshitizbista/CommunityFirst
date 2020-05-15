@@ -1,6 +1,6 @@
 import React from "react";
 
-function ItemsSubMenu({onRequestedCheckBoxClick, onOfferedCheckBoxClick}) {
+function ItemSubMenu({onRequestedCheckBoxClick, onOfferedCheckBoxClick}) {
     return (
         <div className="bg-white mb-3 p-2">
             <div className="row no-gutters justify-content-center">
@@ -26,4 +26,4 @@ function ItemsSubMenu({onRequestedCheckBoxClick, onOfferedCheckBoxClick}) {
     );
 }
 
-export default ItemsSubMenu;
+export default ItemSubMenu;

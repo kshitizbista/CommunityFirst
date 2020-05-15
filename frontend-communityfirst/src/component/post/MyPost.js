@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import MyPostSubMenu from "./MyPostSubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import { assistanceType } from "./PostCreation";
 import { itemType } from "./ItemPostCreation";
 import PostApi from "../../api/PostApi";
 import ItemPostApi from "../../api/ItemPostApi";
 import Auth from "../../services/Auth";
 import Card from "../card/Card";
+
 import {Button, Form, Modal, Spinner} from "react-bootstrap";
 import {useForm} from "react-hook-form";
-import {AxiosInstance as axios} from "axios";
 import ItemCard from "../card/ItemCard";
+
 
 function MyPost() {
 
@@ -32,6 +34,7 @@ function MyPost() {
     useEffect(() => {
         getMyPost(getFilter())
     }, [requestedChecked, offeredChecked])
+
 
     const getFilter = () => {
         if (requestedChecked && offeredChecked) {
@@ -151,6 +154,8 @@ function MyPost() {
         <>
             <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
                 onItemCheckBoxClick={toggleOffered} />
+
+
             <div className="row justify-content-center">
                 <div className="col-10">
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}

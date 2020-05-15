@@ -4,4 +4,3 @@ public enum CategoryType {
     CATEGORY_ITEM,
     CATEGORY_SERVICE
 }
-

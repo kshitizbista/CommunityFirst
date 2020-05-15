@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ItemsSubMenu from "./ItemsSubMenu";
+import ItemSubMenu from "./ItemSubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
@@ -52,7 +52,7 @@ function ItemPost() {
         data.postedDate = format(new Date(), "yyyy-MM-dd");
         try {
             await ItemPostApi.saveItemPost(data);
-            setItemPostResponseAction({ success: true, msg: "post created successfully." });
+            setItemPostResponseAction({ success: true, msg: "Post created successfully." });
             setShow(true);
             getPost(getFilter());
         } catch (e) {
@@ -74,7 +74,7 @@ function ItemPost() {
 
     return (
         <>
-            <ItemsSubMenu onRequestedCheckBoxClick={toggleRequested}
+            <ItemSubMenu onRequestedCheckBoxClick={toggleRequested}
                 onOfferedCheckBoxClick={toggleOffered} />
             <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">
