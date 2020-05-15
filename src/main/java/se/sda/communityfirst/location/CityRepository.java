@@ -6,5 +6,5 @@ import java.util.List;
 
 
 public interface CityRepository extends CrudRepository<City, Long> {
-    List<City> findAllOrderByNameAsc();
+    List<City> findAllByOrderByName();
 }

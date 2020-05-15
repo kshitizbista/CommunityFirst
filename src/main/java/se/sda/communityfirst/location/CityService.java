@@ -2,9 +2,7 @@ package se.sda.communityfirst.location;
 
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +17,7 @@ public class CityService {
     }
 
     public List<CityDTO> findAllCities() {
-        return cityRepository.findAllOrderByNameAsc().stream().map(city -> new CityDTO(city.getId(), city.getName()))
+        return cityRepository.findAllByOrderByName().stream().map(city -> new CityDTO(city.getId(), city.getName()))
                 .collect(Collectors.toList());
     }
 
