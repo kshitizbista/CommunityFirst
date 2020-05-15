@@ -24,8 +24,15 @@ function MyPost() {
     const toggleOffered = (checked) => setOfferedChecked(checked);
 
     //EditModel state
-    const {register: registerEditForm, handleSubmit: handleEditFormSubmit, errors: errorsEditFrom} = useForm();
-    const [showEditModel, setShowEditModel] = useState(false);
+    const {register: registerEditFormServices, handleSubmit: handleEditFormSubmitServices, errors: errorsEditFromServices} = useForm();
+    const [showEditModelServices, setShowEditModelServices] = useState(false);
+
+    const {register: registerEditFormItems, handleSubmit: handleEditFormSubmitItems, errors: errorsEditFromItems} = useForm();
+    const [showEditModelItems, setShowEditModelItems] = useState(false);
+
+    //DeleteModel sate
+    const [showDeleteModelServices, setShowDeleteModelServices] = useState(false);
+    const [showDeleteModelItems, setShowDeleteModelItems] = useState(false);
 
     const [postId, setPostId] = useState(-1);
     const [title, setTitle] = useState("");
@@ -76,7 +83,7 @@ function MyPost() {
         }
     }
 
-    const deletePostHandler = async (postId) => {
+    const deletePostHandlerServices = async (postId) => {
         try {
             await PostApi.deletePost(postId);
             getMyPost(getFilter());
@@ -85,7 +92,16 @@ function MyPost() {
         }
     }
 
-    const updatePostHandler = async (requestBody) => {
+    const deletePostHandlerItems = async (postId) => {
+        try {
+            await ItemPostApi.deletePost(postId);
+            getMyPost(getFilter());
+        } catch (e) {
+
+        }
+    }
+
+    const updatePostHandlerServices = async (requestBody) => {
         try {
             await PostApi.updatePost(requestBody);
             getMyPost(getFilter());
@@ -93,12 +109,38 @@ function MyPost() {
         }
     }
 
-    const openEditModel =  (postId, title, description) => {
+    const updatePostHandlerItems= async (requestBody) => {
+        try {
+            await ItemPostApi.updatePost(requestBody);
+            getMyPost(getFilter());
+        } catch (e) {
+        }
+    }
+
+    const openEditModelServices =  (postId, title, description) => {
         //open model and set data to form
-        setShowEditModel(true);
+        setShowEditModelServices(true);
         setPostId(postId);
         setTitle(title);
         setDescription(description);
+    }
+
+    const openEditModelItems =  (postId, title, description) => {
+        //open model and set data to form
+        setShowEditModelItems(true);
+        setPostId(postId);
+        setTitle(title);
+        setDescription(description);
+    }
+
+    const openDeleteModelServices = (postId) => {
+        setShowDeleteModelServices(true);
+        setPostId(postId)
+    }
+
+    const openDeleteModelItems = (postId) => {
+        setShowDeleteModelItems(true);
+        setPostId(postId)
     }
 
     const resetEditForm = () => {
@@ -107,47 +149,124 @@ function MyPost() {
         setDescription("");
     }
 
-    const editModel = (
-        <Modal show={showEditModel} onHide={() => setShowEditModel(false)}>
+
+    const editModelServices = (
+        <Modal show={showEditModelServices} onHide={() => setShowEditModelServices(false)}>
             <Modal.Header closeButton>
                 <Modal.Title className="w-100">
                     <h5 className="text-center">Edit Post</h5>
                 </Modal.Title>
             </Modal.Header>
-            <Form onSubmit={handleEditFormSubmit((data) => {
-                updatePostHandler(data);
+            <Form onSubmit={handleEditFormSubmitServices((data) => {
+                updatePostHandlerServices(data);
                 resetEditForm();
-                setShowEditModel(false);
+                setShowEditModelServices(false);
             })}>
                 <Modal.Body>
-                    <Form.Control type="hidden" name="id" value={postId} ref={registerEditForm}></Form.Control>
+                    <Form.Control type="hidden" name="id" value={postId} ref={registerEditFormServices}></Form.Control>
                     <Form.Group>
                         <Form.Control type="text" name="title" placeholder="Title"
-                                      ref={registerEditForm({required: true, minLength: 5, maxLength: 70})}
+                                      ref={registerEditFormServices({required: true, minLength: 5, maxLength: 70})}
                                       defaultValue={title}/>
-                        {errorsEditFrom.title && errorsEditFrom.title.type === "required" &&
+                        {errorsEditFromServices.title && errorsEditFromServices.title.type === "required" &&
                         <span className="form-error">Title is required</span>}
-                        {errorsEditFrom.title && (errorsEditFrom.title.type === "minLength" || errorsEditFrom.title.type === "maxLength") &&
+                        {errorsEditFromServices.title && (errorsEditFromServices.title.type === "minLength" || errorsEditFromServices.title.type === "maxLength") &&
                         <span className="form-error">Character must be between 5 and 50 </span>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Control as="textarea" name="description" placeholder="Write something..."
                                       style={{resize: "none"}} rows="6"
-                                      ref={registerEditForm({required: true})} defaultValue={description}/>
-                        {errorsEditFrom.description && errorsEditFrom.description.type === "required" &&
+                                      ref={registerEditFormServices({required: true})} defaultValue={description}/>
+                        {errorsEditFromServices.description && errorsEditFromServices.description.type === "required" &&
                         <span className="form-error">Description is required</span>}
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button type="reset" variant="secondary" onClick={() => {
                         resetEditForm();
-                        setShowEditModel(false);
+                        setShowEditModelServices(false);
                     }}>Cancel</Button>
                     <Button type="submit" variant="primary">Update</Button>
                 </Modal.Footer>
             </Form>
         </Modal>
     );
+
+    const editModelItems = (
+        <Modal show={showEditModelItems} onHide={() => setShowEditModelItems(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title className="w-100">
+                    <h5 className="text-center">Edit Post</h5>
+                </Modal.Title>
+            </Modal.Header>
+            <Form onSubmit={handleEditFormSubmitItems((data) => {
+                updatePostHandlerItems(data);
+                resetEditForm();
+                setShowEditModelItems(false);
+            })}>
+                <Modal.Body>
+                    <Form.Control type="hidden" name="id" value={postId} ref={registerEditFormItems}></Form.Control>
+                    <Form.Group>
+                        <Form.Control type="text" name="title" placeholder="Title"
+                                      ref={registerEditFormItems({required: true, minLength: 5, maxLength: 70})}
+                                      defaultValue={title}/>
+                        {errorsEditFromItems.title && errorsEditFromItems.title.type === "required" &&
+                        <span className="form-error">Title is required</span>}
+                        {errorsEditFromItems.title && (errorsEditFromItems.title.type === "minLength" || errorsEditFromItems.title.type === "maxLength") &&
+                        <span className="form-error">Character must be between 5 and 50 </span>}
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control as="textarea" name="description" placeholder="Write something..."
+                                      style={{resize: "none"}} rows="6"
+                                      ref={registerEditFormItems({required: true})} defaultValue={description}/>
+                        {errorsEditFromItems.description && errorsEditFromItems.description.type === "required" &&
+                        <span className="form-error">Description is required</span>}
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button type="reset" variant="secondary" onClick={() => {
+                        resetEditForm();
+                        setShowEditModelItems(false);
+                    }}>Cancel</Button>
+                    <Button type="submit" variant="primary">Update</Button>
+                </Modal.Footer>
+            </Form>
+        </Modal>
+    );
+
+
+    const deleteModalServices = (
+        <Modal show={showDeleteModelServices} onHide={() => setShowDeleteModelServices(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
+            <Modal.Footer>
+                <Button className="btn btn-danger" variant="primary" onClick={() => {
+                    deletePostHandlerServices(postId);
+                    setShowDeleteModelServices(false);
+                    resetEditForm();
+                }}>Delete</Button>
+                <Button variant="secondary" onClick={() => setShowDeleteModelServices(false)}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    )
+    const deleteModalItems = (
+        <Modal show={showDeleteModelItems} onHide={() => setShowDeleteModelItems(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
+            <Modal.Footer>
+                <Button className="btn btn-danger" variant="primary" onClick={() => {
+                    deletePostHandlerItems(postId);
+                    setShowDeleteModelItems(false);
+                    resetEditForm();
+                }}>Delete</Button>
+                <Button variant="secondary" onClick={() => setShowDeleteModelItems(false)}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    )
 
 
     return (
@@ -175,30 +294,39 @@ function MyPost() {
                               firstname={service.firstname}
                               lastname={service.lastname}
                               index={service.index}
-                              onDelete={deletePostHandler}
-                              onEdit={openEditModel}
+                              onDelete={openDeleteModelServices}
+                              onEdit={openEditModelServices}
                               showDelete={true}
                               showEdit={true}
                         />
                     )}
 
-                    {items.map(item =>
-                            <ItemCard key={item.id}
-                                title={item.title}
-                                description={item.description}
-                                itemType={item.itemType}
-                                postedDate={item.postedDate}
-                                userId={item.userId}
-                                email={item.email}
-                                firstname={item.firstname}
-                                lastname={item.lastname}
-                            // delete = {() => this.deletePost(service.id)}
-                            />
+                    {items.map(item=>
+                        <ItemCard
+                            key={item.id}
+                            id ={item.id}
+                            title={item.title}
+                            description={item.description}
+                            serviceType={item.assistanceType}
+                            postedDate={item.postedDate}
+                            userId={item.userId}
+                            email={item.email}
+                            firstname={item.firstname}
+                            lastname={item.lastname}
+                            onDelete={openDeleteModelItems}
+                            onEdit={openEditModelItems}
+                            showDelete={true}
+                            showEdit={true}
+                        />
                         )
                     }
+
                 </div>
             </div>
-            {editModel}
+            {editModelServices}
+            {editModelItems}
+            {deleteModalServices}
+            {deleteModalItems}
         </>
     );
 }

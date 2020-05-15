@@ -17,6 +17,9 @@ class ItemPostApi {
     deletePost(postId) {
         return Api.delete('/items/' + postId);
     }
+    updatePost(post) {
+        return Api.put('/items', post);
+    }
 
 }
 
