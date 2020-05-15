@@ -154,8 +154,8 @@ function MyPost() {
         <>
             <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}
                 onItemCheckBoxClick={toggleOffered} />
-          
-            
+
+
             <div className="row justify-content-center">
                 <div className="col-10">
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
