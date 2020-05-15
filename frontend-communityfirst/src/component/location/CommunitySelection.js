@@ -9,7 +9,7 @@ function CommunitySelection({cities, communities, onCityClick, onCommunityClick}
         <div className="row justify-content-center">
             <div className="col-auto">
                 <div className="dropdown">
-                    <span className="btn btn-info dropdown-toggle btn-lg" role="button" id="cityDropdownMenuLink"
+                    <span className="btn btn-warning dropdown-toggle btn-lg" role="button" id="cityDropdownMenuLink"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {selectedCity}
                     </span>
@@ -25,7 +25,7 @@ function CommunitySelection({cities, communities, onCityClick, onCommunityClick}
             </div>
             {communities.length > 0 && <div className="col-auto">
                 <div className="dropdown">
-                    <span className="btn btn-info dropdown-toggle btn-lg" role="button" id="communityDropdownMenuLink"
+                    <span className="btn btn-warning dropdown-toggle btn-lg" role="button" id="communityDropdownMenuLink"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {selectedCommunity}
                     </span>

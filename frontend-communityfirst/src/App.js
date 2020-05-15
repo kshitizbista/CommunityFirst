@@ -8,6 +8,7 @@ import Auth from "./services/Auth";
 import Main from "./component/layout/Main";
 import Location from "./component/location/Location";
 import AboutPage from "./component/about/AboutPage";
+import Footer from "./component/layout/Footer";
 
 function App() {
 

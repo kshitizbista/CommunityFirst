@@ -5,6 +5,7 @@ import Auth from "../../services/Auth";
 import Post from "../post/Post";
 import ItemPost from "../post/ItemPost";
 import MyPost from "../post/MyPost";
+import Footer from "./Footer";
 
 function Main() {
     // The `path` lets us build <Route> paths that are
@@ -21,22 +22,23 @@ function Main() {
     return (
         <>
             <Navbar onLogout={() => Auth.logout()}/>
-            <div className="container-fluid p-0" style={{background: "whitesmoke", minHeight: 'calc(100vh - 56px)'}}>
+            <div  style={{background: "#F8F0E5", minHeight: 'calc(88vh - 56px)'}}>
                 <Switch>
                     <Redirect exact from={path} to={`${url}/services`}/>
                     <Route exact path={`${path}/services`}>
                         <Post/>
                         </Route>
-                   
+
                     <Route exact path={`${path}/items`}>
                         <ItemPost />
                         </Route>
-                        
+
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>
                     </Route>
                 </Switch>
             </div>
+            <Footer/>
         </>
     );
 }

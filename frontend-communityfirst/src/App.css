@@ -6,10 +6,7 @@
     content: "⚠ ";
 }
 
-#root{
-    height:100%;
-    width: 100%;
-}
+
 
 .community-selection {
     cursor: pointer;
