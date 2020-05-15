@@ -31,8 +31,8 @@ public class CityServiceTest {
 
     @Test
     public void findAllCitiesTest() {
-        Set<City> cities = new HashSet<>();
-        Set<CityDTO> citiesDTO = new HashSet<>();
+        List<City> cities = new ArrayList<>();
+        List<CityDTO> citiesDTO = new ArrayList<>();
 
         City stockholm = new City();
         stockholm.setName("Stockholm");
@@ -53,7 +53,7 @@ public class CityServiceTest {
         citiesDTO.add(gothenbergDTO);
 
         when(cityRepository.findAll()).thenReturn(cities);
-        Set<CityDTO> returnedCity = cityService.findAllCities();
+        List<CityDTO> returnedCity = cityService.findAllCities();
         verify(cityRepository, times(1)).findAll();
         assertEquals(2, returnedCity.size());
     }

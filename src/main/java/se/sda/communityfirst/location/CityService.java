@@ -18,13 +18,9 @@ public class CityService {
         this.communityRepository = communityRepository;
     }
 
-    public Set<CityDTO> findAllCities() {
-        Set<CityDTO> cities = new HashSet<>();
-        cityRepository.findAll().forEach(city -> {
-            CityDTO cityDTO = new CityDTO(city.getId(), city.getName());
-            cities.add(cityDTO);
-        });
-        return cities;
+    public List<CityDTO> findAllCities() {
+        return cityRepository.findAllOrderByNameAsc().stream().map(city -> new CityDTO(city.getId(), city.getName()))
+                .collect(Collectors.toList());
     }
 
     public List<CommunityDTO> findCommunitiesByCityId(Long id) {

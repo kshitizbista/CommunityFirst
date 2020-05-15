@@ -10,9 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -39,7 +37,7 @@ class CityControllerTest {
 
     @Test
     void findAllCities() throws Exception {
-        Set<CityDTO> cities = new HashSet<>();
+        List<CityDTO> cities = new ArrayList<>();
         CityDTO stockholm = new CityDTO();
         stockholm.setName("Stockholm");
 
