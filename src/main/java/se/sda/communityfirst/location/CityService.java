@@ -27,7 +27,7 @@ public class CityService {
 
     public Set<CommunityDTO> findCommunitiesByCityId(Long id) {
         Set<CommunityDTO> communities = new HashSet<>();
-        communityRepository.findCommunitiesByCityId(id).forEach(community -> {
+        communityRepository.findCommunitiesByCityIdOrderByNameAsc(id).forEach(community -> {
             CommunityDTO communityDTO = new CommunityDTO(community.getId(), community.getName());
             communities.add(communityDTO);
         });

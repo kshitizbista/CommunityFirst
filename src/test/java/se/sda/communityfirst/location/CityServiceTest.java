@@ -72,9 +72,9 @@ public class CityServiceTest {
         communities.add(vallingby);
         communityDTOS.add(vallingbyDTO);
 
-        when(communityRepository.findCommunitiesByCityId(anyLong())).thenReturn(communities);
+        when(communityRepository.findCommunitiesByCityIdOrderByNameAsc(anyLong())).thenReturn(communities);
         Set<CommunityDTO> returnedCommunities = cityService.findCommunitiesByCityId(1L);
-        verify(communityRepository, times(1)).findCommunitiesByCityId(anyLong());
+        verify(communityRepository, times(1)).findCommunitiesByCityIdOrderByNameAsc(anyLong());
         assertEquals(1, returnedCommunities.size());
     }
 
