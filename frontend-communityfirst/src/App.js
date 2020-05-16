@@ -7,6 +7,7 @@ import RegisterPage from "./component/auth/RegisterPage";
 import Auth from "./services/Auth";
 import Main from "./component/layout/Main";
 import Location from "./component/location/Location";
+import CoronaPage from "./component/coronaTracker/CoronaPage";
 
 function App() {
 
@@ -16,6 +17,9 @@ function App() {
                 <Redirect exact from="/" to="/communityfirst"/>
                 <Route exact path="/communityfirst">
                     <Home/>
+                </Route>
+                <Route exact path="/covid">
+                    <CoronaPage/>
                 </Route>
                 <Route path="/login" render={() =>
                     !Auth.isLoggedIn() ? (<LoginPage/>) : (<Redirect to="/communityfirst/selection"/>)

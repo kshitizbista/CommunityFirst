@@ -27,14 +27,15 @@ function Main() {
                     <Route exact path={`${path}/services`}>
                         <Post/>
                         </Route>
-                   
+
                     <Route exact path={`${path}/items`}>
                         <ItemPost />
                         </Route>
-                        
+
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>
                     </Route>
+
                 </Switch>
             </div>
         </>
