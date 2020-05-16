@@ -7,10 +7,10 @@ import PostApi from "../../api/PostApi";
 import ItemPostApi from "../../api/ItemPostApi";
 import Auth from "../../services/Auth";
 import Card from "../card/Card";
-
 import {Button, Form, Modal, Spinner} from "react-bootstrap";
 import {useForm} from "react-hook-form";
 import ItemCard from "../card/ItemCard";
+import Search from "../../services/Search";
 
 
 function MyPost() {
@@ -69,16 +69,18 @@ function MyPost() {
 
     const getMyPost = async (data) => {
         try {
+            let searchText = Search.getSearchText();
             setLoading(true);
             const itemFilters = data.filter(x => x.indexOf("ITEM") >= 0)
             const helpFilters = data.filter(x => x.indexOf("HELP") >= 0)
             const requestBody = { assistanceTypes: helpFilters }
             const requestBodyItem = { itemTypes: itemFilters }
-            const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody);
-            const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem);
+            const response = await PostApi.getPostByUserIdAndServiceType(parseInt(Auth.getUserId()), requestBody, searchText);
+            const responseItem = await ItemPostApi.getPostByUserIdAndItemType(parseInt(Auth.getUserId()), requestBodyItem, searchText);
             setServices(response.data);
             setItems(responseItem.data);
             setLoading(false);
+            Search.setSearchText('');
         } catch (e) {
         }
     }
@@ -268,7 +270,10 @@ function MyPost() {
         </Modal>
     )
 
-
+    if(Search.getSearchText()) {
+            getMyPost(getFilter());
+            Search.setSearchText('');
+    }
     return (
         <>
             <MyPostSubMenu onServiceCheckBoxClick={toggleRequested}

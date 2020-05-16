@@ -10,8 +10,8 @@ class PostApi {
         return Api.post("/services/create", serviceData)
     }
 
-    getPostByUserIdAndServiceType(userId, serviceType) {
-        return Api.post('/services?userId=' + userId, serviceType);
+    getPostByUserIdAndServiceType(userId, serviceType, searchText) {
+        return Api.post('/services?userId=' + userId + '&searchText=' + searchText, serviceType);
     }
 
     deletePost(postId) {
