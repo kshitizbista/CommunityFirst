@@ -2,8 +2,8 @@ import Api from "./Api";
 
 class PostApi {
 
-    getPostByCommunityIdAndServiceType(communityId, serviceType) {
-        return Api.post('/services?communityId=' + communityId, serviceType);
+    getPostByCommunityIdAndServiceType(communityId, serviceType, searchText) {
+        return Api.post('/services?communityId=' + communityId + '&searchText=' + searchText, serviceType);
     }
 
     saveServicePost(serviceData) {

@@ -38,8 +38,8 @@ public class AssistanceController {
     }
 
     @PostMapping(params = "communityId")
-    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<AssistanceType>> map) {
-        return assistanceService.findAllByCommunityIdAndAssistanceTypeIn(communityId, map.get("assistanceTypes"));
+    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<AssistanceType>> map, @RequestParam String searchText) {
+        return assistanceService.performFilter(assistanceService.findAllByCommunityIdAndAssistanceTypeIn(communityId, map.get("assistanceTypes")),searchText);
     }
 
     @PostMapping(params = "userId")

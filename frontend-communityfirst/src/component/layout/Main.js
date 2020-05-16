@@ -35,10 +35,6 @@ function Main() {
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>
                     </Route>
-                    <Redirect exact from={path} to={`${url}/search`}/>
-                    <Route exact path={`${path}/my-posts`}>
-                                            <ItemPost />
-                                            </Route>
                 </Switch>
             </div>
         </>

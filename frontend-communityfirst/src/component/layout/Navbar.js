@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link, NavLink, useRouteMatch, useHistory} from "react-router-dom";
 import { Form, FormControl, Button } from "react-bootstrap";
+import Search from "../../services/Search";
 function Navbar({onLogout}) {
 
     const {url} = useRouteMatch();
@@ -11,12 +12,12 @@ function Navbar({onLogout}) {
     const handleSearchSubmit = () => {
             if (state.searchText) {
                 let text = state.searchText;
-                 let url1=window.location.pathname+"?searchText="+text;
-                 //alert(url1)
-                    setState({ searchText: "" })
-                    history.push({
-                    pathname:history.push(`${url1}`),
-                    state: { searchText: text }
+                 let url1=window.location.pathname;
+                 Search.setSearchText(text);
+                 setState({ searchText: "" })
+                 history.push({
+                 pathname:history.push(`${url}/services`),
+                 state: { searchText: text }
                 });
             } else {
                 alert("Please enter some search text!");
@@ -62,7 +63,7 @@ function Navbar({onLogout}) {
                                                                             value={state.searchText}
                                                                             onKeyUp={handleSearchKeyUp}
                                                                             type="text"
-                                                                            placeholder="Search"
+                                                                            placeholder="Enter text to Search"
                                                                             className="mr-sm-2" />
                         <Button onClick={handleSearchSubmit} variant="outline-info">
                                                                             Search
