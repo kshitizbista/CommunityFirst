@@ -23,12 +23,6 @@ function Navbar({onLogout}) {
                 alert("Please enter some search text!");
             }
         };
-        const handleSearchKeyUp = event => {
-                    event.preventDefault();
-                    if (event.key === 'Enter' && event.keyCode === 13) {
-                        this.handleSearchSubmit();
-                    }
-        }
         const handleSearchInput = event => {
             setState({
                 searchText: event.target.value
@@ -60,14 +54,13 @@ function Navbar({onLogout}) {
                 <Form inline onSubmit={handleFormSubmit}>
                     <FormControl
                         onChange={handleSearchInput}
-                                                                            value={state.searchText}
-                                                                            onKeyUp={handleSearchKeyUp}
-                                                                            type="text"
-                                                                            placeholder="Enter text to Search"
-                                                                            className="mr-sm-2" />
+                        value={state.searchText}
+                        type="text"
+                        placeholder="Enter text to Search"
+                        className="mr-sm-2" />
                         <Button onClick={handleSearchSubmit} variant="outline-info">
-                                                                            Search
-                                                                        </Button>
+                            Search
+                        </Button>
                     </Form>
                 <button className="btn btn-outline-secondary ml-lg-4" onClick={() => {
                     onLogout();
