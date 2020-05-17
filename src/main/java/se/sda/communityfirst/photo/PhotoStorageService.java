@@ -6,16 +6,24 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import se.sda.communityfirst.exception.PhotoStorageException;
 import se.sda.communityfirst.exception.PhotoNotFoundException;
+import se.sda.communityfirst.items.Item;
+import se.sda.communityfirst.items.ItemRepository;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class PhotoStorageService {
 
-    @Autowired
     private PhotoRepository photoRepository;
+    private ItemRepository itemRepository;
 
-    public Photo storeFile(MultipartFile file) {
+    public PhotoStorageService(PhotoRepository photoRepository, ItemRepository itemRepository) {
+        this.photoRepository = photoRepository;
+        this.itemRepository = itemRepository;
+    }
+
+    public Photo storeFile(Long itemId, MultipartFile file) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -25,7 +33,8 @@ public class PhotoStorageService {
                 throw new PhotoStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            Photo photo = new Photo(fileName, file.getContentType(), file.getBytes());
+            Item item = itemRepository.getOne(itemId);
+            Photo photo = new Photo(fileName, file.getContentType(), file.getBytes(), item);
 
             return photoRepository.save(photo);
         } catch (IOException ex) {
@@ -36,5 +45,9 @@ public class PhotoStorageService {
     public Photo getFile(String fileId) {
         return photoRepository.findById(fileId)
                 .orElseThrow(() -> new PhotoNotFoundException("Photo not found with id " + fileId));
+    }
+
+    public List<Photo> getPhotoByItem(Long itemId){
+        return photoRepository.findByItemId(itemId);
     }
 }

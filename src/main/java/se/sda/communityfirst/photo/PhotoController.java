@@ -1,6 +1,5 @@
 package se.sda.communityfirst.photo;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,43 +12,44 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(PhotoController.BASE_URL)
 public class PhotoController {
 
+    public static final String BASE_URL = "/photos";
     private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
 
     @Autowired
     private PhotoStorageService photoStorageService;
 
-    @PostMapping("/uploadPhoto")
-    public PhotoDTO uploadFile(@RequestParam("file") MultipartFile file) {
-        Photo photo = photoStorageService.storeFile(file);
+    @PostMapping()
+    public PhotoDTO uploadFile(@RequestParam Long itemId, @RequestParam("file") MultipartFile file) {
+        Photo photo = photoStorageService.storeFile(itemId, file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadPhoto/")
                 .path(photo.getId())
                 .toUriString();
 
-        return new PhotoDTO(photo.getFileName(), fileDownloadUri,
-                file.getContentType(), file.getSize());
+        return new PhotoDTO(photo.getFileName(), fileDownloadUri, photo.getFileType());
     }
 
-    @PostMapping("/uploadMultiplePhotos")
-    public List<PhotoDTO> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    @PostMapping("/multiple")
+    public List<PhotoDTO> uploadMultipleFiles(@RequestParam Long itemId, @RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file))
+                .map(file -> uploadFile(itemId, file))
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/downloadPhoto/{fileId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) {
+    @GetMapping("/{photoId}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String photoId) {
         // Load file from database
-        Photo photo = photoStorageService.getFile(fileId);
+        Photo photo = photoStorageService.getFile(photoId);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(photo.getFileType()))
@@ -57,4 +57,19 @@ public class PhotoController {
                 .body(new ByteArrayResource(photo.getData()));
     }
 
+    @GetMapping
+    public List<PhotoDTO> downloadPhoto(@RequestParam Long itemId){
+        List<Photo> photoList = photoStorageService.getPhotoByItem(itemId);
+
+        List<PhotoDTO> photoDTOList = new ArrayList<>();
+        for(Photo photo : photoList){
+            String photoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path(photo.getId())
+                    .toUriString();
+
+            photoDTOList.add(new PhotoDTO(photo.getFileName(), photoDownloadUri, photo.getFileType()));
+        }
+
+        return photoDTOList;
+    }
 }

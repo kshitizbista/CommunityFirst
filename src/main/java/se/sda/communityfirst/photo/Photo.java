@@ -1,11 +1,17 @@
 package se.sda.communityfirst.photo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import se.sda.communityfirst.items.Item;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "files")
+@Data
+@NoArgsConstructor
+@Table(name = "photos")
 public class Photo {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -17,47 +23,17 @@ public class Photo {
     private String fileType;
 
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     private byte[] data;
 
-    public Photo() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
 
-    }
-
-    public Photo(String fileName, String fileType, byte[] data) {
+    public Photo(String fileName, String fileType, byte[] data, Item item) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
+        this.item = item;
     }
 }
