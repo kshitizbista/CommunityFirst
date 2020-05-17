@@ -36,7 +36,7 @@ function ItemCard(props) {
 
     return (
         <>
-            <div className="card mb-2">
+            <div className="card mb-2 card-cursor">
                 <div className="card-body p-2" onClick={props.onCardClick}>
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
