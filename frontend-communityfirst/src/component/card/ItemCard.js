@@ -20,11 +20,24 @@ function ItemCard(props) {
         </Button>)
     }
 
+    const seeMore = (<span>See More</span>)
+
+    const checkDesc = () => {
+        return props.maxDesc != null && props.description.length >= props.maxDesc
+    }
+
+    const getDesc = () => {
+        if (checkDesc()) {
+            return (props.description).substring(0, props.maxDesc );
+        } else {
+            return props.description;
+        }
+    }
 
     return (
         <>
             <div className="card mb-2">
-                <div className="card-body p-2">
+                <div className="card-body p-2" onClick={props.onCardClick}>
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
                             <div className="row flex-nowrap no-gutters">
@@ -54,10 +67,10 @@ function ItemCard(props) {
                             </div>
                         </div>
 
-                        <div className="col-lg">
+                        <div className="col">
                             <h5 className="text-secondary font-weight-bold mb-1"
                                 style={{"fontSize": "14px"}}>{props.title}</h5>
-                            <p className="m-0" style={{"fontSize": "14px"}}>{props.description}</p>
+                            <p className="m-0" style={{"fontSize": "14px"}}>{getDesc()} {checkDesc() && <span className="text-info see-more"> ...See More</span>}</p>
                         </div>
                         <div className="col-sm">
                             {deleteBtn}

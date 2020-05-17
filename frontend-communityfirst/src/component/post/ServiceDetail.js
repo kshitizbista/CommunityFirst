@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import PostApi from "../../api/PostApi";
 import format from "date-fns/format";
-import { Link,useParams, useHistory} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 
 function ServiceDetail() {
 

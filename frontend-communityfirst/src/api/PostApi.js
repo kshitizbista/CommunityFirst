@@ -25,6 +25,10 @@ class PostApi {
     getPostById(postId) {
         return Api.get('/services/' + postId);
     }
+
+    getItemPostById(itemPostId) {
+        return Api.get('/items/' + itemPostId);
+    }
 }
 
 export default new PostApi();
