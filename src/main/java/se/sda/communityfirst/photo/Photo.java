@@ -1,42 +1,63 @@
 package se.sda.communityfirst.photo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import se.sda.communityfirst.items.Item;
-import se.sda.communityfirst.user.User;
 
 import javax.persistence.*;
 
-    @Entity
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Table(name = "photos")
-    public class Photo {
-        @Id
-        @GeneratedValue(generator = "uuid")
-        @GenericGenerator(name = "uuid", strategy = "uuid2")
-        private String id;
+@Entity
+@Table(name = "files")
+public class Photo {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
-        private String photoName;
+    private String fileName;
 
-        private String photoType;
+    private String fileType;
 
-        @Lob
-        private byte[] data;
+    @Lob
+    private byte[] data;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "item_id")
-        private Item item;
+    public Photo() {
 
-        public Photo(String photoName, String photoType, byte[] data) {
-            this.photoName = photoName;
-            this.photoType = photoType;
-            this.data = data;
-        }
     }
 
+    public Photo(String fileName, String fileType, byte[] data) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+    }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+}

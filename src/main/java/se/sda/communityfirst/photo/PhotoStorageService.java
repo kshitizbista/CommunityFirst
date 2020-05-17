@@ -1,39 +1,40 @@
 package se.sda.communityfirst.photo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import se.sda.communityfirst.exception.FileStorageException;
-import se.sda.communityfirst.exception.MyFileNotFoundException;
+import se.sda.communityfirst.exception.PhotoStorageException;
+import se.sda.communityfirst.exception.PhotoNotFoundException;
 
 import java.io.IOException;
 
+@Service
 public class PhotoStorageService {
 
-
     @Autowired
-    private PhotoRepository dbPhotoRepository;
+    private PhotoRepository photoRepository;
 
-    public Photo storePhoto(MultipartFile file) {
+    public Photo storeFile(MultipartFile file) {
         // Normalize file name
-        String photoName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
             // Check if the file's name contains invalid characters
-            if(photoName.contains("..")) {
-                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + photoName);
+            if(fileName.contains("..")) {
+                throw new PhotoStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            Photo dbPhoto = new Photo(photoName, file.getContentType(), file.getBytes());
+            Photo photo = new Photo(fileName, file.getContentType(), file.getBytes());
 
-            return dbPhotoRepository.save(dbPhoto);
+            return photoRepository.save(photo);
         } catch (IOException ex) {
-            throw new FileStorageException("Could not store file " + photoName + ". Please try again!", ex);
+            throw new PhotoStorageException("Could not store photo " + fileName + ". Please try again!", ex);
         }
     }
 
-    public Photo getPhoto(String photoId) {
-        return dbPhotoRepository.findById(photoId)
-                .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + photoId));
+    public Photo getFile(String fileId) {
+        return photoRepository.findById(fileId)
+                .orElseThrow(() -> new PhotoNotFoundException("Photo not found with id " + fileId));
     }
 }
