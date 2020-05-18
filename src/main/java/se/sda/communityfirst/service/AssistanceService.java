@@ -8,6 +8,7 @@ import se.sda.communityfirst.location.CommunityRepository;
 import se.sda.communityfirst.user.User;
 import se.sda.communityfirst.user.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,6 +82,17 @@ public class AssistanceService {
     public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(Long communityId, List<AssistanceType> assistanceTypes) {
         return assistanceRepository.findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(communityId, assistanceTypes).stream().map(assistance ->
                 assistanceToDTO.convert(assistance)).collect(Collectors.toList());
+    }
+
+    public List<AssistanceDTO> performFilter(List<AssistanceDTO>  assistanceDTO, String searchText){
+        List<AssistanceDTO> newAssistanceDTO = new ArrayList<AssistanceDTO>();
+        if(searchText.isEmpty())
+            return assistanceDTO;
+        for (AssistanceDTO assistance: assistanceDTO){
+            if(assistance.getTitle().toLowerCase().contains(searchText.toLowerCase()) || assistance.getDescription().toLowerCase().contains(searchText.toLowerCase()))
+                newAssistanceDTO.add(assistance);
+        }
+        return newAssistanceDTO;
     }
 
 }
