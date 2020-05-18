@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Card from "../card/Card";
 import SubMenu from "./SubMenu";
-import PostCreation, { assistanceType } from "./PostCreation";
+import PostCreation, {assistanceType} from "./PostCreation";
 import format from "date-fns/format";
 import Auth from "../../services/Auth";
 import PostApi from "../../api/PostApi";
 import {Toast, Spinner} from "react-bootstrap";
 import Community from "../../services/Community";
+import {useHistory} from "react-router-dom";
 
 function Post() {
 
@@ -21,6 +22,7 @@ function Post() {
     const [loading, setLoading] = useState(true);
     const toggleRequested = (checked) => setRequestedChecked(checked);
     const toggleOffered = (checked) => setOfferedChecked(checked);
+    const history = useHistory();
 
     useEffect(() => {
         getPost(getFilter())
@@ -79,7 +81,8 @@ function Post() {
             <div className="row justify-content-center">
                 <div className="col-10" style={{overflow:"scroll", height: "22em"}}>
 
-                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}} className="d-block mx-auto test">
+                    {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
+                                         className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>
                     </Spinner>}
 
@@ -87,6 +90,7 @@ function Post() {
                         <Card key={service.id}
                               title={service.title}
                               description={service.description}
+                              maxDesc={130}
                               serviceType={service.assistanceType}
                               postedDate={service.postedDate}
                               userId={service.userId}
@@ -94,6 +98,7 @@ function Post() {
                               firstname={service.firstname}
                               lastname={service.lastname}
                               showDelete={false}
+                              onCardClick={() => history.push("/communityfirst/se/service-details/" + service.id)}
                         />
                     )}
                 </div>
