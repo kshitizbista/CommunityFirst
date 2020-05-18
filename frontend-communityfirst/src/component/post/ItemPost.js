@@ -8,6 +8,7 @@ import ItemPostApi from "../../api/ItemPostApi";
 import { Toast, Spinner } from "react-bootstrap";
 import Community from "../../services/Community";
 import ItemCard from "../card/ItemCard";
+import Search from "../../services/Search";
 
 function ItemPost() {
 
@@ -64,14 +65,20 @@ function ItemPost() {
 
     const getPost = async (data) => {
         try {
+            let searchText = Search.getSearchText();
             setLoading(true);
             const requestBody = { itemTypes: data }
-            const response = await ItemPostApi.getPostByCommunityIdAndItemType(parseInt(Community.getCommunityId()), requestBody);
+            const response = await ItemPostApi.getPostByCommunityIdAndItemType(parseInt(Community.getCommunityId()), requestBody, searchText);
             setItems(response.data);
             setLoading(false);
+            Search.setSearchText('');
         } catch (e) {
 
         }
+    }
+    if(Search.getSearchText()) {
+        getPost(getFilter());
+        Search.setSearchText('');
     }
 
     return (

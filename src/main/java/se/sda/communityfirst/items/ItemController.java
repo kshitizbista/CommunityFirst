@@ -43,13 +43,13 @@ public class ItemController {
     }
 
     @PostMapping(params = "communityId")
-    public List<ItemDTO> findAllByCommunityIdAndItemTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<ItemType>> map) {
-        return itemService.findAllByCommunityIdAndItemTypeIn(communityId, map.get("itemTypes"));
+    public List<ItemDTO> findAllByCommunityIdAndItemTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<ItemType>> map, @RequestParam String searchText) {
+        return itemService.performFilter(itemService.findAllByCommunityIdAndItemTypeIn(communityId, map.get("itemTypes")), searchText);
     }
 
     @PostMapping(params = "userId")
-    public List<ItemDTO> findAllByUserIdOrderByPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<ItemType>> map) {
-        return itemService.findAllByUserIdOrderByPostedDateDesc(userId, map.get("itemTypes"));
+    public List<ItemDTO> findAllByUserIdOrderByPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<ItemType>> map, @RequestParam String searchText) {
+        return itemService.performFilter(itemService.findAllByUserIdOrderByPostedDateDesc(userId, map.get("itemTypes")),searchText);
     }
 
 }
