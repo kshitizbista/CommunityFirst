@@ -3,6 +3,7 @@ import CommunitySelection from "./CommunitySelection";
 import LocationApi from "../../api/LocationApi";
 import {useHistory} from "react-router-dom"
 import Community from "../../services/Community";
+import Footer from "../layout/Footer";
 
 function Location() {
 
@@ -32,15 +33,15 @@ function Location() {
     }
 
     return (
-        <div className="container" style={{height: "100vh"}}>
-            <div className="row justify-content-center align-items-center" style={{height: "100vh"}}>
+        <div style={{height: "100vh"}}>
+            <div className="row justify-content-center align-items-center" style={{height: "88%","background":"#F8F0E5"}}>
                 <div className="col ">
                     <h2 className="text-center mb-5">Choose your community!</h2>
                     <CommunitySelection {...cities} {...communities} onCityClick={getCommunities}
                                         onCommunityClick={onCommunityClick}/>
                 </div>
             </div>
-
+<Footer/>
         </div>
     );
 
