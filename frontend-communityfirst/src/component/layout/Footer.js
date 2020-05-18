@@ -8,6 +8,7 @@ function Footer() {
                 <ul className="navigation-list-footer">
                     <li className="navigation-item-footer" > <Link className="navigation-item-footer-btn" to="/communityfirst" >Home</Link></li>
                     <li className="navigation-item-footer" ><Link className="navigation-item-footer-btn" to="/communityfirst/about" >About</Link></li>
+                    <li className="navigation-item-footer" ><Link className="navigation-item-footer-btn" to="/communityfirst/covid" >Covid</Link></li>
                 </ul>
             </footer>
     )

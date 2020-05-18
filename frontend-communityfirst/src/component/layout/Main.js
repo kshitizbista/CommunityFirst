@@ -36,6 +36,10 @@ function Main() {
                     </Route>
 
                     <Route exact path={`${path}/items`}>
+                        <ItemPost />
+                    </Route>
+
+                    <Route exact path={`${path}/items`}>
                         <ItemPost/>
                     </Route>
                     <Route exact path={`${path}/service-details/:id`} children={<ServiceDetail/>}/>
@@ -44,6 +48,7 @@ function Main() {
                     <Route exact path={`${path}/my-posts`}>
                         <MyPost/>
                     </Route>
+
                 </Switch>
             </div>
             <Footer/>

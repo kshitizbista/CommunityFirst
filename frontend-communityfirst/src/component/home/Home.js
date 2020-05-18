@@ -2,6 +2,7 @@ import React from "react";
 import './Home.css';
 import Footer from "../layout/Footer";
 import Menu from "../layout/Menu";
+import {Link} from "react-router-dom";
 
 function Home() {
     return (
@@ -19,7 +20,7 @@ function Home() {
                 <ul className="navigation-list-sidebar">
                     <li className="navigation-item-sidebar" ><a href={"https://www.visitstockholm.com/sv/evenemang/"} className="btn btn-danger btn-lg" role="button">Events</a></li>
                     <li className="navigation-item-sidebar" >
-                        <a href={"https://c19.se/"} className="btn btn-dark btn-lg" role="button">Coronavirus</a></li>
+                        <Link to="/communityfirst/covid" className="btn btn-dark btn-lg" role="button">Coronavirus</Link></li>
                 </ul>
             </aside>
             <main>
