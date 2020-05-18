@@ -17,13 +17,9 @@ function LoginPage() {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12">
+             <div>
                     <LoginForm onSubmit={signIn}/>
-                </div>
             </div>
-        </div>
     );
 
 }

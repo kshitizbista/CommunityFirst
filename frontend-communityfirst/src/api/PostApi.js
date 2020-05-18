@@ -21,6 +21,14 @@ class PostApi {
     updatePost(post) {
         return Api.put('/services', post);
     }
+
+    getPostById(postId) {
+        return Api.get('/services/' + postId);
+    }
+
+    getItemPostById(itemPostId) {
+        return Api.get('/items/' + itemPostId);
+    }
 }
 
 export default new PostApi();
