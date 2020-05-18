@@ -18,7 +18,7 @@ function App() {
                 <Route exact path="/communityfirst">
                     <Home/>
                 </Route>
-                <Route exact path="/covid">
+                <Route exact path="/communityfirst/covid">
                     <CoronaPage/>
                 </Route>
                 <Route path="/login" render={() =>
