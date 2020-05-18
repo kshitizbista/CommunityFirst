@@ -2,16 +2,16 @@ import Api from "./Api";
 
 class ItemPostApi {
 
-    getPostByCommunityIdAndItemType(communityId, itemType, searchText) {
-        return Api.post('/items?communityId=' + communityId + '&searchText=' + searchText, itemType);
+    getPostByCommunityIdAndItemType(communityId, itemType) {
+        return Api.post('/items?communityId=' + communityId, itemType);
     }
 
     saveItemPost(itemData) {
         return Api.post("/items/create", itemData)
     }
 
-    getPostByUserIdAndItemType(userId, itemType, searchText) {
-        return Api.post('/items?userId=' + userId + '&searchText=' + searchText, itemType);
+    getPostByUserIdAndItemType(userId, itemType) {
+        return Api.post('/items?userId=' + userId, itemType);
     }
 
     deletePost(postId) {

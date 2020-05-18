@@ -38,12 +38,12 @@ public class AssistanceController {
     }
 
     @PostMapping(params = "communityId")
-    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<AssistanceType>> map, @RequestParam String searchText) {
-        return assistanceService.performFilter(assistanceService.findAllByCommunityIdAndAssistanceTypeIn(communityId, map.get("assistanceTypes")),searchText);
+    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(@RequestParam Long communityId, @RequestBody Map<String, List<AssistanceType>> map) {
+        return assistanceService.findAllByCommunityIdAndAssistanceTypeIn(communityId, map.get("assistanceTypes"));
     }
 
     @PostMapping(params = "userId")
-    public List<AssistanceDTO> findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<AssistanceType>> map, @RequestParam String searchText) {
-        return assistanceService.performFilter(assistanceService.findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(userId, map.get("assistanceTypes")),searchText);
+    public List<AssistanceDTO> findAllByUserIdOrderByPostedDateDesc(@RequestParam Long userId, @RequestBody Map<String, List<AssistanceType>> map) {
+        return assistanceService.findAllByUserIdOrderByPostedDateDesc(userId, map.get("assistanceTypes"));
     }
 }

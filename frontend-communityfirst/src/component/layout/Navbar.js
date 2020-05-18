@@ -1,34 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import {Link, NavLink, useRouteMatch, useHistory} from "react-router-dom";
-import { Form, FormControl, Button } from "react-bootstrap";
-import Search from "../../services/Search";
+
 function Navbar({onLogout}) {
 
     const {url} = useRouteMatch();
     const history = useHistory();
-    const [state, setState] = useState({
-            searchText: ""
-    });
-    const handleSearchSubmit = () => {
-            if (state.searchText) {
-                let text = state.searchText;
-                 let newURL=window.location.pathname;
-                 Search.setSearchText(text);
-                 setState({ searchText: "" })
-                 history.push({
-                 pathname:history.push(`${newURL}`),
-                 state: { searchText: text }
-                });
-            } else {
-                alert("Please enter some search text!");
-            }
-        };
-        const handleSearchInput = event => {
-            setState({
-                searchText: event.target.value
-            });
-        };
-    const handleFormSubmit = e => e.preventDefault();
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <Link to={`${url}/services`} className="navbar-brand">CommunityFirst</Link>
@@ -50,23 +27,11 @@ function Navbar({onLogout}) {
                 </ul>
                 <button className="btn btn-outline-light ml-lg-4" onClick={() => {
                     history.push('/communityfirst/selection');
-                }}>Choose Community</button> &nbsp;&nbsp;
-                <Form inline onSubmit={handleFormSubmit}>
-                    <FormControl
-                        onChange={handleSearchInput}
-                        value={state.searchText}
-                        type="text"
-                        placeholder="Enter text to Search"
-                        className="mr-sm-2" />
-                        <Button onClick={handleSearchSubmit} variant="outline-info">
-                            Search
-                        </Button>
-                    </Form>
+                }}>Choose Community</button>
                 <button className="btn btn-outline-secondary ml-lg-4" onClick={() => {
                     onLogout();
                     history.push('/');
                 }}>Logout</button>
-
             </div>
         </nav>
     );
