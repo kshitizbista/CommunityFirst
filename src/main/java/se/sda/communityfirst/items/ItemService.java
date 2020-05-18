@@ -6,9 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import se.sda.communityfirst.exception.ResourceNotFoundException;
 import se.sda.communityfirst.location.Community;
 import se.sda.communityfirst.location.CommunityRepository;
+import se.sda.communityfirst.service.AssistanceDTO;
 import se.sda.communityfirst.user.User;
 import se.sda.communityfirst.user.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -84,6 +86,16 @@ public class ItemService {
         return itemRepository.findAllByCommunityIdAndItemTypeInOrderByPostedDateDesc(communityId, itemTypes).stream().map(item ->
                 itemToDTO.convert(item)).collect(Collectors.toList());
     }
-
+    public List<ItemDTO> performFilter(List<ItemDTO>  itemDTO, String searchText){
+        List<ItemDTO> newItemDTO = new ArrayList<ItemDTO>();
+        searchText=searchText.trim();
+        if(searchText.isEmpty())
+            return itemDTO;
+        for (ItemDTO item: itemDTO){
+            if(item.getTitle().toLowerCase().contains(searchText.toLowerCase()) || item.getDescription().toLowerCase().contains(searchText.toLowerCase()))
+                newItemDTO.add(item);
+        }
+        return newItemDTO;
+    }
 
 }
