@@ -88,6 +88,7 @@ public class ItemService {
     }
     public List<ItemDTO> performFilter(List<ItemDTO>  itemDTO, String searchText){
         List<ItemDTO> newItemDTO = new ArrayList<ItemDTO>();
+        searchText=searchText.trim();
         if(searchText.isEmpty())
             return itemDTO;
         for (ItemDTO item: itemDTO){
