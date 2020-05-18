@@ -8,6 +8,8 @@ import Auth from "./services/Auth";
 import Main from "./component/layout/Main";
 import Location from "./component/location/Location";
 import CoronaPage from "./component/coronaTracker/CoronaPage";
+import AboutPage from "./component/about/AboutPage";
+
 
 function App() {
 
@@ -18,9 +20,15 @@ function App() {
                 <Route exact path="/communityfirst">
                     <Home/>
                 </Route>
+
                 <Route exact path="/communityfirst/covid">
                     <CoronaPage/>
                 </Route>
+
+                <Route exact path="/communityfirst/about">
+                    <AboutPage/>
+                </Route>
+
                 <Route path="/login" render={() =>
                     !Auth.isLoggedIn() ? (<LoginPage/>) : (<Redirect to="/communityfirst/selection"/>)
                 }/>

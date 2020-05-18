@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useHistory} from "react-router-dom";
 import ItemSubMenu from "./ItemSubMenu";
 import ItemPostCreation, { itemType } from "./ItemPostCreation";
 import format from "date-fns/format";
@@ -21,6 +22,7 @@ function ItemPost() {
     const [loading, setLoading] = useState(true);
     const toggleRequested = (checked) => setRequestedChecked(checked);
     const toggleOffered = (checked) => setOfferedChecked(checked);
+    const history = useHistory();
 
     useEffect(() => {
         getPost(getFilter())
@@ -78,7 +80,7 @@ function ItemPost() {
                 onOfferedCheckBoxClick={toggleOffered} />
             <ItemPostCreation onSubmit={createItemPost} />
             <div className="row justify-content-center">
-                <div className="col-10">
+                <div className="col-10" style={{overflow:"scroll", height: "22em"}}>
 
                     {loading && <Spinner animation="border" role="status" style={{ width: "7rem", height: "7rem" }} className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>
@@ -88,12 +90,14 @@ function ItemPost() {
                         <ItemCard key={item.id}
                             title={item.title}
                             description={item.description}
+                            maxDesc={130}
                             itemType={item.itemType}
                             postedDate={item.postedDate}
                             userId={item.userId}
                             email={item.email}
                             firstname={item.firstname}
                             lastname={item.lastname}
+                            onCardClick={() => history.push("/communityfirst/se/item-details/" + item.id)}
                         />
                     )}
                 </div>

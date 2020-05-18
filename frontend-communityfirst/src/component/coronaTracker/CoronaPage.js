@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './CovidStyle.css'
 import { CoronaCards, CoronaChart, CoronaCountryPicker } from '../coronaTracker';
 import { fetchData } from "./api";
+import Menu from "../layout/Menu";
+import Footer from "../layout/Footer";
 
 class CoronaPage extends React.Component {
     state = {
@@ -26,9 +28,16 @@ class CoronaPage extends React.Component {
 
         return (
             <div className={styles.container}>
+                <div>
+                    <Menu />
+                </div>
                 <CoronaCards data = {data}/>
                 <CoronaCountryPicker handleCountryChange={this.changeCountryHandler}/>
                 <CoronaChart data={data} country={country}/>
+
+                <div>
+                    <Footer />
+                </div>
             </div>
         )
     }
