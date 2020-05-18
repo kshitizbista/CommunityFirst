@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './CovidStyle.css'
 import { CoronaCards, CoronaChart, CoronaCountryPicker } from '../coronaTracker';
 import { fetchData } from "./api";
 import Menu from "../layout/Menu";
@@ -27,18 +26,19 @@ class CoronaPage extends React.Component {
         const {data, country} = this.state;
 
         return (
-            <div className={styles.container}>
-                <div>
-                    <Menu />
-                </div>
-                <CoronaCards data = {data}/>
-                <CoronaCountryPicker handleCountryChange={this.changeCountryHandler}/>
-                <CoronaChart data={data} country={country}/>
 
-                <div>
-                    <Footer />
-                </div>
+            <div className="homepage">
+                <Menu />
+                <aside>
+                    <CoronaCards data = {data}/>
+                </aside>
+                <main>
+                    <CoronaCountryPicker handleCountryChange={this.changeCountryHandler}/>
+                    <CoronaChart data={data} country={country}/>
+                </main>
+                <Footer />
             </div>
+
         )
     }
 }

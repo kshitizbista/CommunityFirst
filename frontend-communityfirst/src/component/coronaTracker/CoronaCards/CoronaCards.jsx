@@ -4,6 +4,7 @@ import CountUp from 'react-countup';
 import styles from './CoronaCards.module.css'
 import cx from 'classnames';
 
+
 const CoronaCards = ({ data : {confirmed, recovered, deaths, lastUpdate }}) => {
 console.log(confirmed)
     if (!confirmed) {
@@ -11,7 +12,7 @@ console.log(confirmed)
     }
     return (
         <div className={styles.container}>
-            <Grid container spacing={3} justify="center">
+            <Grid  container spacing={3} justify="center">
               <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
                   <CardContent>
                       <Typography color="textSecondary" gutterBottom>
