@@ -7,7 +7,6 @@ import Auth from "../../services/Auth";
 import PostApi from "../../api/PostApi";
 import {Toast, Spinner} from "react-bootstrap";
 import Community from "../../services/Community";
-import Search from "../../services/Search";
 import {useHistory} from "react-router-dom";
 
 function Post() {
@@ -64,21 +63,16 @@ function Post() {
 
     const getPost = async (data) => {
         try {
-            let searchText = Search.getSearchText();
             setLoading(true);
             const requestBody = {assistanceTypes: data}
-            const response = await PostApi.getPostByCommunityIdAndServiceType(parseInt(Community.getCommunityId()), requestBody, searchText);
+            const response = await PostApi.getPostByCommunityIdAndServiceType(parseInt(Community.getCommunityId()), requestBody);
             setServices(response.data);
             setLoading(false);
-            Search.setSearchText('');
         } catch (e) {
 
         }
     }
-    if(Search.getSearchText()) {
-        getPost(getFilter());
-        Search.setSearchText('');
-    }
+
     return (
         <>
             <SubMenu onRequestedCheckBoxClick={toggleRequested}

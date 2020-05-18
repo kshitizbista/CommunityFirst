@@ -2,16 +2,16 @@ import Api from "./Api";
 
 class PostApi {
 
-    getPostByCommunityIdAndServiceType(communityId, serviceType, searchText) {
-        return Api.post('/services?communityId=' + communityId + '&searchText=' + searchText, serviceType);
+    getPostByCommunityIdAndServiceType(communityId, serviceType) {
+        return Api.post('/services?communityId=' + communityId, serviceType);
     }
 
     saveServicePost(serviceData) {
         return Api.post("/services/create", serviceData)
     }
 
-    getPostByUserIdAndServiceType(userId, serviceType, searchText) {
-        return Api.post('/services?userId=' + userId + '&searchText=' + searchText, serviceType);
+    getPostByUserIdAndServiceType(userId, serviceType) {
+        return Api.post('/services?userId=' + userId, serviceType);
     }
 
     deletePost(postId) {
