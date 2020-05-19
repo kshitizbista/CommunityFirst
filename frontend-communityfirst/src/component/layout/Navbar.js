@@ -30,8 +30,8 @@ function Navbar({onLogout}) {
         };
     const handleFormSubmit = e => e.preventDefault();
     return (
-        <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={{background: "#F8F0E5"}}>
-            <a href={"/communityfirst"}><img className="logo-image" src={require('../../assets/images/logo.png')}></img></a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-warning sticky-top">
+            <Link to="/communityfirst" className="navbar-brand">CommunityFirst</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

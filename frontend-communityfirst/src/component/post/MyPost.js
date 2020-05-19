@@ -281,7 +281,7 @@ function MyPost() {
 
 
             <div className="row justify-content-center">
-                <div className="col-10" style={{overflow:"scroll", height: "80vh"}}>
+                <div className="col-10" style={{overflow:"scroll", height: "72vh"}}>
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
                                          className="d-block mx-auto test">
                         <span className="sr-only">Loading...</span>

@@ -61,7 +61,7 @@ function LoginForm({onSubmit}) {
                 </div>
             </aside>
             <main>
-                <picture className="side-image-blur"><img className="side-image-login"src={require('../../assets/images/loginbg.jpg')}></img></picture>
+                <picture className="side-image-blur"><img className="side-image-login"src={require('../../assets/images/community1.png')}></img></picture>
             </main>
             <Footer />
         </div>

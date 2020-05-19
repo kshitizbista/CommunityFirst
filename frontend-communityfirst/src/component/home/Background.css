@@ -23,7 +23,7 @@ footer
 }
 
 header {
-    background: #F8F0E5;
+    background: #ffffff;
     grid-area: hd;
     margin-bottom: 0;
 }
@@ -33,7 +33,7 @@ header {
 }
 
 aside {
-    background: #F8F0E5;
+    background: #FFFFFF;
     grid-area: sidebar;
 }
 
@@ -48,14 +48,14 @@ h1 {
 
 
 main {
-    background: #F8F0E5;
+    background: #FFFFFF;
     grid-area: main;
 }
 
 
 .side-image{
     width: 100%;
-    height: 80%;
+    height: 100%;
     min-width: 300px;
     min-height: 300px;
     box-shadow: 0 0 20px 20px white inset;
@@ -75,8 +75,8 @@ main {
 
 
 footer {
+    background: #ffffff;
     grid-area: footer;
-    background: #F8F0E5;
     background-size: 250px;
     background-position: bottom;
     background-image: url("../../assets/images/grass.png")
@@ -119,7 +119,6 @@ ul {
 
 .navigation-item-footer{
     margin: 0 10px;
-    color: #F8F0E5;
     font-size: large;
     font-weight: bold;
 }

@@ -13,7 +13,7 @@ function RegisterForm({onSubmit}) {
         <div className="background">
             <Menu />
             <main>
-                <picture className="side-image-blur"><img className="side-image"src={require('../../assets/images/registerbg.jpg')}></img></picture>
+                <picture className="side-image-blur"><img style = {{width: "450px"}}className="side-image"src={require('../../assets/images/peoplewhitesmoke1.jpg')}></img></picture>
             </main>
             <aside>
                 <div>

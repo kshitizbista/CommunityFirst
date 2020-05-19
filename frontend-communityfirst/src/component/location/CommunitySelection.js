@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import Menu from "../layout/Menu";
+import '../home/Background.css'
 
 function CommunitySelection({cities, communities, onCityClick, onCommunityClick}) {
 
@@ -6,6 +8,7 @@ function CommunitySelection({cities, communities, onCityClick, onCommunityClick}
     const [selectedCommunity] = useState("Select Community");
 
     return (
+
         <div className="row justify-content-center">
             <div className="col-auto">
                 <div className="dropdown">

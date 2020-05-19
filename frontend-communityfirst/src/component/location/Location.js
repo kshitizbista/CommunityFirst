@@ -34,7 +34,7 @@ function Location() {
 
     return (
         <div style={{height: "93vh"}}>
-            <div className="row justify-content-center align-items-center" style={{height: "95%","background":"#F8F0E5"}}>
+            <div className="row justify-content-center align-items-center" style={{height: "95%","background":"#FFFFF"}}>
                 <div className="col ">
                     <h2 className="text-center mb-5">Choose your community!</h2>
                     <CommunitySelection {...cities} {...communities} onCityClick={getCommunities}
