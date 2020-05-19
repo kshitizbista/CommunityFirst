@@ -38,7 +38,7 @@ function Card(props) {
     return (
         <>
             <div className="card mb-2 card-cursor">
-                <div className="card-body p-2" onClick={props.onCardClick}>
+                <div  className="card-body p-2" onClick={props.onCardClick}>
                     <div className="row mt-2">
                         <div className="col-auto pr-0">
                             <div className="row flex-nowrap no-gutters">

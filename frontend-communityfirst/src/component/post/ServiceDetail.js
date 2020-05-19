@@ -33,7 +33,7 @@ function ServiceDetail() {
             </div>
             <div className="card-footer text-muted">
                 <p>Posted on: {post.postedDate}</p>
-                <button className="btn btn-primary ml-1" onClick={() =>history.push("/communityfirst/se/services")} >Back to Services</button>          
+                <button className="btn btn-warning ml-1" onClick={() =>history.push("/communityfirst/se/services")} >Back to Services</button>
             </div>
         </div>
     )

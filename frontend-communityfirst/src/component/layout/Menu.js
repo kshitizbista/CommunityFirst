@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import '../home/Home.css';
+import '../home/Background.css';
 
 function Menu() {
     return (

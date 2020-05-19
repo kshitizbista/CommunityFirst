@@ -85,7 +85,7 @@ function Post() {
                      onOfferedCheckBoxClick={toggleOffered}/>
             <PostCreation onSubmit={createPost}/>
             <div className="row justify-content-center">
-                <div className="col-10" style={{overflow:"scroll", height: "22em"}}>
+                <div className="col-10" style={{overflow:"scroll", height: "75vh"}}>
 
                     {loading && <Spinner animation="border" role="status" style={{width: "7rem", height: "7rem"}}
                                          className="d-block mx-auto test">

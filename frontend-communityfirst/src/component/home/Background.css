@@ -11,14 +11,14 @@ footer
     text-align: center;
     padding: 0 16px;
 }
-.homepage {
+.background {
     margin : 0;
     display: grid;
     grid-template-columns: 50% auto;
     grid-template-rows: 90px auto 100px;
     grid-template-areas: "hd hd"
-    "sidebar main"
-    "footer footer";
+                         "sidebar main"
+                          "footer footer";
     height: 100vh;
 }
 
@@ -40,11 +40,10 @@ aside {
 .description {
     letter-spacing: 2px;
     padding: 20px 40px;
-    text-align: left;
 }
 
 h1 {
-    padding-top: 50px;
+   padding-top: 50px;
 }
 
 

@@ -2,7 +2,7 @@ import React from "react";
 
 function SubMenu({onRequestedCheckBoxClick, onOfferedCheckBoxClick}) {
     return (
-        <div className="bg-white mb-3 p-2">
+        <div className="mb-3 p-2">
             <div className="row no-gutters justify-content-center">
                 <div className="col-auto mr-2">
                     <span className="font-weight-bold">Service Type:</span>

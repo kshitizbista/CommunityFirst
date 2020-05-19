@@ -27,7 +27,7 @@ class CoronaPage extends React.Component {
 
         return (
 
-            <div className="homepage">
+            <div className="background">
                 <Menu />
                 <aside>
                     <CoronaCards data = {data}/>
