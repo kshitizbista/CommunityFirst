@@ -66,7 +66,7 @@ function PostCreation({onSubmit}) {
                         reset();
                         handleClose();
                     }}>Cancel</Button>
-                    <Button type="submit" variant="primary">Post</Button>
+                    <Button type="submit" variant="warning">Post</Button>
                 </Modal.Footer>
             </Form>
         </Modal>

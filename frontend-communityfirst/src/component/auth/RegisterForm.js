@@ -3,17 +3,17 @@ import {useForm} from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Menu from "../layout/Menu";
 import Footer from "../layout/Footer";
-import '../home/Home.css';
+import '../home/Background.css';
 
 function RegisterForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
     const history = useHistory();
 
     return (
-        <div className="homepage">
+        <div className="background">
             <Menu />
             <main>
-                <picture className="side-image-blur"><img className="side-image"src={require('../../assets/images/registerbg.jpg')}></img></picture>
+                <picture className="side-image-blur"><img style = {{width: "450px"}}className="side-image"src={require('../../assets/images/peoplewhitesmoke1.jpg')}></img></picture>
             </main>
             <aside>
                 <div>
@@ -72,10 +72,10 @@ function RegisterForm({onSubmit}) {
                                     <span
                                         className="form-error">Password is required and size must be between 5 and 50 </span>}
                                 </div>
-                                <button type="submit" className="btn btn-primary">
+                                <button type="submit" className="btn btn-warning">
                                     Join now
                                 </button>
-                                <button className="btn btn-primary ml-1" onClick={() => history.push("/")}>Home</button>
+                                <button className="btn btn-warning ml-1" onClick={() => history.push("/")}>Home</button>
                             </form>
                         </div>
                     </div>

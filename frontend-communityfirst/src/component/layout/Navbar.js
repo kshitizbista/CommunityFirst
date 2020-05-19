@@ -30,8 +30,8 @@ function Navbar({onLogout}) {
         };
     const handleFormSubmit = e => e.preventDefault();
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-            <Link to={`${url}/services`} className="navbar-brand">CommunityFirst</Link>
+        <nav className="navbar navbar-expand-lg navbar-light bg-warning sticky-top">
+            <Link to="/communityfirst" className="navbar-brand">CommunityFirst</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@ function Navbar({onLogout}) {
                         <NavLink to={`${url}/my-posts`} className="nav-link">My Posts</NavLink>
                     </li>
                 </ul>
-                <button className="btn btn-outline-light ml-lg-4" onClick={() => {
+                <button className="btn btn-outline-dark ml-lg-4" onClick={() => {
                     history.push('/communityfirst/selection');
                 }}>Choose Community</button> &nbsp;&nbsp;
                 <Form inline onSubmit={handleFormSubmit}>
@@ -58,7 +58,7 @@ function Navbar({onLogout}) {
                         type="text"
                         placeholder="Enter text to Search"
                         className="mr-sm-2" />
-                        <Button onClick={handleSearchSubmit} variant="outline-info">
+                        <Button onClick={handleSearchSubmit} variant="outline-dark">
                             Search
                         </Button>
                     </Form>

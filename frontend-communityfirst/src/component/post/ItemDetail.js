@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import PostApi from "../../api/PostApi";
 import format from "date-fns/format";
-import {useParams, useHistory} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
+import {itemType} from "./ItemPostCreation";
 
 function ItemDetail() {
 
@@ -29,6 +30,9 @@ function ItemDetail() {
                 <h3 className="card-title"><b><i>{itemPost.title}</i></b></h3>
                 <p className="card-text word-wrap"><b>Description:</b> {itemPost.description}</p>
                 <p className="card-text"><b>Posted By:</b> {itemPost.firstname} {itemPost.lastname}</p>
+                <p className="card-text"><b>Item Type:</b> {itemPost.itemType === itemType.REQUEST_ITEM ?
+                    'Requesting Item' : 'Offering Item'}
+                </p>
                 <p className="card-text"><b>Contact Details:</b> {itemPost.email}</p>
             </div>
             <div className="card-footer text-muted">

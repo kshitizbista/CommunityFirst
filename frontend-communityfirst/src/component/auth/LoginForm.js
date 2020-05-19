@@ -3,14 +3,14 @@ import {useForm} from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import Menu from "../layout/Menu";
 import Footer from "../layout/Footer";
-import '../home/Home.css';
+import '../home/Background.css';
 
 function LoginForm({onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
     const history = useHistory();
 
     return (
-        <div className="homepage">
+        <div className="background">
             <Menu />
             <aside>
                 <div >
@@ -47,10 +47,10 @@ function LoginForm({onSubmit}) {
                                     </div>
 
                                     <div className="form-group">
-                                        <button className="btn btn-primary" type="submit">
+                                        <button className="btn btn-warning" type="submit">
                                             Login
                                         </button>
-                                        <button className="btn btn-primary ml-1"
+                                        <button className="btn btn-warning ml-1"
                                                 onClick={() => history.push("/")}>Home
                                         </button>
                                     </div>
@@ -61,7 +61,7 @@ function LoginForm({onSubmit}) {
                 </div>
             </aside>
             <main>
-                <picture className="side-image-blur"><img className="side-image-login"src={require('../../assets/images/loginbg.jpg')}></img></picture>
+                <picture className="side-image-blur"><img className="side-image-login"src={require('../../assets/images/community1.png')}></img></picture>
             </main>
             <Footer />
         </div>

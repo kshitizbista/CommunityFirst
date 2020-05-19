@@ -14,13 +14,13 @@ function ItemPostCreation({ onSubmit }) {
     const buttons = (
         <div className="col-auto">
             <ButtonGroup>
-                <Button type="button" variant="outline-info post-creation-btn" onClick={() => {
+                <Button type="button" variant="outline-dark post-creation-btn" onClick={() => {
                     setItem(itemType.REQUEST_ITEM);
                     handleShow();
                 }}>
                     Request Item
                 </Button>
-                <Button type="button" variant="outline-info post-creation-btn"
+                <Button type="button" variant="outline-dark post-creation-btn"
                     onClick={() => {
                         setItem(itemType.OFFER_ITEM);
                         handleShow();
@@ -66,7 +66,7 @@ function ItemPostCreation({ onSubmit }) {
                         reset();
                         handleClose();
                     }}>Cancel</Button>
-                    <Button type="submit" variant="primary">Post</Button>
+                    <Button type="submit" variant="warning">Post</Button>
                 </Modal.Footer>
             </Form>
         </Modal>

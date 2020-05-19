@@ -24,7 +24,7 @@ function Main() {
     return (
         <>
             <Navbar onLogout={() => Auth.logout()}/>
-            <div  style={{background: "#F8F0E5", minHeight: 'calc(88vh - 56px)'}}>
+            <div  style={{background: "#FFFFF", minHeight: 'calc(88vh - 56px)'}}>
                 <Switch>
                     <Redirect exact from={path} to={`${url}/services`}/>
                     <Route exact path={`${path}/services`}>
