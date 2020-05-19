@@ -72,7 +72,7 @@ function ItemCard(props) {
                                 style={{"fontSize": "14px"}}>{props.title}</h5>
                             <p className="m-0" style={{"fontSize": "14px"}}>{getDesc()} {checkDesc() && <span className="text-info see-more"> ...See More</span>}</p>
                         </div>
-                        <div className="col-sm">
+                        <div className="col-auto">
                             {deleteBtn}
                             {editBtn}
                         </div>
