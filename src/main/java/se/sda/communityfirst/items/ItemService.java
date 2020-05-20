@@ -25,9 +25,9 @@ public class ItemService {
     private ItemToItemDTO itemToDTO;
 
     public ItemService(ItemRepository itemRepository,
-                             UserRepository userRepository,
-                             CommunityRepository communityRepository,
-                             ItemToItemDTO itemToDTO, ItemDTOToItem dtoToItem) {
+                       UserRepository userRepository,
+                       CommunityRepository communityRepository,
+                       ItemToItemDTO itemToDTO, ItemDTOToItem dtoToItem) {
         this.itemRepository = itemRepository;
         this.userRepository = userRepository;
         this.communityRepository = communityRepository;
@@ -76,26 +76,15 @@ public class ItemService {
     }
 
     @Transactional
-    public List<ItemDTO> findAllByUserIdOrderByPostedDateDesc(Long userId, List<ItemType> itemTypes) {
-        return itemRepository.findAllByUserIdAndItemTypeInOrderByPostedDateDesc(userId, itemTypes).stream().map(item ->
+    public List<ItemDTO> findAllByUserIdOrderByPostedDateDesc(Long userId, List<ItemType> itemTypes, String searchText) {
+        return itemRepository.findAllByUserIdAndItemTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(userId, itemTypes, searchText).stream().map(item ->
                 itemToDTO.convert(item)).collect(Collectors.toList());
     }
 
     @Transactional
-    public List<ItemDTO> findAllByCommunityIdAndItemTypeIn(Long communityId, List<ItemType> itemTypes) {
-        return itemRepository.findAllByCommunityIdAndItemTypeInOrderByPostedDateDesc(communityId, itemTypes).stream().map(item ->
+    public List<ItemDTO> findAllByCommunityIdAndItemTypeIn(Long communityId, List<ItemType> itemTypes, String searchText) {
+        return itemRepository.findAllByCommunityIdAndItemTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(communityId, itemTypes, searchText).stream().map(item ->
                 itemToDTO.convert(item)).collect(Collectors.toList());
-    }
-    public List<ItemDTO> performFilter(List<ItemDTO>  itemDTO, String searchText){
-        List<ItemDTO> newItemDTO = new ArrayList<ItemDTO>();
-        searchText=searchText.trim();
-        if(searchText.isEmpty())
-            return itemDTO;
-        for (ItemDTO item: itemDTO){
-            if(item.getTitle().toLowerCase().contains(searchText.toLowerCase()) || item.getDescription().toLowerCase().contains(searchText.toLowerCase()))
-                newItemDTO.add(item);
-        }
-        return newItemDTO;
     }
 
 }

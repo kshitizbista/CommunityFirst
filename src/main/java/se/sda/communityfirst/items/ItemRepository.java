@@ -6,8 +6,9 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
-    List<Item> findAllByCommunityIdAndItemTypeInOrderByPostedDateDesc(Long communityId, Collection<ItemType> itemTypes);
-    List<Item> findAllByUserIdAndItemTypeInOrderByPostedDateDesc(Long userId, Collection<ItemType> itemTypes);
-    }
+    List<Item> findAllByCommunityIdAndItemTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(Long communityId, Collection<ItemType> itemTypes, String searchText);
+
+    List<Item> findAllByUserIdAndItemTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(Long userId, Collection<ItemType> itemTypes, String searchText);
+}
 
 
