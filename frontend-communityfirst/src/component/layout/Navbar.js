@@ -11,7 +11,7 @@ function Navbar({onLogout}) {
     });
     const handleSearchSubmit = () => {
             if (state.searchText) {
-                let text = state.searchText;
+                let text = state.searchText.trim();
                  let newURL=window.location.pathname;
                  Search.setSearchText(text);
                  setState({ searchText: "" })

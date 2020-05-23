@@ -73,27 +73,15 @@ public class AssistanceService {
     }
 
     @Transactional
-    public List<AssistanceDTO> findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(Long userId, List<AssistanceType> assistanceTypes) {
-        return assistanceRepository.findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(userId, assistanceTypes).stream().map(assistance ->
+    public List<AssistanceDTO> findAllByUserIdAndAssistanceTypeInOrderByIdDescPostedDateDesc(Long userId, List<AssistanceType> assistanceTypes, String searchText) {
+        return assistanceRepository.findAllByUserIdAndAssistanceTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(userId, assistanceTypes, searchText).stream().map(assistance ->
                 assistanceToDTO.convert(assistance)).collect(Collectors.toList());
     }
 
     @Transactional
-    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(Long communityId, List<AssistanceType> assistanceTypes) {
-        return assistanceRepository.findAllByCommunityIdAndAssistanceTypeInOrderByPostedDateDesc(communityId, assistanceTypes).stream().map(assistance ->
+    public List<AssistanceDTO> findAllByCommunityIdAndAssistanceTypeIn(Long communityId, List<AssistanceType> assistanceTypes, String searchText) {
+        return assistanceRepository.findAllByCommunityIdAndAssistanceTypeInAndTitleContainingIgnoreCaseOrderByIdDescPostedDateDesc(communityId, assistanceTypes, searchText).stream().map(assistance ->
                 assistanceToDTO.convert(assistance)).collect(Collectors.toList());
-    }
-
-    public List<AssistanceDTO> performFilter(List<AssistanceDTO>  assistanceDTO, String searchText){
-        List<AssistanceDTO> newAssistanceDTO = new ArrayList<AssistanceDTO>();
-        searchText=searchText.trim();
-        if(searchText.isEmpty())
-            return assistanceDTO;
-        for (AssistanceDTO assistance: assistanceDTO){
-            if(assistance.getTitle().toLowerCase().contains(searchText.toLowerCase()) || assistance.getDescription().toLowerCase().contains(searchText.toLowerCase()))
-                newAssistanceDTO.add(assistance);
-        }
-        return newAssistanceDTO;
     }
 
 }
