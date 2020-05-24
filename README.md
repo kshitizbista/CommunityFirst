@@ -75,7 +75,7 @@ This project recieved two out of four awards at the SDA final day award ceremony
 - Sadia Chaudhary
 
 
-###FAQ
+### FAQ
 How to connect to running database from terminal
 Sometimes you might want to inspect the tables, run raw queries, seed the database, check that a certain backend action 
 has been performed correctly. To do that you can simply run the following command:-
